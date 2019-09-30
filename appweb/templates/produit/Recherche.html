@@ -1,0 +1,535 @@
+{% extends "produit/base.html" %}
+{% load staticfiles%}
+{% load humanize %}
+{% block content %}
+
+
+{% if request.session.lang == "fr" %}
+			<!-- Content -->
+			<div class="row content">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                	<div class="breadcrumbs">
+                    
+                    	<p><a >Home</a> <i class="icons icon-right-dir"></i> <a>Produits</a></p>
+
+                      
+                    </div>
+                </div>
+
+				<!-- Main Content -->
+				<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                             	<!-- /Subcategory -->
+
+
+
+                   <div class="row">
+
+                    {% for pro in contacts %}
+                        <!-- Product Item -->
+                        <div class="col-lg-4 col-md-4 col-sm-4 product">
+
+                            <div class="product-image">
+                                {% for item in pro.imageproduit_set.all|slice:"1" %}
+                                <img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1" style="width: 270px; height: 270px; object-fit: cover;">
+                                {% endfor %}
+                                {% for item in pro.imageproduit_set.all|slice:"1" %}
+                                                <a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+                                                   {% endfor %}
+														<i class="icons icon-eye-1"></i> voir
+													</a>
+                            </div>
+
+                            <div class="product-info">
+                                <h5><a href="/produit/{{pro.id}}/">{{pro.nom_produit}}</a></h5>
+                                <span class="price">{{pro.prix_produit|intcomma}} Dzd</span>
+                                <div class="rating readonly-rating" data-score="4"></div>
+                            </div>
+
+                            <div class="product-actions">
+                                <span class="add-to-cart">
+                                  <span class="action-wrapper">
+                                    <i class="icons icon-basket-2"></i>
+                                    {% if user.is_authenticated %}
+                                    <span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au panier</span>
+                                    {% else %}
+                                    <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au panier</span>
+                                    {% endif %}
+                                  </span >
+                                </span>
+                                <span class="add-to-favorites">
+                                  <span class="action-wrapper">
+                                                                <i class="icons icon-heart-empty"></i>
+        
+                                                                    {% if user.is_authenticated %}
+                                                                <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au favori</span>
+                                                                {% else %}
+                                                                <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au favori</span>
+                                                                {% endif %}
+                                                            </span>
+                                </span>
+                                <span class="add-to-compare">
+                                  <span class="action-wrapper">
+                                    <i class="icons icon-docs"></i>
+                                          {% if user.is_authenticated %}
+                                    <span class="action-name" onclick="addCompare('{{pro.id}}')" style="font-size: small;">Comparer</span>
+                                    {% else %}
+                                    <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Comparer</span>
+                                    {% endif %}
+                                  </span>
+                                </span>
+                              </div>
+
+                        </div>
+                        <!-- Product Item -->
+
+                        {% endfor %}
+                  </div>
+
+                       <div class="row">
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="category-results">
+                                <p>Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}</p>
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="pagination">
+                                {% if contacts.has_previous %}
+                                <a href="?ser={{hass}}&page={{ contacts.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
+                                 {% endif %}
+
+
+                                 {% with ''|center:contacts.paginator.num_pages as range %}
+                                  {% for i in range %}
+
+                                 
+                                <a href="?ser={{hass}}&page={{ forloop.counter }}"><div class="page-button">{{ forloop.counter }}</div></a>
+                                  {% endfor %}  
+                                  {% endwith %} 
+                                  {% if contacts.has_next %}                           
+                                <a href="?ser={{hass}}&page={{ contacts.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+
+            <div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div>  
+
+				</section>
+				<!-- /Main Content -->
+
+
+
+
+ <script type="text/javascript">
+
+
+
+function Apach(s,k){
+ swal({
+ text: 'Ajouter la quantite',
+   content: {
+    element: "input",
+    attributes: {
+      placeholder: "Ajouter la quantite",
+      type: "number",
+    },
+  },
+  button: {
+    text: "Ajouter au panier",
+    closeModal: false,
+  },
+})
+.then((name) => {
+if (name =="" ) {
+  createpan(s,1,k);
+    swal("Le produit à été ajouter avec success. La quantité est 1", {
+      icon: "success",
+    });
+    return false;
+  } 
+     if (!name) {
+    swal("Le produit n'est pas ajouter", {
+      icon: "error",
+    });
+    
+  }
+  
+  else {
+    createpan(s,name,k);
+    swal("Le produit à été ajouter avec success La quantité est :"+name, {
+      icon: "success",
+    });
+    
+  }
+});
+
+}
+   
+   
+
+
+
+
+      </script>
+
+  
+<script type="text/javascript">
+  function addWish(s,t){
+    
+    swal("Le produit est ajouter", {
+          icon: "success",
+        });
+    
+                    $.ajax({
+                        type: "POST",
+    
+                        url : "{% url 'produit:addWish' %}",
+                        dataType: "json",
+                        async: true,
+                        data:{
+                            csrfmiddlewaretoken: '{{csrf_token}}',
+                            id_produit : s,
+                            id_user :t,
+    
+    
+                        },
+    
+                    });
+               
+    
+    
+    
+                }
+    
+    
+    </script>  
+       <script type="text/javascript">
+                      function addCompare(s){
+                        swal("Le produit est ajouter pour le comparer", {
+          icon: "success",
+        });
+    
+                $.ajax({
+                  type: "POST",
+    
+                  url : "{% url 'produit:addCompare' %}",
+                  dataType: "json",
+                  async: true,
+                  data:{
+                    csrfmiddlewaretoken: '{{csrf_token}}',
+                    id_produit : s,
+    
+    
+                  },
+                
+                });
+              }
+          </script>  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%else%}
+		<!-- Content -->
+    <div class="row content">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="breadcrumbs">
+            
+              <p><a >الصفحة الرئيسية</a> <i class="icons icon-right-dir"></i> <a>المنتجات</a></p>
+
+              
+            </div>
+        </div>
+
+<!-- Main Content -->
+<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                       <!-- /Subcategory -->
+
+
+
+           <div class="row">
+
+            {% for pro in contacts %}
+                <!-- Product Item -->
+                <div class="col-lg-4 col-md-4 col-sm-4 product">
+
+                    <div class="product-image">
+                        {% for item in pro.imageproduit_set.all|slice:"1" %}
+                        <img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1"style="width: 270px; height: 270px; object-fit: cover;">
+                        {% endfor %}
+                        {% for item in pro.imageproduit_set.all|slice:"1" %}
+                                        <a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit_ar}}');" class="product-hover" >
+                                           {% endfor %}
+                    <i class="icons icon-eye-1"></i> عرض سريع
+                  </a>
+                    </div>
+
+                    <div class="product-info">
+                        <h5><a href="/produit/{{pro.id}}/">{{pro.nom_produit_ar}}</a></h5>
+                        <span class="price">{{pro.prix_produit|intcomma}} دج</span>
+                        <div class="rating readonly-rating" data-score="4"></div>
+                    </div>
+                    <div class="product-actions">
+                        <span class="add-to-cart">
+                          <span class="action-wrapper">
+                            <i class="icons icon-basket-2"></i>
+                            {% if user.is_authenticated %}
+                            <span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" >أضف إلى السلة</span>
+                            {% else %}
+                            <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى السلة</span>
+                            {% endif %}
+                          </span >
+                        </span>
+                        <span class="add-to-favorites">
+                          <span class="action-wrapper">
+                            <i class="icons icon-heart-empty"></i>
+                                 {% if user.is_authenticated %}
+                            <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" >أضف إلى المفضلة</span>
+                            {% else %}
+                            <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى المفضلة</span>
+                            {% endif %}
+                          </span>
+                        </span>
+                        <span class="add-to-compare">
+                          <span class="action-wrapper">
+                            <i class="icons icon-docs"></i>
+                                    {% if user.is_authenticated %}
+                            <span class="action-name" onclick="addCompare('{{pro.id}}')" >أضف للمقارنة</span>
+                            {% else %}
+                            <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف للمقارنة</span>
+                            {% endif %}
+                          </span>
+                        </span>
+                      </div>
+  
+
+                </div>
+                <!-- Product Item -->
+
+                {% endfor %}
+          </div>
+
+               <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="category-results">
+                        <p>Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}</p>
+                        
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="pagination">
+                        {% if contacts.has_previous %}
+                        <a href="?ser={{hass}}&page={{ contacts.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
+                         {% endif %}
+
+
+                         {% with ''|center:contacts.paginator.num_pages as range %}
+                          {% for i in range %}
+
+                         
+                        <a href="?ser={{hass}}&page={{ forloop.counter }}"><div class="page-button">{{ forloop.counter }}</div></a>
+                          {% endfor %}  
+                          {% endwith %} 
+                          {% if contacts.has_next %}                           
+                        <a href="?ser={{hass}}&page={{ contacts.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+    <div id="myModal" class="modal">
+<span class="close">&times;</span>
+<img class="modal-content" id="img01">
+<div id="caption"></div>
+
+</div>  
+
+</section>
+<!-- /Main Content -->
+
+
+
+
+<script type="text/javascript">
+
+
+function Apach(s,k){
+   swal({
+   text: 'أضف الكمية',
+     content: {
+      element: "input",
+      attributes: {
+        placeholder: "أضف الكمية",
+        type: "number",
+      },
+    },
+    button: {
+      text: "أضف إلى السلة",
+      closeModal: false,
+    },
+  })
+  .then((name) => {
+  if (name =="" ) {
+    createpan(s,1,k);
+      swal("تم إضافة المنتج بنجاح. الكمية هي 1", {
+        icon: "success",
+      });
+      return false;
+    } 
+       if (!name) {
+      swal("لم يتم اضافة المنتج", {
+        icon: "error",
+      });
+      
+    }
+    
+    else {
+      createpan(s,name,k);
+      swal("تم إضافة المنتج بنجاح. الكمية هي :"+name, {
+        icon: "success",
+      });
+      
+    }
+  });
+  
+  }
+     
+     
+  
+  
+  
+     
+  
+  
+  
+     
+
+
+</script>
+
+   
+<script type="text/javascript">
+  function addWish(s,t){
+    
+    swal("تم اضافة المنتج", {
+          icon: "success",
+        });
+    
+                    $.ajax({
+                        type: "POST",
+    
+                        url : "{% url 'produit:addWish' %}",
+                        dataType: "json",
+                        async: true,
+                        data:{
+                            csrfmiddlewaretoken: '{{csrf_token}}',
+                            id_produit : s,
+                            id_user :t,
+    
+    
+                        },
+    
+                    });
+               
+    
+    
+    
+                }
+    
+    
+    </script>  
+       <script type="text/javascript">
+                      function addCompare(s){
+                        swal("تم اضافة المنتج للمقارنة", {
+          icon: "success",
+        });
+    
+                $.ajax({
+                  type: "POST",
+    
+                  url : "{% url 'produit:addCompare' %}",
+                  dataType: "json",
+                  async: true,
+                  data:{
+                    csrfmiddlewaretoken: '{{csrf_token}}',
+                    id_produit : s,
+    
+    
+                  },
+                
+                });
+              }
+          </script>  
+  
+{%endif%}
+
+
+
+
+{% endblock %}

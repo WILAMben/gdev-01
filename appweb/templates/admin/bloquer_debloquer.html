@@ -1,0 +1,123 @@
+ 
+{% extends "admin/admin_page.html" %}
+{% load staticfiles%}
+{% block content %}
+
+
+  <div class=" col-lg-9 col-md-9 col-sm-12 col-lg-push-2 col-md-push-2 ">
+                <div class="x_panel">
+             
+
+     <div class="x_content">
+
+                    
+
+<form class="form-horizontal form-label-left" novalidate>
+                   {% for v in vnt %}
+                      <span class="section">BLOQUER ou DEBLOQUER</span>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de point de vente  <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="name" class="form-control col-md-7 col-xs-12"  name="name"  required="required" type="text" value="{{v.first_name}}" readonly>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="email" id="email" name="email" value="{{v.email}}" required="required" class="form-control col-md-7 col-xs-12" readonly>
+                        </div>
+                      </div>
+                      
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="tel" id="telephone" name="tlf" value="{{v.telephone_user}}" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12" readonly>
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">adresse <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="website" name="adresse" value="{{v.adresse_user}}" required="required"  class="form-control col-md-7 col-xs-12" readonly>
+                        </div>
+                      </div>
+                         <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">wilaya <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="website" name="adresse" value="{{v.wilaya_user}}" required="required"  class="form-control col-md-7 col-xs-12" readonly>
+                        </div>
+                      </div>
+                
+
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Username<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="name" class="form-control col-md-7 col-xs-12" value="{{v.username}}"  name="username"  required="required" type="text" readonly>
+                        </div>
+                      </div>
+
+
+
+                     
+                
+                      
+                      
+                      <div class="ln_solid"></div>
+                    </form>
+                      <form  method="POST" action=""> {%csrf_token%}
+                        <input type="hidden" name="id" value="{{v.id}}">
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          {%if v.confirmed%}
+                          <div class="form-group">
+                              <label >les commandes en traitement et les nouveux commandes vont deplasser vers le pointe de vente:</label>
+                          </div>
+                          <div class="form-group">
+                            
+                            <select name="pet_select" required >
+                                {% for vnt in vente %}
+                                {%if vnt.id == v.id %}
+                               {%else%}
+                               
+                                  <option value="{{vnt.id}}">{{vnt.first_name}}</option>
+                                   {%endif%}
+                              {%endfor%}
+                              </select>
+                        </div>
+
+
+
+
+
+                          <button id="send" type="submit" class="btn btn-danger">bloquer</button>
+                         {%else%}
+                         <button id="send" type="submit" class="btn btn-success">debloquer</button>
+                         {%endif%}
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+{% endfor %}
+
+         </div>
+              </div>
+                <!-- jQuery -->
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
+    
+      <script src="{% static 'vendors/validator/validator.js' %}"></script>
+
+ {%endblock%}

@@ -1,0 +1,151 @@
+{%if messages %}
+  {%for message in messages %}
+<div id="sami" class="alert alert-danger" role="alert" style="display:none;margin-bottom:3px;background:red;color:white;opacity:0.6;text-align:center;vertical-align:middle;padding:10px 15px 15px;border-radius:10px;">
+
+</div>
+<input  type="hidden"  value="{{ message }}" display="none" id="rahdj">
+
+      <script type="text/javascript">
+var a=document.getElementById("rahdj").value;
+
+if( a=="taken"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'User name est deja utilisé';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },2000);
+
+}
+if( a=="difernti"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'Les deux mot de passe ne sont pas identiques';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },2000);
+
+}
+if( a=="email taken"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'Email est deja utilisé';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },12000);
+
+}
+
+
+if( a=="vous devez d'abord activer votre compte"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'vous devez d\'abord activer votre compte';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },12000);
+
+}
+if( a=="username taken"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'Username est deja utilisé';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },12000);
+
+}
+if( a=="nta machi point de vente"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'vous n\'etes pas une point de vente';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },15000);
+
+}
+
+if( a=="ma3endekch compte 3ami"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'vous n\'avez pas de compte dsl';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },15000);
+
+}
+
+
+if( a=="non confirmer"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'l\'admin vous a bloquer le compte';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },15000);
+
+}
+
+
+if( a=="nta machi admin"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'vous n\'etes pas un admin';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },15000);
+
+}
+if( a=="Email ou MDP incorrect svp ressayer"){
+document.getElementById("sami").style.display ='block';
+document.getElementById("sami").innerHTML= 'Email ou MDP incorrect svp ressayer';
+setTimeout(function(){
+        document.getElementById("sami").style.display ='none';
+    },15000);
+
+}
+
+if(a=="vous n\'etes pas un utilisateur"){
+swal({
+  title: a+"svp verifier votre email",
+  icon: "warning",
+  dangerMode: true,
+});
+}
+
+
+if(a=="compte non confirmer verifier votre boite email"){
+swal({
+  title: a,
+  icon: "warning",
+  dangerMode: true,
+});
+}
+
+
+
+
+if(a=="verifier votre email et confirmer votre compte pour connecter"){
+swal({
+  title: a,
+  icon: "warning",
+  dangerMode: true,
+});
+}
+
+
+
+
+
+
+if(a=="Email ou Mot de passe invalide"){
+swal({
+  title: a,
+  icon: "warning",
+  dangerMode: true,
+});
+}else{
+var x = document.getElementById("snackbar");
+
+
+  x.className = "show";
+
+
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1800);
+}
+
+
+</script>
+{% endfor %}
+{% endif %}

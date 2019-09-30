@@ -1,0 +1,486 @@
+{% extends "produit/base.html" %}
+{% load staticfiles%}
+{% block content %}
+			
+			<!-- Content -->
+			<div class="row content" >
+				
+               <div class="col-lg-12 col-md-12 col-sm-12">
+                	<div class="breadcrumbs">
+                    	<p><a href="{% url 'produit:index' %}">Home</a> <i class="icons icon-right-dir"></i> Contact</p>
+                    </div>
+                </div>
+                
+				<!-- Main Content -->
+				<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                    
+                    
+                    <div class="row">
+                    	
+                        <div class="col-lg-7 col-md-7 col-sm-7" >
+                        	
+                            <div class="carousel-heading no-margin">
+                                <h4>Didaben Alger</h4>
+                            </div>
+                            
+                            <div class="page-content contact-info">
+                            	
+                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d624.8839300696844!2d3.0479673316794282!3d36.71966669868625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQzJzEwLjgiTiAzwrAwMic1NC43IkU!5e1!3m2!1sen!2sus!4v1568975007843!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+                             
+
+								<div class="row">
+                                	
+                                    <div class="col-lg-6 col-md-6 col-sm-6" >
+                                    	<div class="contact-item green">
+                                            <i class="icons icon-location-3"></i>
+                                            <p style="font-size:1.1em;">17, Rue Ibn Rochd Pres de l'école primaire chahide amirouche mohamed , Birkhadem<br>
+
+										</div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item blue">
+                                            <i class="icons icon-mail"></i>
+                                            <p><a style="font-size:1.1em;">didaben16@yahoo.fr</a>
+</p>
+										</div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item orange">
+                                            <i class="icons icon-phone"></i>
+                                            <p style="font-size:1.1em;">Alger : 0770-25-94-76<br>
+Tel/Fax:021-44-57-80
+</p>
+										</div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item purple">
+                                            <i class="icons icon-clock"></i>
+                                            <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+
+Vendredi: fermée</p>
+										</div>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                    	</div>
+                        
+<!--ttttttttttttttttt-->
+                         <div class="col-lg-5 col-md-5 col-sm-5">
+
+                            <div class="carousel-heading no-margin">
+                                <h4 style="font-size:1.1em;">Envoyer Email</h4>
+                            </div>
+
+                            <div class="page-content contact-form">
+
+                                    <form id="contact-form" method="POST" action="{% url 'utilisateur:contactEmail' %}">
+                                        {%csrf_token%}
+
+                                        <label style="font-size:1.1em;">Name(required)</label>
+                                        <input style="font-size:1.1em;" name="name" type="text">
+
+                                        <label style="font-size:1.1em;">Email(required)</label>
+                                        <input  style="font-size:1.1em;" name="email" type="text">
+
+                                        <label style="font-size:1.1em;">Subject</label>
+                                        <input style="font-size:1.1em;" name="subject" type="text">
+
+                                        <label style="font-size:1.1em;">Message</label>
+                                        <textarea style="font-size:1.1em;" name="message"></textarea>
+
+                                        <input style="font-size:1.1em;" class="big" type="submit" value="Send Message">
+
+                                    </form>
+
+                                </div>
+
+                    	</div>
+
+
+
+
+
+                         <div class="col-lg-12 col-md-12 col-sm-12">
+
+                            <div class="carousel-heading no-margin">
+                                <h4>Aldidac Batna</h4>
+                            </div>
+
+                            <div class="page-content contact-info">
+
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d671.013628112328!2d6.176720829186132!3d35.548104089924195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDMyJzUzLjIiTiA2wrAxMCczOC4yIkU!5e1!3m2!1sen!2sus!4v1569823615641!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+								<div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item green">
+                                            <i class="icons icon-location-3"></i>
+                                            <p style="font-size:1.1em;">05, impasse Abdessalem cité 05 juillet 1962 05000 batna<br>
+
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item blue">
+                                            <i class="icons icon-mail"></i>
+                                            <p><a style="font-size:1.1em;">didabenbatna@gmail.com</a>
+</p>
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item orange">
+                                            <i class="icons icon-phone"></i>
+                                            <p style="font-size:1.1em;">batna : 0551 83-18-03<br>
+Tel/Fax:033 85 67 27
+</p>
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item purple">
+                                            <i class="icons icon-clock"></i>
+                                            <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+
+Vendredi: fermée</p>
+										</div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                    	</div>
+
+
+                             <div class="col-lg-12 col-md-12 col-sm-12">
+
+                            <div class="carousel-heading no-margin">
+                                <h4>Didaben Batna <small>(adressse de distributeur)</small></h4>
+                            </div>
+
+                            <div class="page-content contact-info">
+
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d904.2940829602597!2d6.181567212305902!3d35.54271238960188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDMyJzMzLjgiTiA2wrAxMCc1Ni4yIkU!5e1!3m2!1sfr!2sdz!4v1569497750753!5m2!1sfr!2sdz" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+								<div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item green">
+                                            <i class="icons icon-location-3"></i>
+                                            <p style="font-size:1.1em;">25, Lotissement el Fadjr, batna<br>
+
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item blue">
+                                            <i class="icons icon-mail"></i>
+                                            <p><a style="font-size:1.1em;">didabenbatna@gmail.com</a>
+</p>
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item orange">
+                                            <i class="icons icon-phone"></i>
+                                            <p style="font-size:1.1em;">batna : 0561 72 41 13<br>
+0770 25 94 74 <br>
+Tel/Fax:033 85 19 15
+</p>
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item purple">
+                                            <i class="icons icon-clock"></i>
+                                            <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+
+Vendredi: fermée</p>
+										</div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                    	</div>
+                        
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+
+                            <div class="carousel-heading no-margin">
+                                <h4 style="font-size:1.1em;">Sudidac Alger</h4>
+                            </div>
+
+                            <div class="page-content contact-info">
+
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d660.9455939146932!2d3.069685829188456!3d36.734098073535726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQ0JzAyLjgiTiAzwrAwNCcxMi44IkU!5e1!3m2!1sen!2sdz!4v1569823711742!5m2!1sen!2sdz" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+								<div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item green">
+                                            <i class="icons icon-location-3"></i>
+                                            <p style="font-size:1.1em;">Cité Annassers 04 EX: cité coopemad sud Bt 84 porte N°02 Kouba - alger<br>
+
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item blue">
+                                            <i class="icons icon-mail"></i>
+                                            <p><a style="font-size:1.1em;">sudidac016@gmail.com</a>
+</p>
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item orange">
+                                            <i class="icons icon-phone"></i>
+                                            <p style="font-size:1.1em;">kouba : 0773 56-84-17 / 88-49-33<br>
+Tel/Fax:023 70-53-6/70 53 64
+</p>
+										</div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item purple">
+                                            <i class="icons icon-clock"></i>
+                                            <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+
+Vendredi: fermée</p>
+										</div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>  
+                        
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                <div class="carousel-heading no-margin">
+                                    <h4>Medidac Oran</h4>
+                                </div>
+    
+                                <div class="page-content contact-info">
+    
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1805.0048249042584!2d-0.6195792229278018!3d35.65394399027116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM5JzE0LjIiTiAwwrAzNycwNS4wIlc!5e1!3m2!1sfr!2sdz!4v1569499466918!5m2!1sfr!2sdz" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                        <div class="row">
+    
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="contact-item green">
+                                                <i class="icons icon-location-3"></i>
+                                                <p style="font-size:1.1em;">Es-Senia dawar -Oran<br>
+    
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="contact-item blue">
+                                                <i class="icons icon-mail"></i>
+                                                <p><a style="font-size:1.1em;">didabenbatna@gmail.com</a>
+    </p>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="contact-item orange">
+                                                <i class="icons icon-phone"></i>
+                                                <p style="font-size:1.1em;">Oran : 0553 24 11 01<br>
+    Tel/Fax:041 56 63 39
+    </p>
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="contact-item purple">
+                                                <i class="icons icon-clock"></i>
+                                                <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+    
+    Vendredi: fermée</p>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+
+
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                    <div class="carousel-heading no-margin">
+                                        <h4 style="font-size:1.1em;">Bounadidac Annaba</h4>
+                                    </div>
+        
+                                    <div class="page-content contact-info">
+        
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d701.1256107103466!2d7.736944934779987!3d36.91028245250352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDU0JzM3LjMiTiA3wrA0NCcxNC4zIkU!5e1!3m2!1sfr!2sdz!4v1569008670030!5m2!1sfr!2sdz" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                            <div class="row">
+        
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="contact-item green">
+                                                    <i class="icons icon-location-3"></i>
+                                                    <p style="font-size:1.1em;">Cité Oued Forcha, villa N°193 Annaba<br>
+        
+                                                </div>
+                                            </div>
+        
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="contact-item blue">
+                                                    <i class="icons icon-mail"></i>
+                                                    <p><a style="font-size:1.1em;">didabenbatna@gmail.com</a>
+        </p>
+                                                </div>
+                                            </div>
+        
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="contact-item orange">
+                                                    <i class="icons icon-phone"></i>
+                                                    <p style="font-size:1.1em;">Annaba : 0770 25 94 75/ 0553 07 65 61<br>
+        Tel/Fax:038 55 58 37
+        </p>
+                                                </div>
+                                            </div>
+        
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="contact-item purple">
+                                                    <i class="icons icon-clock"></i>
+                                                    <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+        
+        Vendredi: fermée</p>
+                                                </div>
+                                            </div>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                </div>
+
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                        <div class="carousel-heading no-margin">
+                                            <h4 style="font-size:1.1em;">Sedidac Setif</h4>
+                                        </div>
+            
+                                        <div class="page-content contact-info">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d665.552145557808!2d5.435026829187392!3d36.19562108103384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDExJzQ0LjIiTiA1wrAyNicwOC4xIkU!5e1!3m2!1sfr!2sdz!4v1569823822702!5m2!1sfr!2sdz" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                                <div class="row">
+            
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="contact-item green">
+                                                        <i class="icons icon-location-3"></i>
+                                                        <p style="font-size:1.1em;">Cité Ouled braham N°54 lotissement 14 - setif<br>
+            
+                                                    </div>
+                                                </div>
+            
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="contact-item blue">
+                                                        <i class="icons icon-mail"></i>
+                                                        <p><a style="font-size:1.1em;">didabenbatna@gmail.com</a>
+            </p>
+                                                    </div>
+                                                </div>
+            
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="contact-item orange">
+                                                        <i class="icons icon-phone"></i>
+                                                        <p style="font-size:1.1em;">Setif: 0773 74 99 09<br>
+            Tel/Fax:036 52 49 50
+            </p>
+                                                    </div>
+                                                </div>
+            
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="contact-item purple">
+                                                        <i class="icons icon-clock"></i>
+                                                        <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+            
+            Vendredi: fermée</p>
+                                                    </div>
+                                                </div>
+            
+                                            </div>
+            
+                                        </div>
+            
+                                    </div>
+
+
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                                            <div class="carousel-heading no-margin">
+                                                <h4 style="font-size:1.1em;">Mitidjadidac Blida</h4>
+                                            </div>
+                
+                                            <div class="page-content contact-info">
+                                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1087.1567252486811!2d2.8291424881497704!3d36.47666807712593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDI4JzM2LjAiTiAywrA0OSc0Ni45IkU!5e1!3m2!1sfr!2sdz!4v1569010065355!5m2!1sfr!2sdz" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                                    <div class="row">
+                
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="contact-item green">
+                                                            <i class="icons icon-location-3"></i>
+                                                            <p>نهج الإخوة بن عودة دروال سابقا فلة رقم 05 بجانب مديرية الصحة والسكان لولاية البليدة<br>
+                
+                                                        </div>
+                                                    </div>
+                
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="contact-item blue">
+                                                            <i class="icons icon-mail"></i>
+                                                            <p><a style="font-size:1.1em;">didaben09@yahoo.fr</a>
+                </p>
+                                                        </div>
+                                                    </div>
+                
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="contact-item orange">
+                                                            <i class="icons icon-phone"></i>
+                                                            <p style="font-size:1.1em;">blida: 0773 74 92 64<br>
+                Tel/Fax:025 30 70 11
+                </p>
+                                                        </div>
+                                                    </div>
+                
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="contact-item purple">
+                                                            <i class="icons icon-clock"></i>
+                                                            <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+                
+                Vendredi: fermée</p>
+                                                        </div>
+                                                    </div>
+                
+                                                </div>
+                
+                                            </div>
+                
+                                        </div>
+
+                             
+                  	</div>
+                    
+				</section>
+				<!-- /Main Content -->
+                
+                
+
+			<!-- /Content -->
+			
+	{% endblock %}		
+			
+

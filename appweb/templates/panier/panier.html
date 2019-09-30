@@ -1,0 +1,731 @@
+{% extends "produit/base.html" %}
+{% load humanize %}
+
+{% block content %}
+<!-- Main Content -->
+<!-- Content -->
+            <div class="row content">
+               <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="breadcrumbs">
+                      {% if request.session.lang == "fr" %}
+                        <p><a >Home</a> <i class="icons icon-right-dir"></i> <a>Votre panier</a></p>
+{%else%}
+<p><a >الصفحة الرئيسية</a> <i class="icons icon-right-dir"></i> <a>سلتك</a></p>
+{%endif%}
+                      
+                    </div>
+                </div>
+
+
+
+<!-- debut francais -->
+
+                {% if request.session.lang == "fr" %}
+
+
+				<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                    
+                    
+                 
+                    
+                
+                    
+                    
+                    <div class="row">
+                    	
+						
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        	
+							<div class="carousel-heading">
+                                <h4>Votre Panier</h4>
+                            </div>
+							
+                            <table class="shopping-table">
+                            	
+                                <tr>
+                                	<th colspan="2">Image et nom produit</th>
+                                    <th>Quantité</th>
+                                    <th>Prix</th>
+                                    <th>Categorie</th>
+                                    <th>Totale</th>
+                                    <th>Modifier la Quantité</th>
+                                    <th>Supprimer du panier</th>
+                                </tr>
+                                
+
+
+
+
+<input type="hidden" id="idee" value="0" name="">
+
+
+{% for item_panier in all %}
+
+                                <tr>
+                                       {% for imag in item_panier.id_panier_produit.imageproduit_set.all|slice:"1" %}
+                                    <td class="image-column"><a onclick="myPopup('{{MEDIA_URL}}{{imag.image.url}}','{{item_panier.id_panier_produit.nom_produit}}');" style="cursor: pointer;"><img src="{{MEDIA_URL}}{{imag.image.url}}" alt="Erreur d'affichage"></a></td>
+                                    {% endfor %}
+                                    <td><p><a href="/produit/{{item_panier.id_panier_produit.id}}/">{{item_panier.id_panier_produit.nom_produit }}</a></p></td>
+                                    <td><p>{{item_panier.quantite_produit}}</p></td>
+                                    <td><p>{{item_panier.id_panier_produit.prix_produit|intcomma }}</p></td>
+                                    <td><p><a href="{% url 'produit:rechCatigo' %}?rech={{item_panier.id_panier_produit.categorie_produit }}">{{item_panier.id_panier_produit.categorie_produit }}</a></p></td>
+                                    <td><p>{% widthratio item_panier.id_panier_produit.prix_produit 1 item_panier.quantite_produit|intcomma %}</p></td>
+                                    <td class="quantity" style="text-align: center !important;">
+                                    	<form method="POST" action="{% url 'panier:modifQntt' %}" >
+                                    		{%csrf_token%}
+                                        <input  type="text" value="" name="qtt" pattern="[1-9][0-9]{0,10}" title="Entrer une valeur superieure à 1 " required>
+                                        <p>
+                                        	<input type="hidden" name="id_panier" value="{{item_panier.id}}">
+                                        	<input type="hidden" name="id_user" value="{{user.id}}">
+                                            <input type="submit" value="modif">
+                                        	
+                                        </p>
+                                        </form>
+
+                                    </td>
+                                    
+                                    
+                                    <td style="text-align: center !important;">
+
+
+
+                                      <a href="{% url 'panier:suppPro' %}?us={{user.id}}&pan={{item_panier.id}} ">
+                                            <span class="add-to-trash" >
+                                                <span class="action-wrapper">
+                                                    <i class="icons icon-trash-8"></i>
+                                                    
+                                                </span>
+                                            </span>
+                                        </a>
+
+
+
+
+
+
+
+                                      </td>
+                                </tr> 
+    {% if forloop.first %}                            
+<script type="text/javascript">
+  $('#idee').val(1);
+</script>
+{% endif %}
+{%endfor%}
+
+
+
+							<tr>
+                             <td></td>
+                             <td></td>
+                             <td></td>
+                             <td></td>
+                             <td></td>
+                           
+                             <th><span class="price" >Totale</span></th>
+                             <td><span class="price">{{totale|intcomma}} dzd</span></td>   
+                            </tr>
+                            </table>
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    
+                    <div class="row">
+                    	
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        	
+                            <div class="carousel-heading no-margin">
+                                <h4>Envoyer Votre Commande</h4>
+                            </div>
+                            
+                            <div class="page-content">
+                                    <div class="row">
+                                
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h4><strong> Le prix de votre Commande est : </strong><span class="price">{{totale|intcomma}} dzd</span></h4>
+                                   
+                                   
+                                
+                                    </div>
+                                </div>
+                            	
+                                <div class="row">
+                                
+                                	<div class="col-lg-12 col-md-12 col-sm-12">
+                                        <form method="POST" id="formsend" action="commander/" >
+                  {%csrf_token%}
+                                    <!--
+                                     <input type="radio" id="paymentradio1" name="id_vente" value="1" checked="true"><label class="radio-label" for="paymentradio1">Alger</label>
+                                        <br>
+                                        <input type="radio" id="paymentradio2" value="2" name="id_vente"><label class="radio-label" for="paymentradio2">Blida</label>
+                                         <br>
+                                     <input type="radio" id="paymentradio3" value="3" name="id_vente"><label class="radio-label" for="paymentradio3">Djelfa</label>
+                                        <br>
+
+                                     <input type="radio" id="paymentradio4" value="4" name="id_vente"><label class="radio-label" for="paymentradio4">Bab3azoun</label>
+                                        -->
+                                        <h4><strong> Veuillez selectionner le point de vente de votre commande </strong> </h4>
+                                                                        <select name="id_vente" required>
+                                    {% for u in vente %}
+                                    {%if u.confirmed%}
+  <option value="{{u.id}}">{{u.first_name}}</option>
+  {%endif%}
+  {%endfor%}
+</select>
+                                        <br><br>
+                            <h4><strong> Notes et demandes spéciales</strong></h4>
+                                <textarea></textarea>
+                                  <!-- Accordion -->
+                            <div class="accordion">
+
+                                <ul>
+                                    <!-- Item -->
+                                    <li>
+
+                                        <div class="accordion-header">
+                                            <h4>Conditions Générales</h4>
+                                            <span class="accordion-button">
+                                                <i class="icons icon-plus-1"></i>
+                                            </span>
+                                        </div>
+                                        <div class="accordion-content page-content">
+                                         - On validant votre commande vous aller recevoir un appel d point e vente choisi ,
+                                          et cela pour valider votre commande et ont lieux de livraison.<br>
+                                          - veulliez prendre en compte que le prix afficher n'est pas exacte car certain produit ne dispose pas de prix fix et determiable au prealable, le prix finale vous sera transmis par le point e vente.<br>
+                                          - veulliez choisire le point de vente le plus proche de votre adresse.<br>
+                                  
+                                         
+                                        </div>
+
+                                    </li>
+                                    <!-- /Item -->
+
+                                </ul>
+                                <!-- /Accordion -->
+                            </div>
+                        <input type="checkbox" id="termscheckbox" required><label for="termscheckbox">Veuillez lire et accepter les Conditions Générales de Vente, s'il vous plaît.</label>
+
+                    <br><br><br>
+
+
+                                        <input type="hidden" name="id_user" value="{{user.id}}">
+                                        <input class="red huge" type="submit" value="Lancer la commande"  ">
+                                        
+                                          </form>
+                                    </div>
+                                </div>
+                            
+                            	
+                            
+                                
+                            </div>
+                            
+                    	</div>
+                          
+                    </div>
+                    
+                    
+                    
+               
+                    
+                    
+                
+                        
+                    
+        </section>
+        <!-- fin francais -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- debut arab -->
+        {%else%}
+        <section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                    
+                    
+                 
+                    
+                
+                    
+                    
+          <div class="row">
+            
+  
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                
+    <div class="carousel-heading">
+                      <h4>سلتك</h4>
+                  </div>
+    
+                  <table class="shopping-table">
+                    
+                      <tr>
+                        <th colspan="2">صورة واسم المنتج</th>
+                          <th>كمية</th>
+                          <th>السعر</th>
+                          <th>فئة</th>
+                          <th>مجموع</th>
+                          <th>تغيير الكمية</th>
+                          <th>إزالة من السلة</th>
+                      </tr>
+                      
+
+
+
+
+<input type="hidden" id="idee" value="0" name="">
+
+
+{% for item_panier in all %}
+
+                      <tr>
+                             {% for imag in item_panier.id_panier_produit.imageproduit_set.all|slice:"1" %}
+                          <td class="image-column"><a onclick="myPopup('{{MEDIA_URL}}{{imag.image.url}}','{{item_panier.id_panier_produit.nom_produit_ar}}');" style="cursor: pointer;"><img src="{{MEDIA_URL}}{{imag.image.url}}" alt="Erreur d'affichage"></a></td>
+                          {% endfor %}
+                          <td><p><a href="/produit/{{item_panier.id_panier_produit.id}}/">{{item_panier.id_panier_produit.nom_produit_ar }}</a></p></td>
+                          <td><p>{{item_panier.quantite_produit}}</p></td>
+                          <td><p>{{item_panier.id_panier_produit.prix_produit|intcomma }}</p></td>
+                          <td><p><a href="{% url 'produit:rechCatigo' %}?rech={{item_panier.id_panier_produit.categorie_produit }}">{{item_panier.id_panier_produit.categorie_produit }}</a></p></td>
+                          <td><p>{% widthratio item_panier.id_panier_produit.prix_produit 1 item_panier.quantite_produit|intcomma %}</p></td>
+                          <td class="quantity" style="text-align: center !important;">
+                            <form method="POST" action="{% url 'panier:modifQntt' %}" >
+                              {%csrf_token%}
+                              <input  type="text" value="" name="qtt" pattern="[1-9][0-9]{0,10}" title="Entrer une valeur superieure à 1 " required>
+                              <p>
+                                <input type="hidden" name="id_panier" value="{{item_panier.id}}">
+                                <input type="hidden" name="id_user" value="{{user.id}}">
+                                  <input type="submit" value="تعديل">
+                                
+                              </p>
+                              </form>
+
+                          </td>
+                          
+                          
+                          <td style="text-align: center !important;">
+
+
+
+                            <a href="{% url 'panier:suppPro' %}?us={{user.id}}&pan={{item_panier.id}} ">
+                                  <span class="add-to-trash" >
+                                      <span class="action-wrapper">
+                                          <i class="icons icon-trash-8"></i>
+                                          
+                                      </span>
+                                  </span>
+                              </a>
+
+
+
+
+
+
+
+                            </td>
+                      </tr> 
+{% if forloop.first %}                            
+<script type="text/javascript">
+$('#idee').val(1);
+</script>
+{% endif %}
+{%endfor%}
+
+
+
+    <tr>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                 
+                   <th><span class="price" >مجموع</span></th>
+                   <td><span class="price">{{totale|intcomma}} دج</span></td>   
+                  </tr>
+                  </table>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+              
+          </div>
+          
+          
+          
+          <div class="row">
+            
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                
+                  <div class="carousel-heading no-margin">
+                      <h4>إرسال طلبك</h4>
+                  </div>
+                  
+                  <div class="page-content">
+                          <div class="row">
+                      
+                          <div class="col-lg-12 col-md-12 col-sm-12">
+                          <h4><strong> سعر طلبك هو : </strong><span class="price">{{totale|intcomma}} دج</span></h4>
+                         
+                         
+                      
+                          </div>
+                      </div>
+                    
+                      <div class="row">
+                      
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                              <form method="POST" id="formsend" action="commander/" >
+        {%csrf_token%}
+                          <!--
+                           <input type="radio" id="paymentradio1" name="id_vente" value="1" checked="true"><label class="radio-label" for="paymentradio1">Alger</label>
+                              <br>
+                              <input type="radio" id="paymentradio2" value="2" name="id_vente"><label class="radio-label" for="paymentradio2">Blida</label>
+                               <br>
+                           <input type="radio" id="paymentradio3" value="3" name="id_vente"><label class="radio-label" for="paymentradio3">Djelfa</label>
+                              <br>
+
+                           <input type="radio" id="paymentradio4" value="4" name="id_vente"><label class="radio-label" for="paymentradio4">Bab3azoun</label>
+                              -->
+                              <h4><strong>يرجى تحديد نقطة بيع لطلبك</strong> </h4>
+                                                              <select name="id_vente" required>
+                          {% for u in vente %}
+<option value="{{u.id}}">{{u.first_name}}</option>
+{%endfor%}
+</select>
+                              <br><br>
+                  <h4><strong> ملاحظات وطلبات خاصة</strong></h4>
+                      <textarea></textarea>
+                      <div class="accordion">
+
+                          <ul>
+                              <!-- Item -->
+                              <li>
+
+                                  <div class="accordion-header">
+                                      <h4>شروط وأحكام</h4>
+                                      <span class="accordion-button">
+                                          <i class="icons icon-plus-1"></i>
+                                      </span>
+                                  </div>
+                                  <div class="accordion-content page-content"  align="right">
+                                <p style="font-size: 120%">
+                                    بعد تفعيل الطلبية ستتلقون مكالمة هاتفية من البائع لتأكيد الطلب واختيار مكان الشحن -<br>
+                                    يرجى العلم أن السعر أعلاه ليس دقيق لأن بعض المنتجات لا يمكن تحديد سعرها مسبقاو أن السعر النهائي سيتم إدلائه من طرف البائع -<br>
+                                    يرجى إختيار البائع الأقرب إليكم و ذلك لتيسير عملية الشحن -<br>
+
+                                  </p>
+                                  </div>
+
+                              </li>
+                              <!-- /Item -->
+
+                          </ul>
+                          <!-- /Accordion -->
+                      </div>
+              <input type="checkbox" id="termscheckbox" required><label for="termscheckbox">يرجى قراءة وقبول شروط وأحكام البيع ، من فضلك.</label>
+
+          <br><br><br>
+
+
+                              <input type="hidden" name="id_user" value="{{user.id}}">
+                              <input class="red huge" type="submit" value="ابدأ الطلب"  ">
+                              
+                                </form>
+                          </div>
+                      </div>
+                  
+                    
+                  
+                      
+                  </div>
+                  
+            </div>
+                
+          </div>
+          
+          
+          
+     
+          
+          
+      
+              
+          
+</section>
+        {%endif%}
+
+
+<!-- fin arab -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- /Main Content -->
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                         <div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div> 
+
+{% if request.session.lang == "fr" %}
+ <script type="text/javascript">
+$(document).ready(function(){
+  $("#formsend").submit(function(event){
+    event.preventDefault();
+    if ($('#idee').val()==0) {swal("Votre panier est vide", {
+      icon: "error",
+    });}else{
+swal({
+  title: "Vous voulez envoyer la commande?",
+  text: "Si oui, le point de vente selectionné vous appele pour plus d'information",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+    swal("Votre commande a ete envoyer avec succes", {
+      icon: "success",
+    });
+    if ( event.isDefaultPrevented()) { event.currentTarget.submit();}
+    
+  } else {
+   swal("Votre commande a ete annule", {
+      icon: "error",
+    });
+    
+  }
+});
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+  });
+});
+    
+
+ </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%else%}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#formsend").submit(function(event){
+      event.preventDefault();
+      if ($('#idee').val()==0) {swal("سلتك فارغة", {
+        icon: "error",
+      });}else{
+  swal({
+    title: "هل تريد إرسال الطلب؟",
+    text: "إذا كان الأمر كذلك ، فسوف يتصل بك المتجر المختار لمزيد من المعلومات",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+  
+      swal("تم ارسال طلبك بنجاح", {
+        icon: "success",
+      });
+      if ( event.isDefaultPrevented()) { event.currentTarget.submit();}
+      
+    } else {
+     swal("تم إلغاء طلبك", {
+        icon: "error",
+      });
+      
+    }
+  });
+  
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    });
+  });
+      
+  
+   </script>
+{%endif%}
+
+
+
+
+
+                
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

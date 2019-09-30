@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bon commande</title>
+<style type="text/css">
+
+input[type="submit"]{
+			margin-left: 45%;
+	background:#1abc9c;
+	padding: 8px;
+	cursor: pointer;
+	color: white;
+	padding-left:45px; 
+	padding-right:45px;
+	border: none;
+	transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-o-transition: all 0.2s;
+		}
+		input[type="submit"]:hover
+		{
+			background:#16a085;
+		}
+	
+
+</style>
+
+
+
+
+
+</head>
+<body>
+{% load staticfiles%}
+{%for c in com%}
+<img src="{{MEDIA_URL}}{{c.bon_de_livraison.url}}" >
+{% endfor %}
+<br><br><br>
+    <input type="submit" name="" id="hassan" onclick="lyes();">
+
+    <script type="text/javascript">
+    	function lyes() {
+    	document.getElementById('hassan').style.display= 'none';
+    	window.print();
+    		// body...
+    	}
+    	
+    </script>
+</body>
+</html>
