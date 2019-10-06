@@ -36,10 +36,16 @@ def indexView(request):
         request.session['comp1'] = 0
         request.session['comp2'] = 0
         request.session['comp3'] = 0
-  
+    
+
+    
+    
+    if 'idUserBachNsegemUpdate' not in request.session:
+            request.session['idUserBachNsegemUpdate'] = request.user.id
+    
     #nseyyi ta3 3arbiya b session
     if 'lang' not in request.session:
-        request.session['lang'] = 'fr'
+        request.session['lang'] = 'ar'
 
 
 
@@ -272,7 +278,7 @@ def addWish(request):
 
 
 def affichWish(request):
-    idu = request.GET.get('id')
+    idu =  request.session['idUserBachNsegemUpdate']
     user_sd = User.objects.get(id=idu)
     all = ProduitsFavorite.objects.filter(id_user=user_sd)
     paginator = Paginator(all, 4)
@@ -294,7 +300,7 @@ def suppWish(request):
         id_produit = request.POST['id_produit']
         id_user = request.POST['id_user']
         ProduitsFavorite.objects.filter(id_user=id_user, id_produit=id_produit).delete()
-        return HttpResponseRedirect('/produit/wish/affich/?id=' + id_user)
+        return HttpResponseRedirect('/produit/wish/affich/' )
     return HttpResponse("mamchatch ta3 tmodifier qntt")
 
 

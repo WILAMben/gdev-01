@@ -284,12 +284,14 @@ h1{
  {% include 'utilisateur/_alerts.html' %}                            
 						<div class="row">
 
-							<div id="logo" class="col-lg-3 col-md-4 col-sm-3">
-								<a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
-							</div>
-
-							<nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 col-lg-push-1 col-md-push-1 col-sm-push-1">
-								<ul class="pull-right">
+                <div id="logo" class="col-lg-4 col-md-4 col-sm-4">
+                    <a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
+                  </div>
+    
+                  <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 ">
+                      <br>
+                     
+                <ul class="pull-right">
 									<li class="blue">
 									
                            {% if user.is_authenticated %}
@@ -305,7 +307,7 @@ h1{
                                     </li>
 									<li class="red">
 										{% if user.is_authenticated %}
-                    <a href="{% url 'produit:affichWish' %}?id={{user.id}} "><i class="icons icon-heart-empty"></i>Favoris
+                    <a href="{% url 'produit:affichWish' %} "><i class="icons icon-heart-empty"></i>Favoris
 
                     </a>
                     {% else %}
@@ -316,7 +318,7 @@ h1{
                                     </li>
 									<li class="orange">
 										{% if user.is_authenticated %}
-										<a href="{% url 'panier:affichPan' %}?id={{user.id}} "><i class="icons icon-basket-2"></i>Panier
+										<a href="{% url 'panier:affichPan' %} "><i class="icons icon-basket-2"></i>Panier
 
 										</a>
 										{% else %}
@@ -351,7 +353,7 @@ h1{
                                <li class="connecthover">
                                	<div class="iconic-input">   
                                	
-								<a href="{% url 'commande:commandeViews' %}?id={{user.id}} " >
+								<a href="{% url 'commande:commandeViews' %} " >
 									<span >Historique de vos commandes</span>
 								</a>
 								</div>
@@ -359,7 +361,7 @@ h1{
                  <li class="connecthover">
                                 <div class="iconic-input">   
                                 
-                <a href="{% url 'utilisateur:update_info' %}?id={{user.id}}" >
+                <a href="{% url 'utilisateur:update_info' %}" >
                   <span >Parametres de votre compte</span>
                 </a>
                 </div>
@@ -809,11 +811,13 @@ h1{
  {% include 'utilisateur/_alerts.html' %}                            
             <div class="row">
 
-              <div id="logo" class="col-lg-3 col-md-4 col-sm-3">
-                <a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
-              </div>
-
-              <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 col-lg-push-1 col-md-push-1 col-sm-push-1">
+                <div id="logo" class="col-lg-4 col-md-4 col-sm-4">
+                    <a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
+                  </div>
+    
+                  <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 ">
+                      <br>
+                     
                 <ul class="pull-right">
                   <li class="blue">
                   

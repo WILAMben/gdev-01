@@ -69,14 +69,14 @@
                                     <td><p>{{item_panier.quantite_produit}}</p></td>
                                     <td><p>{{item_panier.id_panier_produit.prix_produit|intcomma }}</p></td>
                                     <td><p><a href="{% url 'produit:rechCatigo' %}?rech={{item_panier.id_panier_produit.categorie_produit }}">{{item_panier.id_panier_produit.categorie_produit }}</a></p></td>
-                                    <td><p>{% widthratio item_panier.id_panier_produit.prix_produit 1 item_panier.quantite_produit|intcomma %}</p></td>
+                                    <td><p>{% widthratio item_panier.id_panier_produit.prix_produit 1 item_panier.quantite_produit %}</p></td>
                                     <td class="quantity" style="text-align: center !important;">
                                     	<form method="POST" action="{% url 'panier:modifQntt' %}" >
                                     		{%csrf_token%}
                                         <input  type="text" value="" name="qtt" pattern="[1-9][0-9]{0,10}" title="Entrer une valeur superieure à 1 " required>
                                         <p>
                                         	<input type="hidden" name="id_panier" value="{{item_panier.id}}">
-                                        	<input type="hidden" name="id_user" value="{{user.id}}">
+                                        	
                                             <input type="submit" value="modif">
                                         	
                                         </p>
@@ -353,7 +353,7 @@
                           <td><p>{{item_panier.quantite_produit}}</p></td>
                           <td><p>{{item_panier.id_panier_produit.prix_produit|intcomma }}</p></td>
                           <td><p><a href="{% url 'produit:rechCatigo' %}?rech={{item_panier.id_panier_produit.categorie_produit }}">{{item_panier.id_panier_produit.categorie_produit }}</a></p></td>
-                          <td><p>{% widthratio item_panier.id_panier_produit.prix_produit 1 item_panier.quantite_produit|intcomma %}</p></td>
+                          <td><p>{% widthratio item_panier.id_panier_produit.prix_produit 1 item_panier.quantite_produit %}</p></td>
                           <td class="quantity" style="text-align: center !important;">
                             <form method="POST" action="{% url 'panier:modifQntt' %}" >
                               {%csrf_token%}

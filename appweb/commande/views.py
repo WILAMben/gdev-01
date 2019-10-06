@@ -46,7 +46,7 @@ def ajouCommand(request):
 
 
 
-        return HttpResponseRedirect("/commande/?id="+str(id_user ))
+        return HttpResponseRedirect("/commande/")
 
 
 
@@ -56,9 +56,13 @@ def commandeViews(request):
         request.session['comp1'] = 0
         request.session['comp2'] = 0
         request.session['comp3'] = 0
+           
+    if 'idUserBachNsegemUpdate' not in request.session:
+            request.session['idUserBachNsegemUpdate'] = request.user.id
+    
   
         
-    idu = request.GET.get('id')
+    idu = request.session['idUserBachNsegemUpdate']
     akm= User.objects.get(id=idu)
     non_trt = Commande.objects.filter(id_user=akm,etat_commande=False,etat_archive=False)
     trt = Commande.objects.filter(id_user=akm,etat_commande=True,etat_archive=False)

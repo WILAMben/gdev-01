@@ -42,7 +42,7 @@
 		{% for comi in com %}
 	<br>	
 		<img class="col-lg-6 col-md-6 col-sm-6 col-lg-push-3 col-md-push-3 col-sm-push-3" align="center" src="{% static 'img/lg.png' %}" alt="Logo" style="width: 300px; height: 100px">
-<h1 style="text-align: center;">FACTURE N°: 00{{comi.id_point_vente.id}}{{comi.id}} </h1>
+<h1 style="text-align: center;">Bon De Commande N°: 00{{comi.id_point_vente.id}}{{comi.id}} </h1>
 </header>
    <div class="container">
 	<div class="row">
@@ -50,8 +50,12 @@
 		<br>
 				<span>Nom client:{{comi.id_user.username}}</span>
 				<br>
-				<span>Adresse:  {{comi.id_user.email}}</span>
-
+				<span>Email:  {{comi.id_user.email}}</span>
+				<br>
+				<span>Adresse:  {{comi.id_user.adresse_user}}</span>
+				<br>
+				<span>Telephone:  {{comi.id_user.telephone_user}}</span>
+				
 
 						</div>
 						{% if comi.id_user.type_sp == "revendeur" %}

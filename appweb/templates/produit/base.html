@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load humanize %}
+{% load staticfiles %}
 <html>
 
 <style>
@@ -231,7 +232,7 @@ a.control_next {
 
 
 /*fin slid*/
-{% load staticfiles %}
+
 
 
 </style>
@@ -308,15 +309,20 @@ a.control_next {
 							<nav id="top-navigation" class="col-lg-7 col-md-7 col-sm-7">
 								<ul class="pull-left">
 									{% if user.is_authenticated %}
-									<li><a href="#">Mon compte</a></li>
-									 {% else %}
-
+                  
+                  
+                   {% else %}
+                  
 									<li><a href="{% url 'utilisateur:registre_view' %}">Creer compte</a></li>
 									{% endif %}
 									
 									<li><a href="{% url 'produit:information' %}">A propos de nous </a></li>
 									<li><a href="{% url 'produit:contact' %}">Contact</a></li>
-                                         <li><div id="snackbar">Vous etes connecté</div></li>
+                  <li><div id="snackbar">Vous etes connecté</div></li>
+
+                  <li><a href="{% url 'admine:home_admin' %}">page admin</a></li>
+                  <li><a href="{% url 'point_de_vente:venteHome' %}">point de vente</a></li>
+
 								</ul>
 							</nav>
 
@@ -366,11 +372,14 @@ a.control_next {
  {% include 'utilisateur/_alerts.html' %}                            
 						<div class="row">
 
-							<div id="logo" class="col-lg-3 col-md-4 col-sm-3">
+							<div id="logo" class="col-lg-4 col-md-4 col-sm-4">
 								<a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
 							</div>
 
-							<nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 col-lg-push-1 col-md-push-1 col-sm-push-1">
+							<nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 ">
+                  <br>
+                  
+                
 								<ul class="pull-right">
 									<li class="blue">
 									
@@ -387,7 +396,7 @@ a.control_next {
                                     </li>
 									<li class="red">
 										{% if user.is_authenticated %}
-                    <a href="{% url 'produit:affichWish' %}?id={{user.id}} "><i class="icons icon-heart-empty"></i>Favoris
+                    <a href="{% url 'produit:affichWish' %} "><i class="icons icon-heart-empty"></i>Favoris
 
                     </a>
                     {% else %}
@@ -398,7 +407,7 @@ a.control_next {
                                     </li>
 									<li class="orange">
 										{% if user.is_authenticated %}
-										<a href="{% url 'panier:affichPan' %}?id={{user.id}} "><i class="icons icon-basket-2"></i>Panier
+										<a href="{% url 'panier:affichPan' %} "><i class="icons icon-basket-2"></i>Panier
 
 										</a>
 										{% else %}
@@ -434,19 +443,53 @@ a.control_next {
                                <li class="connecthover">
                                	<div class="iconic-input">   
                                	
-								<a href="{% url 'commande:commandeViews' %}?id={{user.id}} " >
+								<a href="{% url 'commande:commandeViews' %} " >
 									<span >Historique de vos commandes</span>
 								</a>
 								</div>
-							</li>
+              </li>
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                  <li class="connecthover">
                                 <div class="iconic-input">   
                                 
-                <a href="{% url 'utilisateur:update_info' %}?id={{user.id}}" >
+                <a href="{% url 'utilisateur:update_info' %}" >
                   <span >Parametres de votre compte</span>
                 </a>
                 </div>
               </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
               {% if user.type == "admin" %}
               <li class="connecthover">
                   <div class="iconic-input">   
@@ -841,7 +884,7 @@ a.control_next {
               <nav id="top-navigation" class="col-lg-7 col-md-7 col-sm-7">
                 <ul class="pull-left" >
                   {% if user.is_authenticated %}
-                  <li><a href="">حسابي</a></li>
+                  
                    {% else %}
 
                   <li><a href="{% url 'utilisateur:registre_view' %}">انشاء حساب</a></li>
@@ -849,7 +892,10 @@ a.control_next {
                   
                   <li><a href="{% url 'produit:information' %}"> معلومات عنا</a></li>
                   <li><a href="{% url 'produit:contact' %}">تواصل</a></li>
-                                         <li><div id="snackbar">انت متصل</div></li>
+                  <li><a href="{% url 'admine:home_admin' %}">صفحة المدير</a></li>
+                  <li><a href="{% url 'point_de_vente:venteHome' %}">صفحة البائع</a></li>
+                  <li><div id="snackbar">انت متصل</div></li>
+               
                 </ul>
               </nav>
 
@@ -899,11 +945,13 @@ a.control_next {
  {% include 'utilisateur/_alerts.html' %}                            
             <div class="row" >
 
-              <div id="logo" class="col-lg-3 col-md-4 col-sm-3">
-                <a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
-              </div>
-
-              <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 col-lg-push-1 col-md-push-1 col-sm-push-1">
+                <div id="logo" class="col-lg-4 col-md-4 col-sm-4">
+                    <a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
+                  </div>
+    
+                  <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 ">
+                      <br>
+                     
                 <ul class="pull-right">
                   <li class="blue">
                   
@@ -921,7 +969,7 @@ a.control_next {
                                     </li>
                   <li class="red">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'produit:affichWish' %}?id={{user.id}} "><i class="icons icon-heart-empty"></i>المفضلة
+                    <a href="{% url 'produit:affichWish' %} "><i class="icons icon-heart-empty"></i>المفضلة
 
                     </a>
                     {% else %}
@@ -932,7 +980,7 @@ a.control_next {
                                     </li>
                   <li class="orange">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'panier:affichPan' %}?id={{user.id}} "><i class="icons icon-basket-2"></i>سلة
+                    <a href="{% url 'panier:affichPan' %} "><i class="icons icon-basket-2"></i>سلة
 
                     </a>
                     {% else %}
@@ -969,7 +1017,7 @@ a.control_next {
                                <li class="connecthover">
                                 <div class="iconic-input">   
                                 
-                <a href="{% url 'commande:commandeViews' %}?id={{user.id}} " >
+                <a href="{% url 'commande:commandeViews' %} " >
                   <span style="font-size: 1.2em;"align="right">تاريخ طلباتك</span>
                 </a>
                 </div>
@@ -977,7 +1025,7 @@ a.control_next {
                  <li class="connecthover">
                                 <div class="iconic-input">   
                                 
-                <a href="{% url 'utilisateur:update_info' %}?id={{user.id}}" >
+                <a href="{% url 'utilisateur:update_info' %}" >
                   <span style="font-size: 1.2em;"align="right">إعدادات حسابك</span>
                 </a>
                 </div>

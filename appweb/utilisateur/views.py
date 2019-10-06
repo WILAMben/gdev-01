@@ -36,6 +36,7 @@ def login_view(request):
                 request.session['comp1'] = 0
                 request.session['comp2'] = 0
                 request.session['comp3'] = 0
+                request.session['idUserBachNsegemUpdate'] = user.id
                 auth.login(request, user)
                 messages.success(request, 'rak mconicti')
                 return HttpResponseRedirect('/produit/')
@@ -384,12 +385,7 @@ def update_info(request):
         adresse = request.POST["adresse"]
         wilaya = request.POST["wilaya"]
         us = User.objects.get(id=id)
-        print(wilaya)
-        print(adresse)
-        print(tlf)
-        print(Prenom)
-        print(email)
-        print(password1)
+    
     
 
 
@@ -403,7 +399,7 @@ def update_info(request):
 
                     messages.error(request, "username taken")
 
-                    return HttpResponseRedirect('/utilisateur/update_info/?id=' + str(id))
+                    return HttpResponseRedirect('/utilisateur/update_info/')
 
         else:
 
@@ -411,7 +407,7 @@ def update_info(request):
 
                         messages.error(request, "email taken")
 
-                        return HttpResponseRedirect('/utilisateur/update_info/?id=' + str(id))
+                        return HttpResponseRedirect('/utilisateur/update_info/')
 
                     else:
                         print("kolch mrigli")
@@ -421,16 +417,22 @@ def update_info(request):
                         
                         
                         if us.type_sp == "revendeur" :
-                            User.objects.filter(id=id).update(rc=rc ,mi=mi, li=li, nis=nis)
-                        User.objects.filter(id=us.id).update(username=username,email=email,wilaya_user=wilaya,first_name=nom,last_name=Prenom, adresse_user=adresse,telephone_user=tlf
-)
-                       #username=username,email=email,wilaya_user=wilaya,first_name=nom,last_name=Prenom, adresse_user=adresse,telephone_user=tlf
+                            User.objects.filter(id=us.id).update(rc=rc ,mi=mi, li=li, nis=nis)
+                        User.objects.filter(id=us.id).update(username=username,email=email,wilaya_user=wilaya,first_name=nom,last_name=Prenom, adresse_user=adresse,telephone_user=tlf)
+        
+        
+        messages.error(request, "modifications appliquées avec succès  veuillez vous reconnecter")
+
+        return HttpResponseRedirect('/produit/')
+      
 
 
 
-
-
-    idu = request.GET.get('id')
+    
+    #idu = request.GET.get('id')
+    
+    
+    idu= request.user.id
     akm= User.objects.get(id=idu)
     user = auth.authenticate(username=akm.username, password=akm.password)
     auth.login(request, user)

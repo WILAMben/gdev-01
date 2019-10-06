@@ -35,7 +35,7 @@ def addPanier(request):
     return HttpResponse("<h1>hkjhkjhkjhkjkjgkjhgjkhjkhkjhkjhkjnbs</h1>")
 
 def affichPan(request):
-    idu= request.GET.get('id')
+    idu= request.session['idUserBachNsegemUpdate']
     user_sd = User.objects.get(id=idu)
     all = Panier_user.objects.filter(id_panier_user=user_sd)
     template_name = 'panier/panier.html'
@@ -61,10 +61,10 @@ def affichPan(request):
 def modifQntt(request):
     if request.method == 'POST':
         id_panier = request.POST['id_panier']
-        id_user = request.POST['id_user']
+       
         qntt = request.POST['qtt']
         Panier_user.objects.filter(id=id_panier).update(quantite_produit=qntt)
-        return  HttpResponseRedirect('/panier/?id='+id_user)
+        return  HttpResponseRedirect('/panier/')
     return HttpResponse("mamchatch ta3 tmodifier qntt")
 
 
@@ -72,4 +72,4 @@ def suppPro(request):
     idd = request.GET.get('pan')
     id_user=request.GET.get('us')
     Panier_user.objects.get(id=idd).delete()
-    return  HttpResponseRedirect('/panier/?id='+str(id_user))
+    return  HttpResponseRedirect('/panier/')
