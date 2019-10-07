@@ -26,7 +26,7 @@ SECRET_KEY = 'q-ir6anxen-*5%e7%2&(x5q8thxm3^13xl%d#x=r@lafroy*if'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['didaben.com','142.93.166.163']
+ALLOWED_HOSTS = ['142.93.166.163']
 
 
 # Application definition
@@ -142,13 +142,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static", "static_files")]
+MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
+STATIC_ROOT  =  os.path.join(BASE_DIR, "static", "static_root")
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media")
-STATIC_ROOT  =  os.path.join(os.path.dirname(BASE_DIR), "static", "static_root")
+#MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media")
+#STATIC_ROOT  =  os.path.join(os.path.dirname(BASE_DIR), "static", "static_root")
 
-STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(BASE_DIR), "static", "static_files"),
-]
+#STATICFILES_DIRS = [
+#    os.path.join(os.path.dirname(BASE_DIR), "static", "static_files"),
+#]
 AUTH_USER_MODEL = 'utilisateur.User'
 
 
