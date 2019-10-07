@@ -24,7 +24,7 @@ TEMP_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'q-ir6anxen-*5%e7%2&(x5q8thxm3^13xl%d#x=r@lafroy*if'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['didaben.com','142.93.166.163']
 
