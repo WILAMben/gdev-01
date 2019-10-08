@@ -382,8 +382,9 @@ def reglement(request):
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),})
 def blog(request):
+
     template_name = 'produit/blog.html'
-    all=Blog.objects.filter(type="blog"),
+    all=Blog.objects.filter(type="blog")
     paginator = Paginator(all, 6)
     page = request.GET.get('page')
 
