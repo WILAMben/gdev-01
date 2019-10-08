@@ -380,13 +380,13 @@ def information(request):
 
 def blog(request):
     template_name = 'produit/blog.html'
-    all= Blog.objects.filter(type="blog")
+    
     #paginator = Paginator(all, 6)
     #page = request.GET.get('page')
 
     #all = paginator.get_page(page)
     context={
-        'all':all,
+        'all':Blog.objects.filter(type="blog"),
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
         'slide': Pub.objects.all(),
