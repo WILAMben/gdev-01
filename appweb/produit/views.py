@@ -382,7 +382,6 @@ def reglement(request):
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),})
 def blog(request):
-
     template_name = 'produit/blog.html'
     all=Blog.objects.filter(type="blog")
     paginator = Paginator(all, 6)
@@ -396,6 +395,7 @@ def blog(request):
     }
 
     return render(request, template_name, context)
+
 def blog_post(request):
     id = request.GET.get('bbg')
     b = Blog.objects.filter(id=id)
