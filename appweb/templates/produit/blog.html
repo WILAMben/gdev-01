@@ -46,7 +46,7 @@
 
 
 
-{% for u in all %}
+{% for u in touss %}
 {{u.titre}}
 khljfhjghdfjskgkdfhgksljfhgkjsdhflgjhsfkljghfkljdghkjsf
 {%endfor%}
@@ -58,12 +58,12 @@ khljfhjghdfjskgkdfhgksljfhgkjsdhflgjhsfkljghfkljdghkjsf
 
                     <div class="row">
 
-                            {% for f in all %}
+                            {% for f in touss %}
                             {{f.titre}}
                             khljfhjghdfjskgkdfhgksljfhgkjsdhflgjhsfkljghfkljdghkjsf
                             {%endfor%}
                             
-                            {% for b in all %}
+                            {% for b in touss %}
                         <div class="col-lg-6 col-md-6 col-sm-12">
                         	<div class="blog-item">
 
@@ -108,27 +108,27 @@ khljfhjghdfjskgkdfhgksljfhgkjsdhflgjhsfkljghfkljdghkjsf
 
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="category-results">
-                                <p>Page {{ all.number }} of {{ all.paginator.num_pages }}</p>
+                                <p>Page {{ touss.number }} of {{ touss.paginator.num_pages }}</p>
                                 
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="pagination">
-                                {% if all.has_previous %}
-                                <a href="?id={{hass}}&page={{ all.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
+                                {% if touss.has_previous %}
+                                <a href="?id={{hass}}&page={{ touss.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
                                  {% endif %}
 
 
-                                 {% with ''|center:all.paginator.num_pages as range %}
+                                 {% with ''|center:touss.paginator.num_pages as range %}
                                   {% for i in range %}
 
                                  
                                 <a href="?id={{hass}}&page={{ forloop.counter }}"><div class="page-button">{{ forloop.counter }}</div></a>
                                   {% endfor %}  
                                   {% endwith %} 
-                                  {% if all.has_next %}                           
-                                <a href="?id={{hass}}&page={{ all.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
+                                  {% if touss.has_next %}                           
+                                <a href="?id={{hass}}&page={{ touss.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
                                 {% endif %}
                             </div>
                         </div>

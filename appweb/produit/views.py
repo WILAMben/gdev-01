@@ -386,7 +386,7 @@ def blog(request):
 
     #all = paginator.get_page(page)
     context={
-        'all':Blog.objects.filter(type="blog"),
+        'touss':Blog.objects.filter(type="blog"),
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
         'slide': Pub.objects.all(),
