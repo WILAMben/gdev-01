@@ -375,27 +375,26 @@ def information(request):
     return render(request, template_name, {'text':Blog.objects.filter(type="nousSomme"),
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),})
-def reglement(request):
-    template_name = 'produit/reglement.html'
 
-    return render(request, template_name,{
-        'imgCata':ImageVente.objects.filter(type="cataImg"),
-        'pdfCata':ImageVente.objects.filter(type="cataPdf"),})
+
+
 def blog(request):
     template_name = 'produit/blog.html'
-    allblg= Blog.objects.filter(type="blog")
-    paginator = Paginator(allblg, 6)
-    page = request.GET.get('page')
+    all= Blog.objects.filter(type="blog")
+    #paginator = Paginator(all, 6)
+    #page = request.GET.get('page')
 
-    alls = paginator.get_page(page)
+    #all = paginator.get_page(page)
     context={
-        'all':alls,
+        'all':all,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
         'slide': Pub.objects.all(),
     }
 
     return render(request, template_name, context)
+
+
 
 def blog_post(request):
     id = request.GET.get('bbg')
