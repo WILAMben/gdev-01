@@ -383,15 +383,16 @@ def reglement(request):
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),})
 def blog(request):
     template_name = 'produit/blog.html'
-    all=Blog.objects.filter(type="blog")
-    paginator = Paginator(all, 6)
+    allblg= Blog.objects.filter(type="blog")
+    paginator = Paginator(allblg, 6)
     page = request.GET.get('page')
 
-    all = paginator.get_page(page)
+    alls = paginator.get_page(page)
     context={
-        'all':all,
+        'all':alls,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
+        'slide': Pub.objects.all(),
     }
 
     return render(request, template_name, context)
