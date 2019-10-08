@@ -29,7 +29,6 @@ urlpatterns = [
        path('blog', mais_views.blog, name='blog'),
        path('blog_post', mais_views.blog_post, name='blog_post'),
        path('information', mais_views.information, name='information'),
-       path('reglement', mais_views.reglement, name='reglement'),
 
 
 ]
