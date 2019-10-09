@@ -90,7 +90,7 @@ def indexView(request):
         'random':random,
         'p':p,
         'slide': Pub.objects.all(),
-        'blog':Blog.objects.filter(type="blog"),
+        'blog':Blog.objects.filter(type="blog").order_by('-id'),
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
         'imgvente':ImageVente.objects.filter(type="vente"),
@@ -144,11 +144,24 @@ def recherchePro(request):
         for i in les_plus:
             if i.id_produit.active:
                   les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
+        
+        p = []
+        if 'comp1'  in request.session:
+            if request.session['comp1'] != 0:
+               p.append(Produit.objects.get(id=request.session['comp1']))
+            if request.session['comp2'] != 0:
+               p.append(Produit.objects.get(id=request.session['comp2']))
+            if request.session['comp3'] != 0:
+               p.append(Produit.objects.get(id=request.session['comp3']))
+
+
+
 
 
 
 
         context = {
+            'p':p,
             'contacts': contacts,
             'hass': ser,
             'slide': Pub.objects.all(),
@@ -180,8 +193,22 @@ def rechCatigo(request):
 
               les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
 
+    
+    p = []
+    if 'comp1'  in request.session:
+       if request.session['comp1'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp1']))
+       if request.session['comp2'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp2']))
+       if request.session['comp3'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp3']))
+
+
+
+
 
     context = {
+        'p':p,
         'contacts': all,
         'hass': data,
         'slide': Pub.objects.all(),
@@ -209,8 +236,22 @@ def rechCatigoSplit(request):
                 if i.id_produit.active:
                      les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
 
+                     
+            p = []
+            if 'comp1'  in request.session:
+                if request.session['comp1'] != 0:
+                    p.append(Produit.objects.get(id=request.session['comp1']))
+                if request.session['comp2'] != 0:
+                    p.append(Produit.objects.get(id=request.session['comp2']))
+                if request.session['comp3'] != 0:
+                    p.append(Produit.objects.get(id=request.session['comp3']))
+
+
+
+
 
             context = {
+                'p':p,
                 'contacts': all,
                 'hass': anis,
                 'slide': Pub.objects.all(),
@@ -237,11 +278,22 @@ def rechCatigoSplit(request):
         if i.id_produit.active:
               les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
 
+    p = []
+    if 'comp1'  in request.session:
+       if request.session['comp1'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp1']))
+       if request.session['comp2'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp2']))
+       if request.session['comp3'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp3']))
+
+
+
 
     context = {
         'contacts': all,
         'hass': anis,
-        
+        'p':p,
         'slide': Pub.objects.all(),
         'blog':Blog.objects.filter(type="blog"),
         'les_plus_acheter':les_plus_acheter,
@@ -286,8 +338,31 @@ def affichWish(request):
 
     all = paginator.get_page(page)
     template_name = 'produit/favoris.html'
+    
+    p = []
+    if 'comp1'  in request.session:
+       if request.session['comp1'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp1']))
+       if request.session['comp2'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp2']))
+       if request.session['comp3'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp3']))
+
+
+
+    les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
+    les_plus_acheter=[]
+    for i in les_plus:
+        if i.id_produit.active:
+            les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
+
+
     context = {
+        'p':p,
         'all': all,
+        
+        'slide': Pub.objects.all(),
+        'les_plus_acheter': les_plus_acheter,
         'hass': idu,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
@@ -327,9 +402,17 @@ def affichCompare(request):
     if request.session['comp3'] != 0:
         p.append(Produit.objects.get(id=request.session['comp3']))
 
+
+    les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
+    les_plus_acheter=[]
+    for i in les_plus:
+        if i.id_produit.active:
+            les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
+
     template_name = 'produit/compare.html'
     context = {
         'p': p,
+        'les_plus_acheter': les_plus_acheter,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
 
@@ -364,31 +447,98 @@ def suppCompare(request):
 
 def contact(request):
     template_name = 'produit/contact.html'
+    
+    p = []
+    if 'comp1'  in request.session:
+       if request.session['comp1'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp1']))
+       if request.session['comp2'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp2']))
+       if request.session['comp3'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp3']))
+
+
+
+    les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
+    les_plus_acheter=[]
+    for i in les_plus:
+        if i.id_produit.active:
+            les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
+
+
 
     return render(request, template_name,{
+        'p':p,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
-        'pdfCata':ImageVente.objects.filter(type="cataPdf"),})
+        'pdfCata':ImageVente.objects.filter(type="cataPdf"),
+        'les_plus_acheter': les_plus_acheter,
+        
+        'slide': Pub.objects.all(),})
 
 def information(request):
     template_name = 'produit/information.html'
+    
+    p = []
+    if 'comp1'  in request.session:
+       if request.session['comp1'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp1']))
+       if request.session['comp2'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp2']))
+       if request.session['comp3'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp3']))
 
-    return render(request, template_name, {'text':Blog.objects.filter(type="nousSomme"),
+
+
+
+    les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
+    les_plus_acheter=[]
+    for i in les_plus:
+        if i.id_produit.active:
+            les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
+
+
+    return render(request, template_name, {'p':p,
+        'text':Blog.objects.filter(type="nousSomme"),
         'imgCata':ImageVente.objects.filter(type="cataImg"),
-        'pdfCata':ImageVente.objects.filter(type="cataPdf"),})
+        'pdfCata':ImageVente.objects.filter(type="cataPdf"),
+        'les_plus_acheter': les_plus_acheter,
+        
+        'slide': Pub.objects.all(),})
 
 
 
 def blog(request):
     template_name = 'produit/blog.html'
-    
-    #paginator = Paginator(all, 6)
-    #page = request.GET.get('page')
+    all = Blog.objects.filter(type="blog")
+    paginator = Paginator(all, 6)
+    page = request.GET.get('page')
 
-    #all = paginator.get_page(page)
+    all = paginator.get_page(page)
+    
+    p = []
+    if 'comp1'  in request.session:
+       if request.session['comp1'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp1']))
+       if request.session['comp2'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp2']))
+       if request.session['comp3'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp3']))
+
+
+
+
+    les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
+    les_plus_acheter=[]
+    for i in les_plus:
+        if i.id_produit.active:
+            les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
+
     context={
-        'touss':Blog.objects.filter(type="blog"),
+        'p':p,
+        'touss':all,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
+        'les_plus_acheter': les_plus_acheter,
         'slide': Pub.objects.all(),
     }
 
@@ -400,7 +550,29 @@ def blog_post(request):
     id = request.GET.get('bbg')
     b = Blog.objects.filter(id=id)
     template_name = 'produit/blog_post.html'
+    
+    p = []
+    if 'comp1'  in request.session:
+       if request.session['comp1'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp1']))
+       if request.session['comp2'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp2']))
+       if request.session['comp3'] != 0:
+          p.append(Produit.objects.get(id=request.session['comp3']))
 
-    return render(request, template_name,{'all':b,
+
+
+    les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
+    les_plus_acheter=[]
+    for i in les_plus:
+        if i.id_produit.active:
+            les_plus_acheter.append(Produit.objects.get(id=str(i.id_produit.id)))
+
+
+
+    return render(request, template_name,{'p':p,
+        'all':b,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
-        'pdfCata':ImageVente.objects.filter(type="cataPdf"),})
+        'pdfCata':ImageVente.objects.filter(type="cataPdf"),
+        'les_plus_acheter': les_plus_acheter,
+        'slide': Pub.objects.all(),})

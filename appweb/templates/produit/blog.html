@@ -46,11 +46,6 @@
 
 
 
-{% for u in touss %}
-{{u.titre}}
-khljfhjghdfjskgkdfhgksljfhgkjsdhflgjhsfkljghfkljdghkjsf
-{%endfor%}
-
 
 
 
@@ -58,16 +53,16 @@ khljfhjghdfjskgkdfhgksljfhgkjsdhflgjhsfkljghfkljdghkjsf
 
                     <div class="row">
 
-                            {% for f in touss %}
-                            {{f.titre}}
-                            khljfhjghdfjskgkdfhgksljfhgkjsdhflgjhsfkljghfkljdghkjsf
-                            {%endfor%}
+                       
                             
                             {% for b in touss %}
                         <div class="col-lg-6 col-md-6 col-sm-12">
                         	<div class="blog-item">
 
-                                <a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt=""></a>
+                                <a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="" style="
+                                    
+                                    height:300px;
+                                    " ></a>
                                 <div class="blog-info">
                                 	<h3><a >{{b.titre}}</a></h3>
                                     <div class="blog-meta">

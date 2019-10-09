@@ -995,13 +995,18 @@
 
 									<div class="row">
 										<div class="col-lg-6 col-md-6 col-sm-6 news-thumbnail">
-											<a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="News1"></a>
+											<a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="News1" style="
+                                    
+												height:300px;
+												"></a>
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-6 news-content">
 											<h3><a href="{%url 'produit:blog_post' %}?bbg={{b.id}}">{{b.titre}}</a></h3>
 											<span class="date"><i class="icons icon-clock-1"></i>{{b.date}}</span>
-											 <p id="desc" style=" overflow-y: scroll;  width:260px; height: 90px;">
-{{b.description}}</p>
+											 <p id="desc" style=" overflow-y: scroll;  width:260px; height: 220px;">
+{{b.description|truncatechars:200}}...</p>
+
+
 										</div>
 									</div>
 
@@ -1175,13 +1180,16 @@
 
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6 news-thumbnail">
-								<a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="News1"></a>
+								<a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="News1"  style="
+                                    
+									height:300px;
+									"></a>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 news-content">
 								<h5><a href="{%url 'produit:blog_post' %}?bbg={{b.id}}">{{b.titre}}</a></h5>
 								<span class="date"><i class="icons icon-clock-1"></i>{{b.date}}</span>
-								 <p id="desc" style=" overflow-y: scroll;  width:260px; height: 90px;">
-{{b.description}}</p>
+								<p id="desc" style=" overflow-y: scroll;  width:260px; height: 220px;">
+									{{b.description|truncatechars:200}}...</p>
 							</div>
 						</div>
 

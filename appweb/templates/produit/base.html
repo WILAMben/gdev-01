@@ -567,7 +567,7 @@ a.control_next {
 
                   <li class="login-create purple">
                                       <i class="icons icon-user"></i>
-                                        <p>Bonjour ! <a >Connecter</a> ou<br><a>crée un compte</a></p>
+                                        <p>Bonjour ! <a >Connecter</a> ou<br><a>créer un compte</a></p>
 
 
 
@@ -606,10 +606,10 @@ a.control_next {
                                                     <br>
                                                     <br>
                                                     <div class="pull-left">
-                                                        <input type="submit"  class="orange" value="Login" >
+                                                        <input type="submit"  class="orange" value="Se connecter" >
                                                     </div>
                                                     <div class="pull-right">
-                                                        <a href="{% url 'utilisateur:mdpOublier' %}">mot de passe oublier?</a>
+                                                        <a href="{% url 'utilisateur:mdpOublier' %}">mot de passe oublié?</a>
                                                         <br>
                                 
                                                     </div>
@@ -617,7 +617,7 @@ a.control_next {
                                                 </div>
                         <div class="footer">
                           <h4 class="pull-left">Nouveau client ?</h4>
-                          <a class="button pull-right" href="{% url 'utilisateur:registre_view' %}">Crée un Compte </a>
+                          <a class="button pull-right" href="{% url 'utilisateur:registre_view' %}">Créer un compte </a>
                         </div>
                       </li>
 
@@ -730,7 +730,7 @@ a.control_next {
                                 <table id="search-bar-table">
                                     <tr>
                                         <td class="search-column-1">
-                                            <p><span class="grey">recherche populaire:</span> <a href="{% url 'produit:rechCatigo' %}?ser=Phisique ">Phisique</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Materiel d'atelier ">Materiel d'atelier</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Autres ">ORDINATEURS ET ECRANS</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Experiences de chimie ">Experiences de chimie</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Microscopes ">Microscopes</a></p>
+                                            <p><span class="grey">recherche populaire:</span> <a href="{% url 'produit:rechCatigo' %}?ser=Phisique ">physique</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Materiel d'atelier ">Materiel d'atelier</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Autres ">ORDINATEURS ET ECRANS</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Experiences de chimie ">Experiences de chimie</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Microscopes ">Microscopes</a></p>
 
 
 
@@ -1467,7 +1467,7 @@ a.control_next {
 										<ul class="sidebar-dropdown sidebar-dropdown-red" >
                                         	<li>
                                             	<ul>
-                                                	<li><a href="{% url 'produit:rechCatigo' %}?ser=Phisique ">PHISIQUE</a></li>
+                                                	<li><a href="{% url 'produit:rechCatigo' %}?ser=Phisique ">physique</a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Science de la nature et vie  ">SCIENCE DE LA NATURE ET DE VIE </a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Geologie">GEOLOGIE</a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Electronique et electricite">ELECTRONIQUE ET ELECTRICITE </a></li>
@@ -1747,7 +1747,7 @@ a.control_next {
 
 							<div class="sidebar-box-heading">
                             <i class="icons icon-award-2"></i>
-								<h4>Les plus vendu</h4>
+								<h4>Les plus vendus</h4>
 							</div>
 
 							<div class="sidebar-box-content">
@@ -1785,7 +1785,7 @@ a.control_next {
 							</div>
 
 							<div class="sidebar-box-content sidebar-padding-box">
-								<a href="{% url 'produit:rechCatigo' %}?ser=Phisique" class="tag-item">Phisique</a>
+								<a href="{% url 'produit:rechCatigo' %}?ser=Phisique" class="tag-item">physique</a>
 								<a href="{% url 'produit:rechCatigo' %}?ser=Materiel d'atelier" class="tag-item">Materiel d'atelier</a>
 								<a href="{% url 'produit:rechCatigo' %}?ser=Microscopes" class="tag-item">Microscopes</a>
 								<a href="{% url 'produit:rechCatigo' %}?ser=Autres" class="tag-item">ORDINATEURS ET ECRANS</a>
@@ -2357,7 +2357,7 @@ a.control_next {
         <div class="col-lg-3 col-md-3 col-sm-6 ">
             <br>
           {% for tata in imgCata %}
-          <img src="{{MEDIA_URL}}{{tata.img.url}}" alt="image" >
+          <img src="{{MEDIA_URL}}{{tata.img.url}}" alt="image"  >
           <a class="button big red col-lg-12" {% for ta in pdfCata %}  href="{{MEDIA_URL}}{{ta.img.url}}" {% endfor %}> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Telecharger    
          
       </a> 
