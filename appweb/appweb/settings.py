@@ -26,7 +26,7 @@ SECRET_KEY = 'q-ir6anxen-*5%e7%2&(x5q8thxm3^13xl%d#x=r@lafroy*if'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['142.93.166.163']
+ALLOWED_HOSTS = ['www.didaben.com','142.93.166.163']
 #ALLOWED_HOSTS = []
 
 # Application definition
