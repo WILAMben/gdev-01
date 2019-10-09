@@ -150,7 +150,9 @@ def changerImgCata(request):
         ob=ImageVente.objects.get(type="cataImg")
         os.remove(os.path.join(settings.MEDIA_ROOT, str(MEDIA_ROOT)[:-6] + ob.img.url))
 
-        
+#doekdoekdoekdoekdoekdkeodkeod
+# eidjeidjeidjejdiejdiejdiejd
+# djeidjeidjiejdejdejdjeidjeid      
         obb=ImageVente.objects.get(type="cataPdf")
         os.remove(os.path.join(settings.MEDIA_ROOT, str(MEDIA_ROOT)[:-6] + obb.img.url))
 
