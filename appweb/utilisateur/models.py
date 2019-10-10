@@ -52,8 +52,8 @@ class User(AbstractUser):
     wilaya_user = models.CharField(max_length=50,null=True)
     activation_key = models.CharField(max_length=200,null=True, unique=True,blank=True)
     confirmed = models.BooleanField(default=False)
-    rc = models.CharField(max_length=100,null=True,blank=True)
-    mi = models.CharField(max_length=50,null=True,blank=True)
+    rc = models.CharField(max_length=250,null=True,blank=True)
+    mi = models.CharField(max_length=250,null=True,blank=True)
     li = models.CharField(max_length=50,null=True,blank=True)
     nis = models.CharField(max_length=50,null=True,blank=True)
 

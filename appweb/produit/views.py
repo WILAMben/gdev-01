@@ -78,8 +78,8 @@ def indexView(request):
 
     #hadi ta3 slide
     
-    all = Produit.objects.filter(active=True)
-    date_ajout = Produit.objects.filter(active=True).order_by('-id')
+    all = Produit.objects.filter(active=True)[:10]
+    date_ajout = Produit.objects.filter(active=True).order_by('-id')[:10]
     template_name = 'produit/Home.html'
     context = {
 
@@ -134,7 +134,7 @@ def recherchePro(request):
 
 
         contact_list = Produit.objects.filter((Q(reference_produit=ser) | Q(nom_produit=ser)| Q(nom_produit_ar=ser)| Q(niveau=ser))& Q(active=True)   )
-        paginator = Paginator(contact_list, 4)  # Show 25 contacts per page
+        paginator = Paginator(contact_list, 9)  # Show 25 contacts per page
         template_name = 'produit/Recherche.html'
         page = request.GET.get('page')
         contacts = paginator.get_page(page)
@@ -180,7 +180,7 @@ def rechCatigo(request):
     data = request.GET.get('ser')
     # had data howa parametre li trechercher bih 3la catigorie li rak 7abha
     all = Produit.objects.filter(Q(categorie_produit=data)& Q(active=True) )
-    paginator = Paginator(all, 4)
+    paginator = Paginator(all, 9)
     page = request.GET.get('page')
 
     all = paginator.get_page(page)
@@ -267,7 +267,7 @@ def rechCatigoSplit(request):
     for i in row:
         all = all | Produit.objects.filter(Q(categorie_produit=i)    & Q(active=True))
 
-    paginator = Paginator(all, 4)
+    paginator = Paginator(all, 9)
     page = request.GET.get('page')
     all = paginator.get_page(page)
     template_name = 'produit/Recherche.html'
@@ -472,7 +472,7 @@ def contact(request):
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
         'les_plus_acheter': les_plus_acheter,
-        
+        'vente':User.objects.filter(type="vente"),
         'slide': Pub.objects.all(),})
 
 def information(request):
