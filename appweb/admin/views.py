@@ -97,6 +97,11 @@ def ajoutProd(request):
         categorie_produit = request.POST.get('categorie')
         niveau = request.POST.get('niveau')
         #prix_produit = request.POST.get('prix_produit')
+
+        
+        if Produit.objects.filter(reference_produit=reference_produit).exists():
+                    messages.error(request, "reference taken")
+                    return HttpResponseRedirect("/admin_site/ajoutProd/")
      
 
 

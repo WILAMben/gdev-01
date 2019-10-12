@@ -139,6 +139,12 @@ def recherchePro(request):
         page = request.GET.get('page')
         contacts = paginator.get_page(page)
         
+        index = contacts.number - 1 
+        max_index = len(paginator.page_range)
+        start_index = index - 3 if index >= 3 else 0
+        end_index = index + 3 if index <= max_index - 3 else max_index
+        page_range = list(paginator.page_range)[start_index:end_index]
+        
         les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
         les_plus_acheter=[]
         for i in les_plus:
@@ -162,6 +168,7 @@ def recherchePro(request):
 
         context = {
             'p':p,
+            'page_range':page_range,
             'contacts': contacts,
             'hass': ser,
             'slide': Pub.objects.all(),
@@ -184,6 +191,11 @@ def rechCatigo(request):
     page = request.GET.get('page')
 
     all = paginator.get_page(page)
+    index = all.number - 1 
+    max_index = len(paginator.page_range)
+    start_index = index - 3 if index >= 3 else 0
+    end_index = index + 3 if index <= max_index - 3 else max_index
+    page_range = list(paginator.page_range)[start_index:end_index]
     template_name = 'produit/Recherche.html'
         
     les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
@@ -210,6 +222,7 @@ def rechCatigo(request):
     context = {
         'p':p,
         'contacts': all,
+        'page_range':page_range,
         'hass': data,
         'slide': Pub.objects.all(),
         'blog':Blog.objects.filter(type="blog"),
@@ -223,11 +236,19 @@ def rechCatigo(request):
 def rechCatigoSplit(request):
   anis = request.GET.get('ser')
   if anis== 'zafikor':
+
+
+
             all = Produit.objects.filter(active=True)
             paginator = Paginator(all, 9)
             page = request.GET.get('page')
 
             all = paginator.get_page(page)
+            index = all.number - 1 
+            max_index = len(paginator.page_range)
+            start_index = index - 3 if index >= 3 else 0
+            end_index = index + 3 if index <= max_index - 3 else max_index
+            page_range = list(paginator.page_range)[start_index:end_index]
             template_name = 'produit/Recherche.html'
         
             les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
@@ -253,6 +274,7 @@ def rechCatigoSplit(request):
             context = {
                 'p':p,
                 'contacts': all,
+                'page_range': page_range,
                 'hass': anis,
                 'slide': Pub.objects.all(),
                 'blog':Blog.objects.filter(type="blog"),
@@ -270,6 +292,11 @@ def rechCatigoSplit(request):
     paginator = Paginator(all, 9)
     page = request.GET.get('page')
     all = paginator.get_page(page)
+    index = all.number - 1 
+    max_index = len(paginator.page_range)
+    start_index = index - 3 if index >= 3 else 0
+    end_index = index + 3 if index <= max_index - 3 else max_index
+    page_range = list(paginator.page_range)[start_index:end_index]
     template_name = 'produit/Recherche.html'
         
     les_plus = Ligne_commande.objects.filter().annotate(num=Count('id_produit')).order_by('-num')[:10]
@@ -293,6 +320,7 @@ def rechCatigoSplit(request):
     context = {
         'contacts': all,
         'hass': anis,
+        'page_range':page_range,
         'p':p,
         'slide': Pub.objects.all(),
         'blog':Blog.objects.filter(type="blog"),

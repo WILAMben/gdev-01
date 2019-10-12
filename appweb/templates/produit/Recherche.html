@@ -86,36 +86,62 @@
                         {% endfor %}
                   </div>
 
-                       <div class="row">
-
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="category-results">
-                                <p>Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}</p>
-                                
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="pagination">
-                                {% if contacts.has_previous %}
-                                <a href="?ser={{hass}}&page={{ contacts.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
-                                 {% endif %}
+     
 
 
-                                 {% with ''|center:contacts.paginator.num_pages as range %}
-                                  {% for i in range %}
-
-                                 
-                                <a href="?ser={{hass}}&page={{ forloop.counter }}"><div class="page-button">{{ forloop.counter }}</div></a>
-                                  {% endfor %}  
-                                  {% endwith %} 
-                                  {% if contacts.has_next %}                           
-                                <a href="?ser={{hass}}&page={{ contacts.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
-                                {% endif %}
-                            </div>
-                        </div>
-
+                  <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <div class="category-results">
+                              <p>Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}</p>
+                              
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <div class="pagination">
+                    {% if contacts.has_previous %}
+                        <a class="prev btn btn-info" href="?ser={{hass}}&page={{ contacts.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
+                    {% endif %}
+                    {% if contacts.has_next %}
+                        <a class="next btn btn-info" href="?ser={{hass}}&page={{ contacts.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
+                    {% endif %}
+                
+                      
+                        {% for pg in page_range %}
+                            {% if contacts.number == pg %}
+                           <a href="?ser={{hass}}&page={{pg}}" ><div class="page-button">{{pg}}</div></a>
+                            {% else %}
+                               <a href="?ser={{hass}}&page={{pg}}" ><div class="page-button">{{pg}}</div></a>
+                            {% endif %}
+                        {% endfor %}
+                        
                     </div>
+
+
+                    <span class="clear_both"></span>
+                </div>
+                </div>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <div id="myModal" class="modal">
   <span class="close">&times;</span>
@@ -372,36 +398,37 @@ if (name =="" ) {
                 {% endfor %}
           </div>
 
-               <div class="row">
-
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="category-results">
-                        <p>Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}</p>
-                        
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="pagination">
-                        {% if contacts.has_previous %}
-                        <a href="?ser={{hass}}&page={{ contacts.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
-                         {% endif %}
-
-
-                         {% with ''|center:contacts.paginator.num_pages as range %}
-                          {% for i in range %}
-
-                         
-                        <a href="?ser={{hass}}&page={{ forloop.counter }}"><div class="page-button">{{ forloop.counter }}</div></a>
-                          {% endfor %}  
-                          {% endwith %} 
-                          {% if contacts.has_next %}                           
-                        <a href="?ser={{hass}}&page={{ contacts.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
-                        {% endif %}
-                    </div>
-                </div>
-
+          <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="category-results">
+                      <p>Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}</p>
+                      
+                  </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="pagination">
+            {% if contacts.has_previous %}
+                <a class="prev btn btn-info" href="?ser={{hass}}&page={{ contacts.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
+            {% endif %}
+            {% if contacts.has_next %}
+                <a class="next btn btn-info" href="?ser={{hass}}&page={{ contacts.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
+            {% endif %}
+        
+              
+                {% for pg in page_range %}
+                    {% if contacts.number == pg %}
+                   <a href="?ser={{hass}}&page={{pg}}" ><div class="page-button">{{pg}}</div></a>
+                    {% else %}
+                       <a href="?ser={{hass}}&page={{pg}}" ><div class="page-button">{{pg}}</div></a>
+                    {% endif %}
+                {% endfor %}
+                
             </div>
+
+
+            <span class="clear_both"></span>
+        </div>
+        </div>
 
     <div id="myModal" class="modal">
 <span class="close">&times;</span>
