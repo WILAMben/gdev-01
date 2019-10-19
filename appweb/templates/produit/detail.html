@@ -151,6 +151,32 @@ h1{
 }
 
 
+#style-15::-webkit-scrollbar-track
+{
+
+  background-color: #fff;
+  border: 0px solid #fff;
+  
+}
+
+#style-15::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#style-15::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #FFF;
+  background-image: -webkit-gradient(linear,
+                     40% 0%,
+                     75% 84%,
+                     from(#0d0a36),
+                     to(#292950),
+                     color-stop(.6,#01090a))
+}
+
 
 
 {% load staticfiles %}
@@ -169,7 +195,7 @@ h1{
         
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Markazi+Text&display=swap" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900,700italic,500italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900,700italic,500italic' rel='stylesheet' type='text/css'>
       
         <!-- Stylesheets -->
  {% load humanize %}
@@ -1270,8 +1296,8 @@ h1{
                             <!-- Product Images Carousel -->
                           
                             <div class="col-lg-4 col-md-4 col-sm-4 product-single-image">
-
-                                <div id="product-slider" style="width: 45%">
+                               
+                                <div id="product-slider">
                                     <ul class="slides">
                                         <li>
                                             {% for tata in produit.imageproduit_set.all|slice:"1" %}  
@@ -1288,6 +1314,8 @@ h1{
                                         </li>
                                     </ul>
                                 </div>
+                               
+                               
                                 <div id="product-carousel">
                                     <ul class="slides">
 
@@ -1311,10 +1339,11 @@ h1{
                                     </div>
                                 </div>
                             </div>
-                          
+                        
+                         
                             <!-- /Product Images Carousel -->
 
-                            <div class="col-lg-8 col-md-8 col-sm-8 product-single-info full-size">
+                            <div class="col-lg-4 col-md-4 col-sm-4 product-single-info full-size">
 
                                 <h2>{{produit.nom_produit}}</h2>
                                 <div class="rating-box">
@@ -1357,11 +1386,13 @@ h1{
                                         {%else%}
                                         <td><input type="submit" value="Imprimer la notice" onclick="swal('ce produit n\'a pas de notice!',{icon:'error',})" /></td>
                                         {%endif%}
-                                        
+                                        </tr>
+                                         <tr>
                                         <td>
 
                                             <a>
                                                 <span class="add-to-cart">
+
                                                     <span class="action-wrapper">
                                                         <i class="icons icon-basket-2"></i>
                                                {% if user.is_authenticated %}
@@ -1407,48 +1438,34 @@ h1{
 
                             </div>
 
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 product-single-image" style="background-color: #fff;box-shadow: -1px 0px 15px 0px gray;">
+                               <div class="accordion-header" style="background-color:#34495e!important;text-align: center;">
+                                            <h4>Description</h4>
+                                           
+                                        </div>
+                                <p id="style-15" style=" overflow-y: scroll;max-height: 350px;height: 350px;">
+                             {{produit.description_produit}}
+
+
+                              </p>
+                             </div>
+
+
                         </div>
 
                     </div>
                     <!-- /Product -->
 
 
-                    <div class="row">
-
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-
-                            <!-- Accordion -->
-                            <div class="accordion">
-
-                                <ul>
-                                    <!-- Item -->
-                                    <li>
-
-                                        <div class="accordion-header">
-                                            <h4>Description</h4>
-                                            <span class="accordion-button">
-                                                <i class="icons icon-plus-1"></i>
-                                            </span>
-                                        </div>
-                                        <div class="accordion-content page-content">
-                                         {{produit.description_produit}}
-                                        </div>
-
-                                    </li>
-                                    <!-- /Item -->
+                   
 
 
 {% endfor %}
                                 
 
-                                </ul>
-                                <!-- /Accordion -->
-                            </div>
-
-
-                        </div>
-
-                    </div>
+                              
 
 
 
@@ -1474,10 +1491,14 @@ h1{
 
                             <div class="owl-carousel" data-max-items="4">
 
+
+
+
+
                                     <!-- Slide -->
                                      {% for pro in cat %}
                                     <div>
-                                       
+                                      <form onsubmit="return false;">
                                       	<!-- Carousel Item -->
 										<div class="product">
                                                 
@@ -1536,11 +1557,27 @@ h1{
   
                       </div>
                       <!-- /Carousel Item -->
+
+
+</form>
+
+
+
+
+
+
+
+
+                      
                                    
                                     </div>
                                     <!-- /Slide -->
                                     {% endfor %}
 
+
+
+
+                                    
 
                                    
 
@@ -1651,7 +1688,222 @@ h1{
               
                               <div class="col-lg-12 col-md-12 col-sm-12">
                                   <div class="breadcrumbs">
-                                      <p><a style="font-size: 1.1em;">المنتج</a> <i class="icons icon-right-dir"></i> <a href="{% url 'produit:rechCatigo' %}?ser={{produit.categorie_produit}}" style="font-size: 1.1em;">{{produit.categorie_produit}}</a> <i class="icons icon-right-dir"></i>{{produit.nom_produit_ar}}</p>
+                                      <p><a style="font-size: 1.1em;">المنتج</a> <i class="icons icon-right-dir"></i> <a href="{% url 'produit:rechCatigo' %}?ser={{produit.categorie_produit}}" style="font-size: 1.1em;">
+                             
+                
+                {% if produit.categorie_produit == "Phisique" %}
+                فيزياء
+                {% elif produit.categorie_produit == "Science de la nature et vie" %}
+                
+                
+                علوم الطبيعة والحياة
+                {% elif produit.categorie_produit == "Geologie" %}
+                
+                جيولوجيا
+                
+                {% elif produit.categorie_produit == "Electronique et electricite" %}
+                
+                الالكترونيات والكهرباء
+                
+                {% elif produit.categorie_produit == "Experiences de chimie" %}
+                
+                 تجارب كيميائية
+                
+                {% elif produit.categorie_produit == "Astronomie" %}
+                
+                علم الفلك
+                
+                {% elif produit.categorie_produit == "Exao" %}
+                
+                
+                EXAO
+                {% elif produit.categorie_produit == "Optiques" %}
+                
+                بصري
+                
+                {% elif produit.categorie_produit == "Appareils de mesure" %}
+                
+                أجهزة القياس
+                
+                {% elif produit.categorie_produit == "Accesoires de laboratoire" %}
+                
+                مستلزمات المختبرات
+                
+                {% elif produit.categorie_produit == "Ballances" %}
+                
+                جداول
+                
+                {% elif produit.categorie_produit == "Equipemets des laboratoires" %}
+                معدات المختبرات
+                
+                
+                {% elif produit.categorie_produit == "Audio visuel et projection" %}
+                
+                السمعي البصري والإسقاط
+                
+                {% elif produit.categorie_produit == "Microscopes" %}
+                
+                المجاهر
+                
+                {% elif produit.categorie_produit == "Acides" %}
+                
+                الأحماض
+                
+                {% elif produit.categorie_produit == "Minireaux" %}
+                
+                المعادن
+                
+                {% elif produit.categorie_produit == "Indicateurs couleurs" %}
+                
+                مؤشرات اللون
+                
+                {% elif produit.categorie_produit == "Bases" %}
+                
+                قاعدة معطيات
+                
+                {% elif produit.categorie_produit == "Metaux" %}
+                
+                المعادن
+                
+                {% elif produit.categorie_produit == "Anatomie humaine" %}
+                
+                تشريح الإنسان
+                
+                {% elif produit.categorie_produit == "anatomie zoologie" %}
+                
+                 تشريح الحيوان
+                
+                {% elif produit.categorie_produit == "Anatomie geologie" %}
+                
+                جيولوجيا التشريح
+                
+                {% elif produit.categorie_produit == "Anatomie botanique" %}
+                
+                تشريح نباتي
+                
+                {% elif produit.categorie_produit == "Produit parapharmacetique" %}
+                المنتجات الصيدلانية
+                
+                
+                {% elif produit.categorie_produit == "Materiel medical" %}
+                
+                معدات طبية
+                
+                
+                {% elif produit.categorie_produit == "Equiments medical" %}
+                
+                المعدات الطبية
+                
+                
+                {% elif produit.categorie_produit == "Papier" %}
+                
+                ورق
+                
+                
+                {% elif produit.categorie_produit == "Encre" %}
+                
+                حبر
+                
+                
+                {% elif produit.categorie_produit == "Document administratif" %}
+                
+                الوثائق الإدارية
+                
+                
+                {% elif produit.categorie_produit == "Stylos,Note book.." %}
+                القلم ، دفتر ...
+                
+                
+                
+                {% elif produit.categorie_produit == "Bibliotheque et encyclopedie" %}
+                المكتبة والموسوعات
+                
+                
+                
+                {% elif produit.categorie_produit == "Instalation des resaux" %}
+                
+                تركيب الشبكات
+                
+                
+                {% elif produit.categorie_produit == "Logiciel scolarite" %}
+                
+                برنامج المدرسة
+                
+                
+                {% elif produit.categorie_produit == "Logiciel industrie et gestion des stocks" %}
+                
+                صناعة البرمجيات وإدارة المخزون
+                
+                
+                {% elif produit.categorie_produit == "Logiciel administratif" %}
+                
+                البرنامج الإداري
+                
+                
+                {% elif produit.categorie_produit == "Autre" %}
+                
+                أخرى
+                
+                
+                {% elif produit.categorie_produit == "Materiel d'atelier" %}
+                معدات ورشة العمل
+                
+                
+                
+                {% elif produit.categorie_produit == "Tenues" %}
+                ملابس
+                
+                
+                
+                {% elif produit.categorie_produit == "Ballons et fillets" %}
+                كرات وشبكات
+                
+                
+                
+                {% elif produit.categorie_produit == "Coupes et medails" %}
+                
+                
+                الكؤوس  والميداليات
+                
+                {% elif produit.categorie_produit == "Drapeaux" %}
+                
+                
+                الأعلام
+                
+                {% elif produit.categorie_produit == "Ordinateurs et ecrans" %}
+                
+                
+                أجهزة الكمبيوتر والشاشات
+                
+                {% elif produit.categorie_produit == "Laptops et tablettes" %}
+                
+                أجهزة الكمبيوتر المحمولة والأجهزة اللوحية
+                
+                
+                {% elif produit.categorie_produit == "Flash disque,carte ser" %}
+                
+                قرص فلاش ، بطاقة
+                
+                
+                {% elif produit.categorie_produit == "Accesoirs" %}
+                
+                
+                إكسسوارات
+                
+                {% elif produit.categorie_produit == "Bureaux,tables" %}
+                
+                المكاتب ، الجداول
+                
+                
+                
+                
+                
+                {%else%}
+                
+                
+                {%endif%}
+                
+               </a> <i class="icons icon-right-dir"></i>{{produit.nom_produit_ar}}</p>
                                   </div>
                               </div>
               
@@ -1670,7 +1922,7 @@ h1{
                                         
                                           <div class="col-lg-4 col-md-4 col-sm-4 product-single-image">
               
-                                              <div id="product-slider" style="width: 45%">
+                                              <div id="product-slider">
                                                   <ul class="slides">
                                                       <li>
                                                           {% for tata in produit.imageproduit_set.all|slice:"1" %}  
@@ -1713,7 +1965,7 @@ h1{
                                         
                                           <!-- /Product Images Carousel -->
               
-                                          <div class="col-lg-8 col-md-8 col-sm-8 product-single-info full-size">
+                                          <div class="col-lg-4 col-md-4 col-sm-4 product-single-info full-size">
               
                                               <h2>{{produit.nom_produit_ar}}</h2>
                                               <div class="rating-box" style="font-size: 1em;">
@@ -1805,6 +2057,24 @@ h1{
               
               
                                           </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 product-single-image" dir="rtl" style="background-color: #fff;box-shadow: -1px 0px 15px 0px gray;">
+                               <div class="accordion-header" style="background-color:#34495e!important;text-align: center;">
+                                            <h4>وصف المنتج</h4>
+                                           
+                                        </div>
+                                <p id="style-15" style=" overflow-y: scroll;max-height: 350px;height: 350px;">
+                            {{produit.description_produit}}
+
+
+
+
+
+
+
+
+                              </p>
+                             </div>
               
                                       </div>
               
@@ -1812,42 +2082,12 @@ h1{
                                   <!-- /Product -->
               
               
-                                  <div class="row">
-              
-                                      <div class="col-lg-12 col-md-12 col-sm-12">
-              
-                                          <!-- Accordion -->
-                                          <div class="accordion">
-              
-                                              <ul>
-                                                  <!-- Item -->
-                                                  <li>
-              
-                                                      <div class="accordion-header">
-                                                          <h4>وصف المنتوج</h4>
-                                                          <span class="accordion-button">
-                                                              <i class="icons icon-plus-1"></i>
-                                                          </span>
-                                                      </div>
-                                                      <div class="accordion-content page-content" style="font-size: 1.1em;">
-                                                       {{produit.description_produit_ar}}
-                                                      </div>
-              
-                                                  </li>
-                                                  <!-- /Item -->
               
               
               {% endfor %}
                                                 
               
-                                              </ul>
-                                              <!-- /Accordion -->
-                                          </div>
-              
-              
-                                      </div>
-              
-                                  </div>
+                                      
               
               
               
@@ -2211,9 +2451,55 @@ h1{
     </div>
     </header>
     </div>
+
+
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div>  
+
+      </div>
+
+
+
+
     </body>
     
-    
+    <script type="text/javascript">
+
+      function addWish(s,t){
+        
+       swal("Le produit est ajouter", {
+         icon: "success",
+         });
+       
+               $.ajax({
+                 type: "POST",
+       
+                 url : "{% url 'produit:addWish' %}",
+                 dataType: "json",
+                 async: true,
+                 data:{
+                   csrfmiddlewaretoken: '{{csrf_token}}',
+                   id_produit : s,
+                   id_user :t,
+       
+       
+                 },
+       
+               });
+            
+       
+       
+       
+             }
+       
+       
+        
+         </script>
     
     
     <!-- fin francais -->
@@ -2403,8 +2689,54 @@ h1{
 </div>
 </header>
 </div>
-</body>
 
+
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div>  
+
+      </div>
+
+
+
+
+</body>
+<script type="text/javascript">
+
+	function addWish(s,t){
+		
+   swal("تم اضافة المنتج", {
+		 icon: "success",
+	   });
+   
+				   $.ajax({
+					   type: "POST",
+   
+					   url : "{% url 'produit:addWish' %}",
+					   dataType: "json",
+					   async: true,
+					   data:{
+						   csrfmiddlewaretoken: '{{csrf_token}}',
+						   id_produit : s,
+						   id_user :t,
+   
+   
+					   },
+   
+				   });
+			  
+   
+   
+   
+			   }
+   
+   
+	  
+		 </script>
 {%endif%}
 
 
@@ -2472,9 +2804,10 @@ h1{
         <!-- Owl Carousel -->
         <script src="{% static 'js/owl.carousel.min.js' %}"></script>
 
-        <!-- Cloud Zoom -->
-        <script src="{% static 'js/zoomsl-3.0.min.js' %}"></script>
-        <script src="{% static 'js/cloud-zoom.1.0.3.min.js' %}"></script>
+     
+		<!-- Cloud Zoom -->
+		<script src="{% static 'js/cloud-zoom.1.0.3.min.js' %}"></script>
+
 
         <!-- SelectJS -->
         <script src="{% static 'js/chosen.jquery.min.js' %}" type="text/javascript"></script>
@@ -2482,6 +2815,20 @@ h1{
         <!-- Main JS -->
         <script defer src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/main-script.js' %}"></script>
+
+
+
+
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div>  
+
+      </div>
+
 
 
 
@@ -2691,16 +3038,10 @@ if (name =="" ) {
 
 
 
+  
+<script type="text/javascript">
 
-
-
-
-
-
-
-  <script type="text/javascript">
-
-         function myPopup(myImg,myName) {
+  function myPopup(myImg,myName) {
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -2710,52 +3051,21 @@ var img = myImg;
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 
-  modal.style.display = "block";
-  modalImg.src = img;
-  captionText.innerHTML = myName;
+modal.style.display = "block";
+modalImg.src = img;
+captionText.innerHTML = myName;
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 
-  modal.style.display = "none";
+modal.style.display = "none";
 }
 }
 
+</script>
 
-
-
-
-function addWish(s,t){
-  
-swal("Le produit est ajouter", {
-      icon: "success",
-    });
-
-                $.ajax({
-                    type: "POST",
-
-                    url : "{% url 'produit:addWish' %}",
-                    dataType: "json",
-                    async: true,
-                    data:{
-                        csrfmiddlewaretoken: '{{csrf_token}}',
-                        id_produit : s,
-                        id_user :t,
-
-
-                    },
-
-                });
-           
-
-
-
-            }
-
-
-</script>  
    <script type="text/javascript">
                   function addCompare(s){
                     swal("Le produit est ajouter pour le comparer", {

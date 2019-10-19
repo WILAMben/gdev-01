@@ -15,7 +15,9 @@
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <!-- Dropzone.js -->
     <link href="{% static 'vendors/dropzone/dist/min/dropzone.min.css' %}" rel="stylesheet">
@@ -53,6 +55,8 @@
 
     <!-- Custom Theme Style -->
     <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
+
+
   </head>
 
   <body class="nav-md">
@@ -303,6 +307,17 @@
 
 
 
+<div class="item form-group">
+  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">maps 
+  </label>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <input type="text" id="website" name="maps" value="{{all.rc}}" required="required"  class="form-control col-md-7 col-xs-12">
+  </div>
+</div>
+
+
+
+
 {%endif%}
 
 
@@ -349,9 +364,9 @@
                     </form>
 
                   </div>
-
+<!--{% url 'utilisateur:suppCompte' %}-->
 {%  if user.type == "user" %}
-<form method="POST" action="{% url 'utilisateur:suppCompte' %}">
+<form method="POST" id="formsenddd" action="{% url 'utilisateur:suppCompte' %}">
   {%csrf_token%}
   <input type="hidden" name="id" value="{{all.id}} ">
   
@@ -409,8 +424,6 @@
       </div>
     </div>
 
-
-  
     <!-- jQuery -->
     <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
 
@@ -473,5 +486,78 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.min.js' %}"></script>
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#formsenddd").submit(function(event){
+    event.preventDefault();
+   
+swal({
+  title: "Voulez-vous supprimer le compte?",
+  text: "Si oui, vous ne pouvez pas le récupérer",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+    swal("Votre compte a été supprimé", {
+      icon: "success",
+    })
+    .then((parpase) => {
+      if (parpase) {
+    if ( event.isDefaultPrevented()) { event.currentTarget.submit();}
+   
+}
+    });
+  } else {
+   swal("Votre compte n'est pas supprimer", {
+      icon: "error",
+    });
+    
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+});
+    
+
+ </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </body>
 </html>

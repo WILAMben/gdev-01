@@ -400,6 +400,7 @@ def update_info(request):
         if us.type == "vente" :
            portable = request.POST["portable"]
            fax = request.POST["fax"]
+           maps = request.POST["maps"]
 
         if  User.objects.filter(username=username).exists() and us.username != username:
 
@@ -425,7 +426,7 @@ def update_info(request):
                         if us.type_sp == "revendeur" :
                             User.objects.filter(id=us.id).update(rc=rc ,mi=mi, li=li, nis=nis)
                         if us.type == "vente" :
-                            User.objects.filter(id=us.id).update(telephone_portable_user=portable ,fax_user=fax)
+                            User.objects.filter(id=us.id).update(telephone_portable_user=portable,rc=maps ,fax_user=fax)
                         User.objects.filter(id=us.id).update(username=username,email=email,wilaya_user=wilaya,first_name=nom,last_name=Prenom, adresse_user=adresse,telephone_user=tlf)
         
         

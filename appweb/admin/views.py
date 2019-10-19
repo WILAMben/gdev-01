@@ -596,7 +596,9 @@ def ajouPointVente(request):
         password1 = request.POST["password"]
 
         nom = request.POST["name"]
+
         tlf = request.POST["tlf"]
+        maps = request.POST["maps"]
         adresse = request.POST["adresse"]
         wilaya = request.POST["wilaya"]
         fax=""
@@ -619,7 +621,7 @@ def ajouPointVente(request):
 
                     else:
                         user= User.objects.create_user(username=username,email=email,password=password1,wilaya_user=wilaya, type="vente",
-                                                       first_name=nom,adresse_user=adresse,telephone_user=tlf,confirmed=True,fax_user=fax,telephone_portable_user=portable)
+                                                       first_name=nom,rc=maps,adresse_user=adresse,telephone_user=tlf,confirmed=True,fax_user=fax,telephone_portable_user=portable)
                      
 
                         template_name = 'admin/ajouPointVente.html'

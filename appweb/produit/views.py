@@ -235,6 +235,7 @@ def rechCatigo(request):
 
 def rechCatigoSplit(request):
   anis = request.GET.get('ser')
+  cat_nom = request.GET.get('nom_ctg')
   if anis== 'zafikor':
 
 
@@ -276,6 +277,7 @@ def rechCatigoSplit(request):
                 'contacts': all,
                 'page_range': page_range,
                 'hass': anis,
+                'cat_nom':" ",
                 'slide': Pub.objects.all(),
                 'blog':Blog.objects.filter(type="blog"),
                 'les_plus_acheter':les_plus_acheter,
@@ -320,6 +322,7 @@ def rechCatigoSplit(request):
     context = {
         'contacts': all,
         'hass': anis,
+        'cat_nom':cat_nom,
         'page_range':page_range,
         'p':p,
         'slide': Pub.objects.all(),

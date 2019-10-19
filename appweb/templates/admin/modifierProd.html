@@ -47,17 +47,17 @@
 {% for pro in all %}
 
 <tr>
-  <form method="POST" action="" style="display:inline;">
+  <form method="POST" action="" id="didin{{pro.id}}"  style="display:inline;">
     {% csrf_token %}
     <input type="hidden" name="id" value="{{pro.id}}">
 
 <td>
 
-<input type="submit" value="Supprimer" class="btn btn-round btn-danger" style="padding:3px;font-size: 12px;display:inline;">
+<input  type="submit" value="Supprimer" class="btn btn-round btn-danger" style="padding:3px;font-size: 12px;display:inline;" onclick="samir('didin{{pro.id}}');">
 
 </form>
 
-<form method="POST" action="update/" style="display:inline;">
+<form method="POST" action="update/"  style="display:inline;">
   {% csrf_token %}
   <input type="hidden" name="id_ppr" value="{{pro.id}}">
   <input type="submit" value="Modifier" class="btn btn-round btn-info" style="padding:3px;font-size: 12px;">
@@ -92,6 +92,61 @@
           </div>
         </div>
         <!-- /page content -->
-
-
+       
+       
+        <script type="text/javascript">
+       function   samir(a){
+       
+          $("#"+a+"").submit(function(event){
+        
+            event.preventDefault();
+           
+        swal({
+          title: "Voulez-vous supprimer se produit?",
+          text: "Si oui, vous ne pouvez pas le récupérer",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+        
+            swal("Le produit a été supprimé", {
+              icon: "success",
+            })
+            .then((parpase) => {
+              if (parpase) {
+            if ( event.isDefaultPrevented()) { event.currentTarget.submit();}
+           
+        }
+            });
+          } else {
+           swal("Le produit n'est pas supprimer", {
+              icon: "error",
+            });
+            
+          }
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          });
+      }
+            
+        
+         </script>
+       
+        
+        
 {%endblock%}

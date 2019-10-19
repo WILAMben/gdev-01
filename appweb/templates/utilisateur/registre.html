@@ -197,7 +197,10 @@ select {
 #Summary{
   display: none!important;
 }
-
+.prev {
+  background:#e74c3c!important;
+  color: #fff;
+}
  </style> 
 </head>
 <body>
@@ -320,10 +323,10 @@ select {
     
     <input type="text" class="form-control" id="ll" name="ll" aria-describedby="emailHelp" placeholder="ll" required>
     
-    
+    <input type="button" name="prev" class="prev action-button" value="Prev" />
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
-  <fieldset>
+  <fieldset id="sec3">
     <span style="margin-left:-80%!important;"><img src="{% static 'img/logo.gif' %}" alt="Logo" style="width: 20%;max-width: 20%;"></span>
     <h2 class="fs-title">Compte information - <i dir="rtl">معلومات حول الحساب</i></h2>
     <h3 class="fs-subtitle">Dernière étape - <i dir="rtl">المرحلة  الاخيرة</i>  </h3>
@@ -333,7 +336,7 @@ select {
     <input type="email" class="form-control" id="exampleInputPassword1" name="email" placeholder="Adrresse email / البريد الشخصي" required title="Adrresse email">
     <input type="password" class="form-control" id="password1" name="password1" placeholder="Password / كلمة المرور" required minlength="4" maxlength="26" title="password Min 4 caracteres max 26 carateres">
     <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password / تاكيد كلمة المرور" required minlength="4" maxlength="26" title="Confirmer votre password">
-    
+    <input type="button" name="prev" class="prev action-button" value="Prev" />
     <input type="submit" name="submit" class="submit action-button" value="Submit" />
   </fieldset>
 </form>
@@ -347,8 +350,6 @@ select {
 
 <script type="text/javascript">
 
-
-  
 
 
 
@@ -419,11 +420,14 @@ next_fs.show();
     }
     else{
 next_fs =$(this).parent().next().next();
-      next_fs.show();}
+      next_fs.show();
+      
+    }
   }
  else{
 next_fs =$(this).parent().next();
-  next_fs.show();}
+  next_fs.show();
+}
   
   //show the next fieldset
    
@@ -439,7 +443,8 @@ next_fs =$(this).parent().next();
       opacity = 1 - now;
       current_fs.css({
         'transform': 'scale('+scale+')',
-        'position': 'absolute'
+        'position': 'absolute',
+        'transform': 'none'
       });
       next_fs.css({'left': left, 'opacity': opacity});
     }, 
@@ -455,6 +460,77 @@ next_fs =$(this).parent().next();
 });
 
 
+
+
+
+$(".prev").click(function(){
+
+
+  if(animating) return false;
+  animating = true;
+
+
+ 
+  current_fs = $(this).parent();
+  next_fs = $(this).parent().prev();
+
+if ($(this).closest('fieldset').attr('id')=='sec2') {
+
+next_fs =$(this).parent().prev();
+  next_fs.show();
+  
+}
+
+
+if ($(this).closest('fieldset').attr('id')=='sec3'){
+
+if ($("#categorie").val()=='revendeur') { 
+
+
+next_fs =$(this).parent().prev();
+ next_fs.show();
+
+}
+else{
+  next_fs =$(this).parent().prev().prev();
+ next_fs.show();
+
+}
+
+
+}
+
+
+
+
+//hide the current fieldset with style
+  current_fs.animate({opacity: 0}, {
+    step: function(now, mx) {
+      //as the opacity of current_fs reduces to 0 - stored in "now"
+      //1. scale current_fs down to 80%
+      scale = 1 - (1 - now) * 0.2;
+      //2. bring next_fs from the right(50%)
+      right = (now * 50)+"%";
+      //3. increase opacity of next_fs to 1 as it moves in
+      opacity = 1 - now;
+      current_fs.css({
+        'transform': 'scale('+scale+')',
+        'position': 'absolute',
+        'transform': 'none'
+      });
+      next_fs.css({'right': right, 'opacity': opacity});
+    }, 
+    duration: 800, 
+    complete: function(){
+      current_fs.hide();
+      animating = false;
+    }, 
+    //this comes from the custom easing plugin
+    easing: 'easeInOutBack'
+  });
+
+
+});
 
 
 

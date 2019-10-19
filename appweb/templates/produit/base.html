@@ -236,6 +236,19 @@ a.control_next {
 
 
 </style>
+<style>
+
+    span.blink{
+      
+        color: white;
+        animation: blink 1s linear infinite;
+      }
+    @keyframes blink{
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}
+    }
+    </style>
 
     <head>
 
@@ -249,7 +262,7 @@ a.control_next {
 		
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Markazi+Text&display=swap" rel="stylesheet">
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900,700italic,500italic' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900,700italic,500italic' rel='stylesheet' type='text/css'>
 		
         <!-- Stylesheets -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -1126,11 +1139,11 @@ a.control_next {
                                                
                                                     <h4>تسجيل الدخول</h4>
                                                     <div class="iconic-input">
-                                                        <input type="text" placeholder="Username"  id="Username" name="Username" >
+                                                        <input type="text" placeholder="اسم المستخدم"  id="Username" name="Username" >
                                                         <i class="icons icon-user-3"></i>
                                                     </div>
                                                     <div style=" font-size: 1.2em;" class="iconic-input">
-                                                        <input type="password" placeholder="Password" id="Password" name="Password" autocomplete="new-password">
+                                                        <input type="password" placeholder="كلمة المرور" id="Password" name="Password" autocomplete="new-password">
 
                                                         <i class="icons icon-lock"></i>
                                                     </div>
@@ -1462,7 +1475,7 @@ a.control_next {
                     
                   </audio>
                   
-									<li  class="categorie-bar" ><a  href="{% url 'produit:rechCatigoSplit' %}?ser=Phisique,Science de la nature et vie,Geologie,Electronique et electricite,Experiences de chimie,Astronomie,Exao,Optiques" id="rouge" onmouseover="document.getElementById('djamel').play();">TRAVAUX PRATIQUES
+									<li  class="categorie-bar" ><a  href="{% url 'produit:rechCatigoSplit' %}?ser=Phisique,Science de la nature et vie,Geologie,Electronique et electricite,Experiences de chimie,Astronomie,Exao,Optiques&nom_ctg=TRAVAUX PRATIQUES" id="rouge" onmouseover="document.getElementById('djamel').play();">TRAVAUX PRATIQUES
 <i class="icons icon-right-dir"></i></a>
 										<ul class="sidebar-dropdown sidebar-dropdown-red" >
                                         	<li>
@@ -1486,7 +1499,7 @@ a.control_next {
 									</li>
 
 
-									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Appareils de mesure,Accesoires de laboratoire,Ballances,Equipemets des laboratoires,Audio visuel et projection,Microscopes" id="blue" onmouseover="document.getElementById('djamel').play();">LABORATOIRE ET VERREIE 
+									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Appareils de mesure,Accesoires de laboratoire,Ballances,Equipemets des laboratoires,Audio visuel et projection,Microscopes&nom_ctg=LABORATOIRE ET VERREIE" id="blue" onmouseover="document.getElementById('djamel').play();">LABORATOIRE ET VERREIE 
 <i class="icons icon-right-dir"></i></a>
 										<ul class="sidebar-dropdown sidebar-dropdown-blue">
                                         	<li>
@@ -1510,7 +1523,7 @@ a.control_next {
 
 
 
-									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Acides,Minireaux,Indicateurs couleurs,Bases,Metaux" id="orange" onmouseover="document.getElementById('djamel').play();">PRODUITS CHIMIQUE
+									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Acides,Minireaux,Indicateurs couleurs,Bases,Metaux&nom_ctg=PRODUITS CHIMIQUE" id="orange" onmouseover="document.getElementById('djamel').play();">PRODUITS CHIMIQUE
 <i class="icons icon-right-dir"></i></a>
                                     	<ul class="sidebar-dropdown sidebar-dropdown-orange">
                                         	<li>
@@ -1528,7 +1541,7 @@ a.control_next {
                                         </ul>
 
                                     </li>
-									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Anatomie humaine,anatomie zoologie,Anatomie geologie,Anatomie botanique,Produit parapharmacetique,Materiel medical,Equiments medical" id="green" onmouseover="document.getElementById('djamel').play();">ANATOMIE ET MEDICAL
+									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Anatomie humaine,anatomie zoologie,Anatomie geologie,Anatomie botanique,Produit parapharmacetique,Materiel medical,Equiments medical&nom_ctg=ANATOMIE ET MEDICAL" id="green" onmouseover="document.getElementById('djamel').play();">ANATOMIE ET MEDICAL
  <i class="icons icon-right-dir"></i></a>
                                      <ul class="sidebar-dropdown sidebar-dropdown-green">
                                         	<li>
@@ -1550,7 +1563,7 @@ a.control_next {
 									</li>
 
 
-									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Materiel d'atelier,Tenues,Ballons et fillets,Coupes et medails,Drapeaux,Autres" id="purple" onmouseover="document.getElementById('djamel').play();">ATELIERS ET SPORTS
+									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Materiel d'atelier,Tenues,Ballons et fillets,Coupes et medails,Drapeaux,Autres&nom_ctg=ATELIERS ET SPORTS" id="purple" onmouseover="document.getElementById('djamel').play();">ATELIERS ET SPORTS
 <i class="icons icon-right-dir"></i></a>
                                         <ul class="sidebar-dropdown sidebar-dropdown-purple">
                                         	<li>
@@ -1578,7 +1591,7 @@ a.control_next {
 
 
 
-									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Papier,Encre,Document administratif,Stylos,Note book..,Bibliotheque et encyclopedie" id="rose" onmouseover="document.getElementById('djamel').play();"> CONSOMABLES ET CADEAUX
+									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Papier,Encre,Document administratif,Stylos,Note book..,Bibliotheque et encyclopedie&nom_ctg=CONSOMABLES ET CADEAUX" id="rose" onmouseover="document.getElementById('djamel').play();"> CONSOMABLES ET CADEAUX
 <i class="icons icon-right-dir"></i></a>
 										<ul class="sidebar-dropdown sidebar-dropdown-rose">
                                         	<li>
@@ -1602,7 +1615,7 @@ a.control_next {
 
 
 
-									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Instalation des resaux,Logiciel scolarite,Logiciel industrie et gestion des stocks,Logiciel administratif,Autres" id="marron" onmouseover="document.getElementById('djamel').play();">LOGICIELS ET RÉSEAUX
+									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Instalation des resaux,Logiciel scolarite,Logiciel industrie et gestion des stocks,Logiciel administratif,Autres&nom_ctg=LOGICIELS ET RÉSEAUX" id="marron" onmouseover="document.getElementById('djamel').play();">LOGICIELS ET RÉSEAUX
  <i class="icons icon-right-dir"></i></a>
 												<ul class="sidebar-dropdown sidebar-dropdown-marron">
                                         	<li>
@@ -1626,16 +1639,16 @@ a.control_next {
 
 
 
-									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Autres,Autres" id="blue" onmouseover="document.getElementById('djamel').play();">INFORMATIQUE ET BUREAUTIQUE
+									<li class="categorie-bar"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Bureaux;tables,Accesoirs,Flash disque;carte ser,Ordinateurs et ecrans,Laptops et tablettes&nom_ctg=INFORMATIQUE ET BUREAUTIQUE" id="blue" onmouseover="document.getElementById('djamel').play();">INFORMATIQUE ET BUREAUTIQUE
 <i class="icons icon-right-dir"></i></a>
 												<ul class="sidebar-dropdown sidebar-dropdown-blue">
                                         	<li>
                                             	<ul>
-                                                	<li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">ORDINATEURS ET ECRANS</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">LAPTOPS ET TABLETTES</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">FLASH DISQUE,CARTE SER</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">ACCESOIRS</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">BUREAUX, TABLES</a></li>
+                                                	<li><a href="{% url 'produit:rechCatigo' %}?ser=Ordinateurs et ecrans">ORDINATEURS ET ECRANS</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Laptops et tablettes">LAPTOPS ET TABLETTES</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Flash disque;carte ser">FLASH DISQUE,CARTE SER</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Accesoirs">ACCESOIRS</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Bureaux;tables">BUREAUX, TABLES</a></li>
 
                                                 </ul>
                                             </li>
@@ -1679,6 +1692,7 @@ a.control_next {
                                            
                                         </td>
                                     </tr>
+                                  
                                     {%endfor%}
                                    
                                     
@@ -1688,11 +1702,18 @@ a.control_next {
                
                 {%endif%}
                   <div class="padding-box">
-                                    {% if user.is_authenticated %}
-                                  <a href="{% url 'produit:affichCompare' %} " class="button grey">plus de details</a>
-                                  {%else%}
-                                   <a onclick="swal('vous devez connecter!',{icon: 'error',})" class="button grey">plus de details</a>
-                                  {%endif%}
+                    {% if p %}
+                    {% if user.is_authenticated %}
+                    <span class="blink">  <a href="{% url 'produit:affichCompare' %} " class="button grey">plus de details</a></span>
+                    {%endif%}
+                    {%else%}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'produit:affichCompare' %} " class="button grey">plus de details</a>
+                    {%else%}
+                     <a onclick="swal('vous devez connecter!',{icon: 'error',})" class="button grey">plus de details</a>
+                    {%endif%}
+                    {%endif%}
+                                 
                                 </div>
 							</div>
 
@@ -1866,7 +1887,7 @@ a.control_next {
                     <audio src="{% static 'img/click.mp3' %}" id="djamel">
                     
                     </audio>
-                  <li class="categorie-bar" style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Phisique,Science de la nature et vie,Geologie,Electronique et electricite,Experiences de chimie,Astronomie,Exao,Optiques" id="rouge" onmouseover="document.getElementById('djamel').play();" >
+                  <li class="categorie-bar" style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Phisique,Science de la nature et vie,Geologie,Electronique et electricite,Experiences de chimie,Astronomie,Exao,Optiques&nom_ctg=أعمال تطبيقية" id="rouge" onmouseover="document.getElementById('djamel').play();" >
 أعمال تطبيقية
 <i class="icons icon-right-dir"></i></a>
                     <ul class="sidebar-dropdown sidebar-dropdown-red" >
@@ -1891,7 +1912,7 @@ a.control_next {
                   </li>
 
 
-                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Appareils de mesure,Accesoires de laboratoire,Ballances,Equipemets des laboratoires,Audio visuel et projection,Microscopes" id="blue" onmouseover="document.getElementById('djamel').play();">مختبر و زجاجيات
+                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Appareils de mesure,Accesoires de laboratoire,Ballances,Equipemets des laboratoires,Audio visuel et projection,Microscopes&nom_ctg=مختبر و زجاجيات" id="blue" onmouseover="document.getElementById('djamel').play();">مختبر و زجاجيات
 <i class="icons icon-right-dir"></i></a>
                     <ul class="sidebar-dropdown sidebar-dropdown-blue">
                                           <li>
@@ -1900,7 +1921,7 @@ a.control_next {
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Accesoires de laboratoire">مستلزمات المختبرات </a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Ballances">جداول</a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Equipemets des laboratoires">معدات المختبرات </a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Audio visuel et projection">الصوت المرئي والمشروع</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Audio visuel et projection">السمعي البصري والإسقاط</a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Microscopes">المجاهر </a></li>
 
                                                 </ul>
@@ -1915,7 +1936,7 @@ a.control_next {
 
 
 
-                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Acides,Minireaux,Indicateurs couleurs,Bases,Metaux" id="orange" onmouseover="document.getElementById('djamel').play();">المنتجات الكيميائية
+                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Acides,Minireaux,Indicateurs couleurs,Bases,Metaux&nom_ctg=المنتجات الكيميائية" id="orange" onmouseover="document.getElementById('djamel').play();">المنتجات الكيميائية
  <i class="icons icon-right-dir"></i></a>
                                       <ul class="sidebar-dropdown sidebar-dropdown-orange">
                                           <li>
@@ -1933,13 +1954,13 @@ a.control_next {
                                         </ul>
 
                                     </li>
-                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Anatomie humaine,anatomie zoologie,Anatomie geologie,Anatomie botanique,Produit parapharmacetique,Materiel medical,Equiments medical" id="green" onmouseover="document.getElementById('djamel').play();">تشريح وطب
+                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Anatomie humaine,anatomie zoologie,Anatomie geologie,Anatomie botanique,Produit parapharmacetique,Materiel medical,Equiments medical&nom_ctg=تشريح وطب" id="green" onmouseover="document.getElementById('djamel').play();">تشريح وطب
  <i class="icons icon-right-dir"></i></a>
                                      <ul class="sidebar-dropdown sidebar-dropdown-green">
                                           <li>
                                               <ul>
                                                   <li><a href="{% url 'produit:rechCatigo' %}?ser=Anatomie humaine">تشريح الإنسان</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=anatomie zoologie">علم التشريح</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=anatomie zoologie"> تشريح الحيوان</a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Anatomie geologie">جيولوجيا التشريح</a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Anatomie botanique">تشريح نباتي</a></li>
                                                     <li><a href="{% url 'produit:rechCatigo' %}?ser=Produit parapharmacetique">المنتجات الصيدلانية </a></li>
@@ -1955,7 +1976,7 @@ a.control_next {
                   </li>
 
 
-                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Materiel d'atelier,Tenues,Ballons et fillets,Coupes et medails,Drapeaux,Autres" id="purple" onmouseover="document.getElementById('djamel').play();"> ورش العمل والرياضة
+                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Materiel d'atelier,Tenues,Ballons et fillets,Coupes et medails,Drapeaux,Autres&nom_ctg=ورش العمل والرياضة" id="purple" onmouseover="document.getElementById('djamel').play();"> ورش العمل والرياضة
 <i class="icons icon-right-dir"></i></a>
                                         <ul class="sidebar-dropdown sidebar-dropdown-purple">
                                           <li>
@@ -1983,7 +2004,7 @@ a.control_next {
 
 
 
-                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Papier,Encre,Document administratif,Stylos,Note book..,Bibliotheque et encyclopedie" id="rose" onmouseover="document.getElementById('djamel').play();">المواد الاستهلاكية والهدايا
+                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Papier,Encre,Document administratif,Stylos,Note book..,Bibliotheque et encyclopedie&nom_ctg=المواد الاستهلاكية والهدايا" id="rose" onmouseover="document.getElementById('djamel').play();">المواد الاستهلاكية والهدايا
 <i class="icons icon-right-dir"></i></a>
                     <ul class="sidebar-dropdown sidebar-dropdown-rose">
                                           <li>
@@ -2007,7 +2028,7 @@ a.control_next {
 
 
 
-                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Instalation des resaux,Logiciel scolarite,Logiciel industrie et gestion des stocks,Logiciel administratif,Autres" id="marron" onmouseover="document.getElementById('djamel').play();">البرمجيات والشبكات
+                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Instalation des resaux,Logiciel scolarite,Logiciel industrie et gestion des stocks,Logiciel administratif&nom_ctg=البرمجيات والشبكات" id="marron" onmouseover="document.getElementById('djamel').play();">البرمجيات والشبكات
  <i class="icons icon-right-dir"></i></a>
                         <ul class="sidebar-dropdown sidebar-dropdown-marron">
                                           <li>
@@ -2031,16 +2052,16 @@ a.control_next {
 
 
 
-                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Autres,Autres" id="blue" onmouseover="document.getElementById('djamel').play();">الكمبيوتر والمكتب
+                  <li class="categorie-bar"style="font-family: 'Markazi Text', serif; font-size:1.2em"><a href="{% url 'produit:rechCatigoSplit' %}?ser=Bureaux;tables,Accesoirs,Flash disque;carte ser,Ordinateurs et ecrans,Laptops et tablettes&nom_ctg=الكمبيوتر والمكتب" id="blue" onmouseover="document.getElementById('djamel').play();">الكمبيوتر والمكتب
 <i class="icons icon-right-dir"></i></a>
                         <ul class="sidebar-dropdown sidebar-dropdown-blue">
                                           <li>
                                               <ul>
-                                                  <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">أجهزة الكمبيوتر والشاشات</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">أجهزة الكمبيوتر المحمولة والأجهزة اللوحية</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">قرص فلاش ، بطاقة SER</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">إكسسوارات</a></li>
-                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Autres">المكاتب ، الجداول</a></li>
+                                                  <li><a href="{% url 'produit:rechCatigo' %}?ser=Ordinateurs et ecrans">أجهزة الكمبيوتر والشاشات</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Laptops et tablettes">أجهزة الكمبيوتر المحمولة والأجهزة اللوحية</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Flash disque;carte ser">قرص فلاش ، بطاقة SER</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Accesoirs">إكسسوارات</a></li>
+                                                    <li><a href="{% url 'produit:rechCatigo' %}?ser=Bureaux;tables">المكاتب ، الجداول</a></li>
 
                                                 </ul>
                                             </li>

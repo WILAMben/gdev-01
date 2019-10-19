@@ -11,7 +11,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                 	<div class="breadcrumbs">
                     
-                    	<p><a >Home</a> <i class="icons icon-right-dir"></i> <a>Produits</a></p>
+                    	<p><a >Home</a> <i class="icons icon-right-dir"></i> <a>Produits</a><i class="icons icon-right-dir"></i> <a>{% if cat_nom %} {{cat_nom}}{%else%} {{hass}}{%endif%} </a></p>
 
                       
                     </div>
@@ -324,7 +324,221 @@ if (name =="" ) {
         <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="breadcrumbs">
             
-              <p><a >الصفحة الرئيسية</a> <i class="icons icon-right-dir"></i> <a>المنتجات</a></p>
+              <p><a >الصفحة الرئيسية</a> <i class="icons icon-right-dir"></i> <a>المنتجات</a><i class="icons icon-right-dir"></i> <a>{% if cat_nom %} {{cat_nom}}{%else%} 
+                
+                {% if hass == "Phisique" %}
+                فيزياء
+                {% elif hass == "Science de la nature et vie" %}
+                
+                
+                علوم الطبيعة والحياة
+                {% elif hass == "Geologie" %}
+                
+                جيولوجيا
+                
+                {% elif hass == "Electronique et electricite" %}
+                
+                الالكترونيات والكهرباء
+                
+                {% elif hass == "Experiences de chimie" %}
+                
+                 تجارب كيميائية
+                
+                {% elif hass == "Astronomie" %}
+                
+                علم الفلك
+                
+                {% elif hass == "Exao" %}
+                
+                
+                EXAO
+                {% elif hass == "Optiques" %}
+                
+                بصري
+                
+                {% elif hass == "Appareils de mesure" %}
+                
+                أجهزة القياس
+                
+                {% elif hass == "Accesoires de laboratoire" %}
+                
+                مستلزمات المختبرات
+                
+                {% elif hass == "Ballances" %}
+                
+                جداول
+                
+                {% elif hass == "Equipemets des laboratoires" %}
+                معدات المختبرات
+                
+                
+                {% elif hass == "Audio visuel et projection" %}
+                
+                السمعي البصري والإسقاط
+                
+                {% elif hass == "Microscopes" %}
+                
+                المجاهر
+                
+                {% elif hass == "Acides" %}
+                
+                الأحماض
+                
+                {% elif hass == "Minireaux" %}
+                
+                المعادن
+                
+                {% elif hass == "Indicateurs couleurs" %}
+                
+                مؤشرات اللون
+                
+                {% elif hass == "Bases" %}
+                
+                قاعدة معطيات
+                
+                {% elif hass == "Metaux" %}
+                
+                المعادن
+                
+                {% elif hass == "Anatomie humaine" %}
+                
+                تشريح الإنسان
+                
+                {% elif hass == "anatomie zoologie" %}
+                
+                 تشريح الحيوان
+                
+                {% elif hass == "Anatomie geologie" %}
+                
+                جيولوجيا التشريح
+                
+                {% elif hass == "Anatomie botanique" %}
+                
+                تشريح نباتي
+                
+                {% elif hass == "Produit parapharmacetique" %}
+                المنتجات الصيدلانية
+                
+                
+                {% elif hass == "Materiel medical" %}
+                
+                معدات طبية
+                
+                
+                {% elif hass == "Equiments medical" %}
+                
+                المعدات الطبية
+                
+                
+                {% elif hass == "Papier" %}
+                
+                ورق
+                
+                
+                {% elif hass == "Encre" %}
+                
+                حبر
+                
+                
+                {% elif hass == "Document administratif" %}
+                
+                الوثائق الإدارية
+                
+                
+                {% elif hass == "Stylos,Note book.." %}
+                القلم ، دفتر ...
+                
+                
+                
+                {% elif hass == "Bibliotheque et encyclopedie" %}
+                المكتبة والموسوعات
+                
+                
+                
+                {% elif hass == "Instalation des resaux" %}
+                
+                تركيب الشبكات
+                
+                
+                {% elif hass == "Logiciel scolarite" %}
+                
+                برنامج المدرسة
+                
+                
+                {% elif hass == "Logiciel industrie et gestion des stocks" %}
+                
+                صناعة البرمجيات وإدارة المخزون
+                
+                
+                {% elif hass == "Logiciel administratif" %}
+                
+                البرنامج الإداري
+                
+                
+                {% elif hass == "Autre" %}
+                
+                أخرى
+                
+                
+                {% elif hass == "Materiel d'atelier" %}
+                معدات ورشة العمل
+                
+                
+                
+                {% elif hass == "Tenues" %}
+                ملابس
+                
+                
+                
+                {% elif hass == "Ballons et fillets" %}
+                كرات وشبكات
+                
+                
+                
+                {% elif hass == "Coupes et medails" %}
+                
+                
+                الكؤوس  والميداليات
+                
+                {% elif hass == "Drapeaux" %}
+                
+                
+                الأعلام
+                
+                {% elif hass == "Ordinateurs et ecrans" %}
+                
+                
+                أجهزة الكمبيوتر والشاشات
+                
+                {% elif hass == "Laptops et tablettes" %}
+                
+                أجهزة الكمبيوتر المحمولة والأجهزة اللوحية
+                
+                
+                {% elif hass == "Flash disque,carte ser" %}
+                
+                قرص فلاش ، بطاقة
+                
+                
+                {% elif hass == "Accesoirs" %}
+                
+                
+                إكسسوارات
+                
+                {% elif hass == "Bureaux,tables" %}
+                
+                المكاتب ، الجداول
+                
+                
+                
+                
+                
+                {%else%}
+                
+                
+                {%endif%}
+                
+                {%endif%} </a></p>
 
               
             </div>
