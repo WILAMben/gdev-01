@@ -1,0 +1,3093 @@
+<!DOCTYPE html>
+{% load humanize %}
+<html>
+
+<style>
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10000; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 30%;
+  max-width: 700px;
+  
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+   /* Divide value of min-width by 2 */
+  background-color: #2ecc71; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+   /* Center the snackbar */
+   /* 30px from the bottom */
+
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+
+@keyframes fadeout {
+  from {top: 30px; opacity: 0.5;}
+  to {top: 20px; opacity: 0.25;}
+}
+@keyframes fadeout {
+  from {top: 20px; opacity: 0.25;}
+  to {top: 10px; opacity: 0.25;}
+}
+@keyframes fadeout {
+  from {top: 10px; opacity: 0.25;}
+  to {top: 0; opacity: 0;}
+}
+
+/* pagination dynamique */
+/*Generic*/
+.wrapper{
+  margin: 60px auto;
+  text-align: center;
+}
+h1{
+  margin-bottom: 1.25em;
+}
+
+/*Specific styling*/
+#content{
+  padding: 15px;
+  border: solid 1px #eee;
+  max-width: 660px;
+  margin: auto;
+  border-radius: 4px;
+}
+
+
+#style-15::-webkit-scrollbar-track
+{
+
+  background-color: #fff;
+  border: 0px solid #fff;
+  
+}
+
+#style-15::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+#style-15::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: #FFF;
+  background-image: -webkit-gradient(linear,
+                     40% 0%,
+                     75% 84%,
+                     from(#0d0a36),
+                     to(#292950),
+                     color-stop(.6,#01090a))
+}
+
+
+
+{% load staticfiles %}
+
+</style>
+
+    <head>
+
+        <!-- Meta Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Title -->
+        <title>Didaben</title>
+        <link rel="shortcut icon" href="{% static 'img/0.png' %}">
+        
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Markazi+Text&display=swap" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900,700italic,500italic' rel='stylesheet' type='text/css'>
+      
+        <!-- Stylesheets -->
+ {% load humanize %}
+      
+
+
+
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/perfect-scrollbar.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/style.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/flexslider.css' %} " type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}" media="screen" />
+        <link rel="stylesheet" href="{% static 'css/fontello.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/animation.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/owl.theme.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/chosen.css' %} ">
+        
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+       <!--hadi ljquery djdid-->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+     <!--hadi ljquery 9dim-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <link rel="stylesheet" href="css/ie.css">
+        <![endif]-->
+        <!--[if IE 7]>
+            <link rel="stylesheet" href="css/fontello-ie7.css">
+        <![endif]-->
+
+    </head>
+
+<!-- debut francais -->
+
+
+{% if request.session.lang == "fr" %}
+    <body >
+
+		<!-- Container -->
+		<div class="container">
+
+			<!-- Header -->
+			<header class="row">
+
+				<div class="col-lg-12 col-md-12 col-sm-12">
+
+					<!-- Top Header -->
+					<div id="top-header">
+
+						<div class="row">
+
+							<nav id="top-navigation" class="col-lg-7 col-md-7 col-sm-7">
+								<ul class="pull-left">
+									{% if user.is_authenticated %}
+									<li><a href="#">Mon compte</a></li>
+									 {% else %}
+
+									<li><a href="{% url 'utilisateur:registre_view' %}">Creer compte</a></li>
+									{% endif %}
+									
+									<li><a href="text_page.html">About Us</a></li>
+									<li><a href="{% url 'produit:contact' %}">Contact</a></li>
+                                         <li><div id="snackbar">Vous etes connecté</div></li>
+								</ul>
+							</nav>
+
+							<nav class="col-lg-5 col-md-5 col-sm-5">
+								<ul class="pull-right">
+
+									<li><a class="flag" href="#"><span class="french-flag"></span>Français<i class="icons icon-down-dir"></i></a>
+                                    	<ul class="box-dropdown parent-arrow">
+											<li>
+                                            	<div class="box-wrapper no-padding parent-border">
+                                                    <table class="language-table">
+                                                    	<tr>
+                                                        	<td class="flag"><span class="french-flag"></span></td>
+                                                            <td class="country"><a href="{% url 'produit:changeLang' %}">Français</a></td>
+                                                        </tr>
+                                                    	<tr>
+                                                        	<td class="flag"><span class="algeria-flag"></span></td>
+                                                            <td class="country"><a href=" {% url 'produit:changeLang' %} ">العربية</a></td>
+                                                        </tr>
+
+
+
+                                                    </table>
+                                                </div>
+											</li>
+										</ul>
+
+                                    </li>
+									<li><a >Dinar DZ <i class="icons icon-down-dir"></i></a>
+
+                                    </li>
+								</ul>
+							</nav>
+
+						</div>
+
+					</div>
+					<!-- /Top Header -->
+
+
+
+
+
+
+			<!-- Main Header -->
+					<div id="main-header">
+ {% include 'utilisateur/_alerts.html' %}                            
+						<div class="row">
+
+                <div id="logo" class="col-lg-4 col-md-4 col-sm-4">
+                    <a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
+                  </div>
+    
+                  <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 ">
+                      <br>
+                     
+                <ul class="pull-right">
+									<li class="blue">
+									
+                           {% if user.is_authenticated %}
+                    <a href="{% url 'produit:affichCompare' %} "><i class="icons icon-docs"></i>compare
+
+                    </a>
+                    {% else %}
+                    <a onclick="swal('vous devez connecter!',{icon: 'error',})" style="cursor: pointer;"><i class="icons icon-docs"></i>compare
+
+                    </a>
+                                         {% endif %}
+
+                                    </li>
+									<li class="red">
+										{% if user.is_authenticated %}
+                    <a href="{% url 'produit:affichWish' %} "><i class="icons icon-heart-empty"></i>Favoris
+
+                    </a>
+                    {% else %}
+                    <a onclick="swal('vous devez connecter!',{icon: 'error',})" style="cursor: pointer;"><i class="icons icon-heart-empty"></i>Favoris
+
+                    </a>
+                                         {% endif %}
+                                    </li>
+									<li class="orange">
+										{% if user.is_authenticated %}
+										<a href="{% url 'panier:affichPan' %} "><i class="icons icon-basket-2"></i>Panier
+
+										</a>
+										{% else %}
+										<a onclick="swal('vous devez connecter!',{icon: 'error',})" style="cursor: pointer;"><i class="icons icon-basket-2"></i>Panier
+
+										</a>
+                                         {% endif %}
+                                    </li>
+
+
+{% if request.session.try != "non" %}
+                                    {% if user.is_authenticated %}
+
+                                      <!-- hna raw ùconicti 
+<span class="icon icon-user" style="color: white;margin-left: -35px;margin-top:-3px;display:inline-block;font-size: 20px;border-radius:5px;background-color: #2ecc71;"></span>
+
+                                      -->
+                                      <li class="login-create purple">
+                                   
+                                          <i class="icons icon-user" style="color: #a8ff3e;"></i>
+                                                <p>Bienvenue {{user.username}} , <a>Connecté</a><br><img src="{% static 'img/lists.png' %}" style="margin-left: 173px;margin-top: 1px;"></p>
+                                            
+                                    
+                            
+                                    
+
+                    <ul id="login-dropdown" class="box-dropdown">
+                                               
+                      <li>
+                                              <div class="box-wrapper">
+                                               
+                                <ul>  
+                                        
+                               <li class="connecthover">
+                               	<div class="iconic-input">   
+                               	
+								<a href="{% url 'commande:commandeViews' %} " >
+									<span >Historique de vos commandes</span>
+								</a>
+								</div>
+							</li>
+                 <li class="connecthover">
+                                <div class="iconic-input">   
+                                
+                <a href="{% url 'utilisateur:update_info' %}" >
+                  <span >Parametres de votre compte</span>
+                </a>
+                </div>
+              </li>
+
+
+              {% if user.type == "admin" %}
+              <li class="connecthover">
+                  <div class="iconic-input">   
+                  
+  <a href="{% url 'admine:home_admin' %}" >
+    <span >aller a admin Panel</span>
+  </a>
+  </div>
+</li>
+{% endif %}
+
+
+
+{% if user.type == "vente" %}
+<li class="connecthover">
+    <div class="iconic-input">   
+    
+<a href="{% url 'point_de_vente:venteHome' %}" >
+<span >aller a point de vente Panel</span>
+</a>
+</div>
+</li>
+{% endif %}
+
+
+
+
+							 
+							  
+							   <li class="connecthover">
+                               	<form method="POST" action="{% url 'utilisateur:lougout_view' %}"  >
+                            	{%csrf_token%}
+                                    
+                                  <button type="submit" class="reinitialise" style="cursor: pointer;" title="Deconnecter"><a>Deconnecter</a>
+                                    </button>
+                                     </form>
+							</li>
+						
+                             </ul>
+                                                    <br class="clearfix">
+                                                </div>
+                        <div class="footer">
+                          <h4 class="pull-left">{{user.username}}</h4>
+                          
+                        </div>
+                      </li>
+                    </ul>
+
+
+
+
+
+
+
+
+
+
+
+                                   </li>
+
+
+
+
+    
+
+
+
+
+
+                                    {% else %}
+                                    <!-- hna rwa horsligne -->
+
+                  <li class="login-create purple">
+                                      <i class="icons icon-user"></i>
+                                        <p> Bonjour <a >Connecter</a> ou<br><a>crée un compte</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <ul id="login-dropdown" class="box-dropdown">
+
+
+
+
+
+<form method="POST" action="{% url 'utilisateur:login_view' %}" autocomplete="off">
+{% csrf_token %}
+                                               
+                      <li>
+                                              <div class="box-wrapper">
+                                               
+                                                    <h4>LOGIN</h4>
+                                                    <div class="iconic-input">
+                                                        <input type="text" placeholder="Username"  id="Username" name="Username" >
+                                                        <i class="icons icon-user-3"></i>
+                                                    </div>
+                                                    <div class="iconic-input">
+                                                        <input type="password" placeholder="Password" id="Password" name="Password" autocomplete="new-password">
+
+                                                        <i class="icons icon-lock"></i>
+                                                    </div>
+                                                    <input type="checkbox" id="loginremember"> <label for="loginremember">Remember me</label>
+                                                    <br>
+                                                    <br>
+                                                    <div class="pull-left">
+                                                        <input type="submit"  class="orange" value="Login" >
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <a href="{% url 'utilisateur:mdpOublier' %}">mot de passe oublier?</a>
+                                                      
+                                                      
+                            <br>
+                                                    </div>
+                                                    <br class="clearfix">
+                                                </div>
+                        <div class="footer">
+                          <h4 class="pull-left">Nouveau Client ?</h4>
+                          <a class="button pull-right" href="{% url 'utilisateur:registre_view' %}">Crée un compte </a>
+                        </div>
+                      </li>
+
+                                         
+
+
+
+</form>
+
+
+
+
+
+                    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    </li>
+
+
+
+{% endif %}
+{% else %}
+
+    <li class="">
+                                      <i class="icons icon-user"></i>
+                                        <p> Veulliez redemarer votre navigateur <br><a href="#"></a></p>
+
+</li>
+{% endif %}
+
+
+								</ul>
+							</nav>
+
+						</div>
+
+					</div>
+					<!-- /Main Header -->
+
+
+					<!-- Main Navigation -->
+					<nav id="main-navigation" class="style3">
+						<ul>
+
+							<li class="home-green current-item">
+								<a href="{% url 'produit:index' %}">
+									<span class="nav-caption">Home </span>
+								</a>
+
+
+							</li>
+
+						
+
+							<li class="blue">
+								<a href="{% url 'produit:rechCatigoSplit' %}?ser=zafikor">
+									<span class="nav-caption">Produits
+</span>
+								</a>
+							</li>
+
+
+							<li class="green">
+								<a href="{% url 'produit:blog' %}">
+									<span class="nav-caption">Blog
+</span>
+								</a>
+							</li>
+
+							<li class="orange">
+								<a href="{% url 'produit:information' %}">
+									<span class="nav-caption"> Qui somme nous ?
+</span>
+								</a>
+							</li>
+							<li class="purple">
+								<a href="{% url 'produit:contact' %}">
+									<span class="nav-caption">Contact
+</span>
+								</a>
+							</li>
+
+							<li class="nav-search">
+                                	<i class="icons icon-search-1"></i>
+							</li>
+
+						</ul>
+
+						<div id="search-bar">
+
+							<div class="col-lg-12 col-md-12 col-sm-12">
+                                
+
+
+                                       <!-- /hadi la recherche -->
+                                      <form role="search" action="{% url 'produit:recherchePro' %}">
+                                <table id="search-bar-table">
+                                    <tr>
+                                        <td class="search-column-1">
+                                            <p><span class="grey">Popular Searches:</span> <a href="{% url 'produit:rechCatigo' %}?ser=Phisique ">Phisique</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Materiel d'atelier ">Materiel d'atelier</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Autres ">ORDINATEURS ET ECRANS</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Experiences de chimie ">Experiences de chimie</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Microscopes ">Microscopes</a></p>
+
+
+
+
+
+                                
+                                            <input type="text" name="ser" placeholder="Enter your keyword"required>
+
+                                        </td>
+                                        <td class="search-column-2">
+                                            
+                                            <select name="cat" class="chosen-select-search">
+                                                <option value="Phisique,Science de la nature et vie,Geologie,Electronique et electricite,Experiences de chimie,Astronomie,Exao,Optiques" >TRAVEAUX PRATIQUES</option>
+                                                <option value="Appareils de mesure,Accesoires de laboratoire,Ballances,Equipemets des laboratoires,Audio visuel et projection,Microscopes">LABORATOIRE ET VERRIER</option>
+                                                <option value="Acides,Minireaux,Indicateurs couleurs,Bases,Metaux">PRODUITS CHIMIQUE</option>
+                                                <option value="Anatomie humaine,anatomie zoologie,Anatomie geologie,Anatomie botanique,Produit parapharmacetique,Materiel medical,Equiments medical">ANATOMIE ET MEDICAL</option>
+                                                <option value="Materiel d'atelier,Tenues,Ballons et fillets,Coupes et medails,Drapeaux,Autres">ATELIERS ET SPORTS</option>
+                                                <option value="Papier,Encre,Document administratif,Stylos,Note book..,Bibliotheque et encyclopedie">CONSOMABLES ET CADEAUX</option>
+                                                <option value="Instalation des resaux,Logiciel scolarite,Logiciel industrie et gestion des stocks,Logiciel administratif,Autres">LOGICIELS ET RESAUX</option>
+                                                <option value="Autres">INFORMATIQUE ET BUREAUTIQUE</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="search-button">
+                                <input type="submit" value="">
+                                <i class="nav-search" class="icons icon-search-1"></i>
+
+                            </div>
+                         
+     </form>
+                            <!-- fin ta3 form recherche   -->
+
+						</div>
+
+					</nav>
+					<!-- /Main Navigation -->
+					<!-- /Main Navigation -->
+
+				</div>
+
+			</header>
+			<!-- /Header -->
+
+
+
+<!-- fin francais -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- debut 3arbiya -->
+
+
+
+
+
+{%else%}
+
+    <body style="font-family: 'Markazi Text';  ">
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Header -->
+      <header class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+          <!-- Top Header -->
+          <div id="top-header">
+
+            <div class="row">
+
+              <nav id="top-navigation" class="col-lg-7 col-md-7 col-sm-7">
+                <ul class="pull-left">
+                  {% if user.is_authenticated %}
+                  <li><a href="">حسابي</a></li>
+                   {% else %}
+
+                  <li><a href="{% url 'utilisateur:registre_view' %}">انشاء حساب</a></li>
+                  {% endif %}
+                  
+                  <li><a href="{% url 'produit:information' %}"> معلومات عنا</a></li>
+                  <li><a href="{% url 'produit:contact' %}">تواصل</a></li>
+                                         <li><div id="snackbar">انت متصل</div></li>
+                </ul>
+              </nav>
+
+              <nav class="col-lg-5 col-md-5 col-sm-5">
+                <ul class="pull-right">
+
+                  <li><a class="flag" href="#"><span class="algeria-flag"></span>العربية<i class="icons icon-down-dir"></i></a>
+                                      <ul class="box-dropdown parent-arrow">
+                      <li>
+                                              <div class="box-wrapper no-padding parent-border">
+                                                    <table class="language-table">
+                                                      <tr>
+                                                          <td class="flag"><span class="french-flag"></span></td>
+                                                            <td class="country"><a href="{% url 'produit:changeLang' %}" style="font-size: 1.1em;">Français</a></td>
+                                                        </tr>
+                                                      <tr>
+                                                          <td class="flag"><span class="algeria-flag"></span></td>
+                                                            <td class="country"><a href=" {% url 'produit:changeLang' %} " style="font-size: 1.1em;">العربية</a></td>
+                                                        </tr>
+
+
+
+                                                    </table>
+                                                </div>
+                      </li>
+                    </ul>
+
+                                    </li>
+                  <li><a style="font-size: 1.1em;">Dinar DZ <i class="icons icon-down-dir"></i></a>
+
+                                    </li>
+                </ul>
+              </nav>
+
+            </div>
+
+          </div>
+          <!-- /Top Header -->
+
+
+
+
+
+
+      <!-- Main Header -->
+          <div id="main-header">
+ {% include 'utilisateur/_alerts.html' %}                            
+            <div class="row">
+
+                <div id="logo" class="col-lg-4 col-md-4 col-sm-4">
+                    <a href="{% url 'produit:index' %}"><img src="{% static 'img/logo.gif' %}" alt="Logo"></a>
+                  </div>
+    
+                  <nav id="middle-navigation" class="col-lg-8 col-md-8 col-sm-8 ">
+                      <br>
+                     
+                <ul class="pull-right">
+                  <li class="blue">
+                  
+                           {% if user.is_authenticated %}
+                    <a href="{% url 'produit:affichCompare' %} "><i class="icons icon-docs"></i>
+مقارنة
+
+                    </a>
+                    {% else %}
+                    <a onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" style="cursor: pointer;"><i class="icons icon-docs"></i>مقارنة
+
+                    </a>
+                                         {% endif %}
+
+                                    </li>
+                  <li class="red">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'produit:affichWish' %} "><i class="icons icon-heart-empty"></i>المفضلة
+
+                    </a>
+                    {% else %}
+                    <a onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" style="cursor: pointer;"><i class="icons icon-heart-empty"></i>المفضلة
+
+                    </a>
+                                         {% endif %}
+                                    </li>
+                  <li class="orange">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'panier:affichPan' %} "><i class="icons icon-basket-2"></i>سلة
+
+                    </a>
+                    {% else %}
+                    <a onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" style="cursor: pointer;"><i class="icons icon-basket-2"></i>سلة
+
+                    </a>
+                                         {% endif %}
+                                    </li>
+
+
+{% if request.session.try != "non" %}
+                                    {% if user.is_authenticated %}
+
+                                      <!-- hna raw ùconicti 
+<span class="icon icon-user" style="color: white;margin-left: -35px;margin-top:-3px;display:inline-block;font-size: 20px;border-radius:5px;background-color: #2ecc71;"></span>
+
+                                      -->
+                                      <li class="login-create purple">
+                                   
+                                          <i class="icons icon-user" style="color: #a8ff3e;"></i>
+                                                <p style="font-size: 1.3em;"> أنت متصل {{user.username}} , <a>مرحبا </a><br><img src="{% static 'img/lists.png' %}" style="margin-left: 173px;margin-top: 1px;"></p>
+                                   
+                                    
+
+                    <ul id="login-dropdown" class="box-dropdown" >
+                                               
+                      <li>
+                                              <div class="box-wrapper">
+                                               
+                                <ul>  
+                                        
+                               <li class="connecthover">
+                                <div class="iconic-input">   
+                                
+                <a href="{% url 'commande:commandeViews' %} " style="font-size: 1.1em;">
+                  <span >تاريخ طلباتك</span>
+                </a>
+                </div>
+              </li>
+                 <li class="connecthover">
+                                <div class="iconic-input">   
+                                
+                <a href="{% url 'utilisateur:update_info' %}" style="font-size: 1.1em;">
+                  <span >إعدادات حسابك</span>
+                </a>
+                </div>
+              </li>
+
+
+              {% if user.type == "admin" %}
+              <li class="connecthover">
+                  <div class="iconic-input">   
+                  
+  <a href="{% url 'admine:home_admin' %}" style="font-size: 1.1em;">
+    <span >انتقل إلى لوحة المسؤول</span>
+  </a>
+  </div>
+</li>
+{% endif %}
+
+
+{% if user.type == "vente" %}
+<li class="connecthover">
+    <div class="iconic-input">   
+    
+<a href="{% url 'point_de_vente:venteHome' %}" style="font-size: 1.1em;">
+<span >انتقل إلى لوحة المسؤول</span>
+</a>
+</div>
+</li>
+{% endif %}
+               
+                
+                 <li class="connecthover">
+                                <form method="POST" action="{% url 'utilisateur:lougout_view' %}"  >
+                              {%csrf_token%}
+                                    
+                                  <button type="submit" class="reinitialise" style="cursor: pointer;" title="Deconnecter"><a style="font-size: 1.1em;">تسجيل الخروج</a>
+                                    </button>
+                                     </form>
+              </li>
+            
+                             </ul>
+                                                    <br class="clearfix">
+                                                </div>
+                        <div class="footer">
+                          <h4 class="pull-left">{{user.username}}</h4>
+                          
+                        </div>
+                      </li>
+                    </ul>
+
+
+
+
+
+
+
+
+
+
+
+                                   </li>
+
+
+
+
+    
+
+
+
+
+
+                                    {% else %}
+                                    <!-- hna rwa horsligne -->
+
+                  <li class="login-create purple">
+                                      <i class="icons icon-user"></i>
+                                        <p style="font-size: 1.2em;" align="right">مرحبا! <a >سجل دخولك</a> او<br><a>إفتح حساب</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                    <ul id="login-dropdown" class="box-dropdown">
+
+
+
+
+
+<form method="POST" action="{% url 'utilisateur:login_view' %}" autocomplete="off">
+{% csrf_token %}
+                                               
+                      <li>
+                                              <div class="box-wrapper">
+                                               
+                                                    <h4>تسجيل الدخول</h4>
+                                                    <div class="iconic-input">
+                                                        <input type="text" placeholder="Username"  id="Username" name="Username" >
+                                                        <i class="icons icon-user-3"></i>
+                                                    </div>
+                                                    <div class="iconic-input">
+                                                        <input type="password" placeholder="Password" id="Password" name="Password" autocomplete="new-password">
+
+                                                        <i class="icons icon-lock"></i>
+                                                    </div>
+                                                    <input type="checkbox" id="loginremember"> <label for="loginremember">تذكرني</label>
+                                                    <br>
+                                                    <br>
+                                                    <div class="pull-left">
+                                                        <input type="submit"  class="orange" value="Login" >
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <a href="{% url 'utilisateur:mdpOublier' %}">نسيت كلمة المرور؟</a>
+                                                        <br>
+                                                        
+                            <br>
+                                                    </div>
+                                                    <br class="clearfix">
+                                                </div>
+                        <div class="footer">
+                          <h4 class="pull-left">عميل جديد؟</h4>
+                          <a class="button pull-right" href="{% url 'utilisateur:registre_view' %}">إفتح حساب</a>
+                        </div>
+                      </li>
+
+                                         
+
+
+
+</form>
+
+
+
+
+
+                    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    </li>
+
+
+
+{% endif %}
+{% else %}
+
+    <li class="">
+                                      <i class="icons icon-user"></i>
+                                        <p> لا يمكنك الدخول يرجى إعادة تشغيل المتصفح <br><a href="#"></a></p>
+
+</li>
+{% endif %}
+
+
+                </ul>
+              </nav>
+
+            </div>
+
+          </div>
+          <!-- /Main Header -->
+
+
+          <!-- Main Navigation -->
+          <nav id="main-navigation" class="style3" align="right">
+            <ul>
+
+              <li class="home-green current-item">
+                <a href="{% url 'produit:index' %}">
+                  <span class="nav-caption">الصفحة الرئيسية </span>
+                </a>
+
+
+              </li>
+
+             
+
+              <li class="blue">
+                <a href="{% url 'produit:rechCatigoSplit' %}?ser=zafikor">
+                  <span class="nav-caption">المنتجات</span>
+                </a>
+              </li>
+
+            
+
+              <li class="green">
+                <a href="{% url 'produit:blog' %}">
+                  <span class="nav-caption">المدونات
+</span>
+                </a>
+              </li>
+
+              <li class="orange">
+                  <a href="{% url 'produit:information' %}">
+                    <span class="nav-caption"> من نحن ؟
+  </span>
+                  </a>
+                </li>
+
+              <li class="purple">
+                <a href="{% url 'produit:contact' %}">
+                  <span class="nav-caption">اتصال
+</span>
+                </a>
+              </li>
+
+              <li class="nav-search">
+                                  <i class="icons icon-search-1"></i>
+              </li>
+
+            </ul>
+
+            <div id="search-bar">
+
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                                
+
+
+                                       <!-- /hadi la recherche -->
+                                      <form role="search" action="{% url 'produit:recherchePro' %}">
+                                <table id="search-bar-table">
+                                    <tr>
+                                        <td class="search-column-1">
+                                                <p><span class="grey">عمليات البحث :</span> <a href="{% url 'produit:rechCatigo' %}?ser=Phisique ">فيزياء</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Materiel d'atelier ">معدات الورشة</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Autres ">أجهزة الكمبيوتر والشاشات</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Experiences de chimie ">تجارب الكيمياء</a>, <a href="{% url 'produit:rechCatigo' %}?ser=Microscopes ">المجاهر</a></p>
+
+
+
+
+
+                                
+                                            <input type="text" name="ser" placeholder="Enter your keyword" required>
+
+                                        </td>
+                                        <td class="search-column-2">
+                                          
+                                            <select name="cat" class="chosen-select-search">
+                                                <option value="Phisique,Science de la nature et vie,Geologie,Electronique et electricite,Experiences de chimie,Astronomie,Exao,Optiques" >أعمال تطبيقية</option>
+                                                <option value="Appareils de mesure,Accesoires de laboratoire,Ballances,Equipemets des laboratoires,Audio visuel et projection,Microscopes">المختبر و الزجاجيات</option>
+                                                <option value="Acides,Minireaux,Indicateurs couleurs,Bases,Metaux">المنتجات الكيميائية</option>
+                                                <option value="Anatomie humaine,anatomie zoologie,Anatomie geologie,Anatomie botanique,Produit parapharmacetique,Materiel medical,Equiments medical">تشريح وطب</option>
+                                                <option value="Materiel d'atelier,Tenues,Ballons et fillets,Coupes et medails,Drapeaux,Autres">ورش العمل والرياضة</option>
+                                                <option value="Papier,Encre,Document administratif,Stylos,Note book..,Bibliotheque et encyclopedie">المواد الاستهلاكية والهدايا</option>
+                                                <option value="Instalation des resaux,Logiciel scolarite,Logiciel industrie et gestion des stocks,Logiciel administratif,Autres">البرمجيات والشبكات</option>
+                                                <option value="Autres">الكمبيوتر والمكتب</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="search-button">
+                                <input type="submit" value="">
+                                <i class="icons icon-search-1"></i>
+
+                            </div>
+                         
+     </form>
+                            <!-- fin ta3 form recherche   -->
+
+            </div>
+
+          </nav>
+          <!-- /Main Navigation -->
+          <!-- /Main Navigation -->
+
+        </div>
+
+      </header>
+      <!-- /Header -->
+{%endif%}
+
+
+
+<!-- fin 3arbiya -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- debut francais -->
+
+{% if request.session.lang == "fr" %}
+
+
+            <!-- Content -->
+            <div class="row content">
+{% for produit in all %}
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="breadcrumbs">
+                        <p><a >Produit</a> <i class="icons icon-right-dir"></i> <a href="{% url 'produit:rechCatigo' %}?ser={{produit.categorie_produit}}">{{produit.categorie_produit}}</a> <i class="icons icon-right-dir"></i>{{produit.nom_produit}}</p>
+                    </div>
+                </div>
+
+
+                <!-- Main Content -->
+                <section class="main-content col-lg-12 col-md-12 col-sm-12">
+
+
+
+                    <!-- Product -->
+                    <div class="product-single">
+
+                        <div class="row">
+
+                            <!-- Product Images Carousel -->
+                          
+                            <div class="col-lg-4 col-md-4 col-sm-4 product-single-image">
+                               
+                                <div id="product-slider">
+                                    <ul class="slides">
+                                        <li>
+                                            {% for tata in produit.imageproduit_set.all|slice:"1" %}  
+                                            <img class="cloud-zoom" src="{{MEDIA_URL}}{{tata.image.url}}" data-large="{{MEDIA_URL}}{{tata.image.url}}"  alt=""/>
+                                            <a class="fullscreen-button" href="{{MEDIA_URL}}{{tata.image.url}}">
+                                            {% endfor %}
+
+
+
+                                                <div class="product-fullscreen">
+                                                    <i class="icons icon-resize-full-1"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                               
+                               
+                                <div id="product-carousel">
+                                    <ul class="slides">
+
+
+
+                                         {% for tata in produit.imageproduit_set.all %}
+                                        <li>
+                                            <a class="fancybox" rel="product-images" href="{{MEDIA_URL}}{{tata.image.url}}"></a>
+                                            <img src="{{MEDIA_URL}}{{tata.image.url}}" data-large="{{MEDIA_URL}}{{tata.image.url}}" alt=""/>
+                                        </li>
+                                         {% endfor %}
+
+                                    </ul>
+                                    <div class="product-arrows">
+                                        <div class="left-arrow">
+                                            <i class="icons icon-left-dir"></i>
+                                        </div>
+                                        <div class="right-arrow">
+                                            <i class="icons icon-right-dir"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                         
+                            <!-- /Product Images Carousel -->
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 product-single-info full-size">
+
+                                <h2>{{produit.nom_produit}}</h2>
+                                <div class="rating-box">
+                                    <div class="rating readonly-rating" data-score="4"></div>
+                                    2 Review(s)
+                                </div>
+                                
+                                <table>
+                                    <tr>
+                                        <td>Category produit : </td>
+                                        <td><a href="{% url 'produit:rechCatigo' %}?ser={{produit.categorie_produit}}"><span class="red">{{produit.categorie_produit}}</span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reference produit : </td>
+                                        <td><span class="green">{{produit.reference_produit}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Niveau produit :</td>
+                                        <td>{{produit.niveau}}</td>
+                                    </tr>
+                                </table>
+
+                                <strong>Prix</strong>
+                               
+
+                                <span class="price">{{produit.prix_produit|intcomma}} Dzd</span>
+
+                                <table class="product-actions-single">
+                                    <tr>
+                                      {% if produit.notice %}
+                                        <td>
+                                          <form method="POST" action="{% url 'produit:printPdf' pk=produit.id %}">
+                                     
+                                    {% csrf_token %}
+
+                                <input type="submit" value="Imprimer Informations" />
+                            </form>
+                                          
+                                        </td>
+                                        {%else%}
+                                        <td><input type="submit" value="Imprimer la notice" onclick="swal('ce produit n\'a pas de notice!',{icon:'error',})" /></td>
+                                        {%endif%}
+                                        </tr>
+                                         <tr>
+                                        <td>
+
+                                            <a>
+                                                <span class="add-to-cart">
+
+                                                    <span class="action-wrapper">
+                                                        <i class="icons icon-basket-2"></i>
+                                               {% if user.is_authenticated %}
+                                                        <span class="action-name" onclick="Apach('{{produit.id}}','{{user.id}}')" >Ajouter au Panier</span>
+                                                        {% else %}
+                                                        <span class="action-name" onclick="swal('vous devez connecter!',{icon:'error',})" style="cursor: pointer;">Ajouter au Panier</span>
+                                                        {% endif %}
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                </table>
+
+
+                                <div class="product-actions">
+                                    <span class="add-to-favorites">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-heart-empty"></i>
+                                            
+                                                            {% if user.is_authenticated %}
+                                                        <span class="action-name" onclick="addWish('{{produit.id}}','{{user.id}}')" >Ajouter au Favoris</span>
+                                                        {% else %}
+                                                        <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" >Ajouter au Favoris</span>
+                                                        {% endif %}
+                                        </span>
+                                    </span>
+                                    <span class="add-to-compare">
+                                        <span class="action-wrapper">
+                                            <i class="icons icon-docs"></i>
+                                                  {% if user.is_authenticated %}
+                            <span class="action-name" onclick="addCompare('{{produit.id}}')" >Comparer</span>
+                            {% else %}
+                            <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" >Comparer</span>
+                            {% endif %}
+                                        </span>
+                                    </span>
+                                  
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 product-single-image" style="background-color: #fff;box-shadow: -1px 0px 15px 0px gray;">
+                               <div class="accordion-header" style="background-color:#34495e!important;text-align: center;">
+                                            <h4>Description</h4>
+                                           
+                                        </div>
+                                <p id="style-15" style=" overflow-y: scroll;max-height: 350px;height: 350px;">
+                             {{produit.description_produit}}
+
+
+                              </p>
+                             </div>
+
+
+                        </div>
+
+                    </div>
+                    <!-- /Product -->
+
+
+                   
+
+
+{% endfor %}
+                                
+
+                              
+
+
+
+                    <!-- New Collection -->
+                    <div class="products-row row">
+
+                        <!-- Carousel Heading -->
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+
+                            <div class="carousel-heading">
+                                <h4>Produit Similaire</h4>
+                                <div class="carousel-arrows">
+                                    <i class="icons icon-left-dir"></i>
+                                    <i class="icons icon-right-dir"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /Carousel Heading -->
+
+                        <!-- Carousel -->
+                        <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+                            <div class="owl-carousel" data-max-items="4">
+
+
+
+
+
+                                    <!-- Slide -->
+                                     {% for pro in cat %}
+                                    <div>
+                                      <form onsubmit="return false;">
+                                      	<!-- Carousel Item -->
+										<div class="product">
+                                                
+                        <div class="product-image">
+                                                     {% for item in pro.imageproduit_set.all|slice:"1" %}
+                          <img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1" style="width: 270px; height: 270px; object-fit: cover;">
+  
+                                                         {% endfor %}
+                                                         {% for item in pro.imageproduit_set.all|slice:"1" %}
+                          <a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+                                                     {% endfor %}
+  
+                            <i class="icons icon-eye-1"></i> voir
+                          </a>
+                        </div>
+  
+                        <div class="product-info">
+                          <h5><a href="/produit/{{pro.id}}/">{{pro.nom_produit}}</a></h5>
+                          <span class="price">{{pro.prix_produit|intcomma}} Dzd</span>
+                          <div class="rating readonly-rating" data-score="4"></div>
+                        </div>
+                                         
+                        <div class="product-actions">
+                          <span class="add-to-cart">
+                            <span class="action-wrapper">
+                              <i class="icons icon-basket-2"></i>
+                              {% if user.is_authenticated %}
+                              <span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au panier</span>
+                              {% else %}
+                              <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au panier</span>
+                              {% endif %}
+                            </span >
+                          </span>
+                          <span class="add-to-favorites">
+                            <span class="action-wrapper">
+                                                          <i class="icons icon-heart-empty"></i>
+  
+                                                              {% if user.is_authenticated %}
+                                                          <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au favori</span>
+                                                          {% else %}
+                                                          <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au favori</span>
+                                                          {% endif %}
+                                                      </span>
+                          </span>
+                          <span class="add-to-compare">
+                            <span class="action-wrapper">
+                              <i class="icons icon-docs"></i>
+                                    {% if user.is_authenticated %}
+                              <span class="action-name" onclick="addCompare('{{pro.id}}')" style="font-size: small;">Comparer</span>
+                              {% else %}
+                              <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Comparer</span>
+                              {% endif %}
+                            </span>
+                          </span>
+                        </div>
+  
+                      </div>
+                      <!-- /Carousel Item -->
+
+
+</form>
+
+
+
+
+
+
+
+
+                      
+                                   
+                                    </div>
+                                    <!-- /Slide -->
+                                    {% endfor %}
+
+
+
+
+                                    
+
+                                   
+
+
+                            </div>
+                        </div>
+                        <!-- /Carousel -->
+
+                    </div>
+                    <!-- /New Collection -->
+
+
+
+
+
+                    
+                </section>
+                <!-- /Main Content -->
+</div>
+    <!-- finContent -->
+
+
+
+<!-- fin francais -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- debut arab -->
+{% else %}
+
+            <!-- Content -->
+            <div class="row content" style="font-size: 1.2em;">
+              {% for produit in all %}
+              
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                                  <div class="breadcrumbs">
+                                      <p><a style="font-size: 1.1em;">المنتج</a> <i class="icons icon-right-dir"></i> <a href="{% url 'produit:rechCatigo' %}?ser={{produit.categorie_produit}}" style="font-size: 1.1em;">
+                             
+                
+                {% if produit.categorie_produit == "Phisique" %}
+                فيزياء
+                {% elif produit.categorie_produit == "Science de la nature et vie" %}
+                
+                
+                علوم الطبيعة والحياة
+                {% elif produit.categorie_produit == "Geologie" %}
+                
+                جيولوجيا
+                
+                {% elif produit.categorie_produit == "Electronique et electricite" %}
+                
+                الالكترونيات والكهرباء
+                
+                {% elif produit.categorie_produit == "Experiences de chimie" %}
+                
+                 تجارب كيميائية
+                
+                {% elif produit.categorie_produit == "Astronomie" %}
+                
+                علم الفلك
+                
+                {% elif produit.categorie_produit == "Exao" %}
+                
+                
+                EXAO
+                {% elif produit.categorie_produit == "Optiques" %}
+                
+                بصري
+                
+                {% elif produit.categorie_produit == "Appareils de mesure" %}
+                
+                أجهزة القياس
+                
+                {% elif produit.categorie_produit == "Accesoires de laboratoire" %}
+                
+                مستلزمات المختبرات
+                
+                {% elif produit.categorie_produit == "Ballances" %}
+                
+                جداول
+                
+                {% elif produit.categorie_produit == "Equipemets des laboratoires" %}
+                معدات المختبرات
+                
+                
+                {% elif produit.categorie_produit == "Audio visuel et projection" %}
+                
+                السمعي البصري والإسقاط
+                
+                {% elif produit.categorie_produit == "Microscopes" %}
+                
+                المجاهر
+                
+                {% elif produit.categorie_produit == "Acides" %}
+                
+                الأحماض
+                
+                {% elif produit.categorie_produit == "Minireaux" %}
+                
+                المعادن
+                
+                {% elif produit.categorie_produit == "Indicateurs couleurs" %}
+                
+                مؤشرات اللون
+                
+                {% elif produit.categorie_produit == "Bases" %}
+                
+                قاعدة معطيات
+                
+                {% elif produit.categorie_produit == "Metaux" %}
+                
+                المعادن
+                
+                {% elif produit.categorie_produit == "Anatomie humaine" %}
+                
+                تشريح الإنسان
+                
+                {% elif produit.categorie_produit == "anatomie zoologie" %}
+                
+                 تشريح الحيوان
+                
+                {% elif produit.categorie_produit == "Anatomie geologie" %}
+                
+                جيولوجيا التشريح
+                
+                {% elif produit.categorie_produit == "Anatomie botanique" %}
+                
+                تشريح نباتي
+                
+                {% elif produit.categorie_produit == "Produit parapharmacetique" %}
+                المنتجات الصيدلانية
+                
+                
+                {% elif produit.categorie_produit == "Materiel medical" %}
+                
+                معدات طبية
+                
+                
+                {% elif produit.categorie_produit == "Equiments medical" %}
+                
+                المعدات الطبية
+                
+                
+                {% elif produit.categorie_produit == "Papier" %}
+                
+                ورق
+                
+                
+                {% elif produit.categorie_produit == "Encre" %}
+                
+                حبر
+                
+                
+                {% elif produit.categorie_produit == "Document administratif" %}
+                
+                الوثائق الإدارية
+                
+                
+                {% elif produit.categorie_produit == "Stylos,Note book.." %}
+                القلم ، دفتر ...
+                
+                
+                
+                {% elif produit.categorie_produit == "Bibliotheque et encyclopedie" %}
+                المكتبة والموسوعات
+                
+                
+                
+                {% elif produit.categorie_produit == "Instalation des resaux" %}
+                
+                تركيب الشبكات
+                
+                
+                {% elif produit.categorie_produit == "Logiciel scolarite" %}
+                
+                برنامج المدرسة
+                
+                
+                {% elif produit.categorie_produit == "Logiciel industrie et gestion des stocks" %}
+                
+                صناعة البرمجيات وإدارة المخزون
+                
+                
+                {% elif produit.categorie_produit == "Logiciel administratif" %}
+                
+                البرنامج الإداري
+                
+                
+                {% elif produit.categorie_produit == "Autre" %}
+                
+                أخرى
+                
+                
+                {% elif produit.categorie_produit == "Materiel d'atelier" %}
+                معدات ورشة العمل
+                
+                
+                
+                {% elif produit.categorie_produit == "Tenues" %}
+                ملابس
+                
+                
+                
+                {% elif produit.categorie_produit == "Ballons et fillets" %}
+                كرات وشبكات
+                
+                
+                
+                {% elif produit.categorie_produit == "Coupes et medails" %}
+                
+                
+                الكؤوس  والميداليات
+                
+                {% elif produit.categorie_produit == "Drapeaux" %}
+                
+                
+                الأعلام
+                
+                {% elif produit.categorie_produit == "Ordinateurs et ecrans" %}
+                
+                
+                أجهزة الكمبيوتر والشاشات
+                
+                {% elif produit.categorie_produit == "Laptops et tablettes" %}
+                
+                أجهزة الكمبيوتر المحمولة والأجهزة اللوحية
+                
+                
+                {% elif produit.categorie_produit == "Flash disque,carte ser" %}
+                
+                قرص فلاش ، بطاقة
+                
+                
+                {% elif produit.categorie_produit == "Accesoirs" %}
+                
+                
+                إكسسوارات
+                
+                {% elif produit.categorie_produit == "Bureaux,tables" %}
+                
+                المكاتب ، الجداول
+                
+                
+                
+                
+                
+                {%else%}
+                
+                
+                {%endif%}
+                
+               </a> <i class="icons icon-right-dir"></i>{{produit.nom_produit_ar}}</p>
+                                  </div>
+                              </div>
+              
+              
+                              <!-- Main Content -->
+                              <section class="main-content col-lg-12 col-md-12 col-sm-12">
+              
+              
+              
+                                  <!-- Product -->
+                                  <div class="product-single">
+              
+                                      <div class="row">
+              
+                                          <!-- Product Images Carousel -->
+                                        
+                                          <div class="col-lg-4 col-md-4 col-sm-4 product-single-image">
+              
+                                              <div id="product-slider">
+                                                  <ul class="slides">
+                                                      <li>
+                                                          {% for tata in produit.imageproduit_set.all|slice:"1" %}  
+                                                          <img class="cloud-zoom" src="{{MEDIA_URL}}{{tata.image.url}}" data-large="{{MEDIA_URL}}{{tata.image.url}}"  alt=""/>
+                                                          <a class="fullscreen-button" href="{{MEDIA_URL}}{{tata.image.url}}">
+                                                          {% endfor %}
+              
+              
+              
+                                                              <div class="product-fullscreen">
+                                                                  <i class="icons icon-resize-full-1"></i>
+                                                              </div>
+                                                          </a>
+                                                      </li>
+                                                  </ul>
+                                              </div>
+                                              <div id="product-carousel">
+                                                  <ul class="slides">
+              
+              
+              
+                                                       {% for tata in produit.imageproduit_set.all %}
+                                                      <li>
+                                                          <a class="fancybox" rel="product-images" href="{{MEDIA_URL}}{{tata.image.url}}"></a>
+                                                          <img src="{{MEDIA_URL}}{{tata.image.url}}" data-large="{{MEDIA_URL}}{{tata.image.url}}" alt=""/>
+                                                      </li>
+                                                       {% endfor %}
+              
+                                                  </ul>
+                                                  <div class="product-arrows">
+                                                      <div class="left-arrow">
+                                                          <i class="icons icon-left-dir"></i>
+                                                      </div>
+                                                      <div class="right-arrow">
+                                                          <i class="icons icon-right-dir"></i>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                        
+                                          <!-- /Product Images Carousel -->
+              
+                                          <div class="col-lg-4 col-md-4 col-sm-4 product-single-info full-size">
+              
+                                              <h2>{{produit.nom_produit_ar}}</h2>
+                                              <div class="rating-box" style="font-size: 1em;">
+                                                  <div class="rating readonly-rating" data-score="4"></div>
+                                                  2 مراجعة
+                                              </div>
+                                              
+                                              <table>
+                                                  <tr>
+                                                      <td style="font-size: 1em;">فئة المنتج : </td>
+                                                      <td style="font-size: 1em;"><a href="{% url 'produit:rechCatigo' %}?ser={{produit.categorie_produit}}"><span class="red">{{produit.categorie_produit}}</span></a></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td style="font-size: 1em;">مرجع المنتج : </td>
+                                                      <td style="font-size: 1em;"><span class="green">{{produit.reference_produit}}</span></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td style="font-size: 1em;">المستوى :</td>
+                                                      <td style="font-size: 1em;">{{produit.niveau}}</td>
+                                                  </tr>
+                                              </table>
+              
+                                              <strong style="font-size: 1em;"> السعر </strong>
+                                             
+              
+                                              <span class="price" style="font-size: 1em;">{{produit.prix_produit|intcomma}} دج</span>
+              
+                                              <table class="product-actions-single">
+                                                  <tr>
+                                                    {% if produit.notice %}
+                                                      <td>
+                                                        <form method="POST" action="{% url 'produit:printPdf' pk=produit.id %}">
+                                                   
+                                                  {% csrf_token %}
+              
+                                              <input type="submit" value="Imprimer Informations" />
+                                          </form>
+                                                        
+                                                      </td>
+                                                      {%else%}
+                                                      <td style="font-size: 1.1em;"><input type="submit" value="طباعة التعليمات" onclick="swal('هذا المنتج لا يحتوي على أي تعليمات!',{icon:'error',})" /></td>
+                                                      {%endif%}
+                                                      
+                                                      <td>
+              
+                                                          <a>
+                                                              <span class="add-to-cart">
+                                                                  <span class="action-wrapper">
+                                                                      <i class="icons icon-basket-2"></i>
+                                                             {% if user.is_authenticated %}
+                                                                      <span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" style="font-size: 1em;">أضف إلى السلة</span>
+                                                                      {% else %}
+                                                                      <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon:'error',})" style="cursor: pointer; font-size: 1em;">أضف إلى السلة</span>
+                                                                      {% endif %}
+                                                                  </span>
+                                                              </span>
+                                                          </a>
+                                                      </td>
+              
+                                                  </tr>
+                                              </table>
+              
+              
+                                              <div class="product-actions">
+                                                  <span class="add-to-favorites">
+                                                      <span class="action-wrapper">
+                                                          <i class="icons icon-heart-empty"></i>
+                                                          
+                                                                          {% if user.is_authenticated %}
+                                                                      <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" >أضف إلى المفضلة</span>
+                                                                      {% else %}
+                                                                      <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى المفضلة</span>
+                                                                      {% endif %}
+                                                      </span>
+                                                  </span>
+                                                  <span class="add-to-compare">
+                                                      <span class="action-wrapper">
+                                                          <i class="icons icon-docs"></i>
+                                                                {% if user.is_authenticated %}
+                                          <span class="action-name" onclick="addCompare('{{pro.id}}')" >أضف للمقارنة</span>
+                                          {% else %}
+                                          <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف للمقارنة</span>
+                                          {% endif %}
+                                                      </span>
+                                                  </span>
+                                                 
+                                                  </span>
+                                              </div>
+              
+              
+                                          </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 product-single-image" dir="rtl" style="background-color: #fff;box-shadow: -1px 0px 15px 0px gray;">
+                               <div class="accordion-header" style="background-color:#34495e!important;text-align: center;">
+                                            <h4>وصف المنتج</h4>
+                                           
+                                        </div>
+                                <p id="style-15" style=" overflow-y: scroll;max-height: 350px;height: 350px;">
+                            {{produit.description_produit}}
+
+
+
+
+
+
+
+
+                              </p>
+                             </div>
+              
+                                      </div>
+              
+                                  </div>
+                                  <!-- /Product -->
+              
+              
+              
+              
+              {% endfor %}
+                                                
+              
+                                      
+              
+              
+              
+                                  <!-- New Collection -->
+                                  <div class="products-row row">
+              
+                                      <!-- Carousel Heading -->
+                                      <div class="col-lg-12 col-md-12 col-sm-12">
+              
+                                          <div class="carousel-heading">
+                                              <h4>المنتجات ذات الصلة</h4>
+                                              <div class="carousel-arrows">
+                                                  <i class="icons icon-left-dir"></i>
+                                                  <i class="icons icon-right-dir"></i>
+                                              </div>
+                                          </div>
+              
+                                      </div>
+                                      <!-- /Carousel Heading -->
+              
+                                      <!-- Carousel -->
+                                      <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+              
+                                          <div class="owl-carousel" data-max-items="4">
+              
+                                                  <!-- Slide -->
+                                                   {% for pro in cat %}
+                                                  <div>
+                                                     
+                                                     	<!-- Carousel Item -->
+									<div class="product" style="font-size: 1em;">
+
+                      <div class="product-image">
+                       
+                        {% for item in pro.imageproduit_set.all|slice:"1" %}
+                        <img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1" style="width: 270px; height: 270px; object-fit: cover;">
+                          <a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+                        {% endfor %}
+                        
+                          <i class="icons icon-eye-1"></i>عرض سريع
+                        </a>
+                      </div>
+  
+                      <div class="product-info">
+                        <h5><a href="/produit/{{pro.id}}/" style="font-size: 1em;">{{pro.nom_produit_ar}}</a></h5>
+                        <span class="price">{{pro.prix_produit|intcomma}}</span>
+                        <div class="rating readonly-rating" data-score="4"></div>
+                      </div>
+  
+                      <div class="product-actions">
+                        <span class="add-to-cart">
+                          <span class="action-wrapper">
+                            <i class="icons icon-basket-2"></i>
+                            {% if user.is_authenticated %}
+                            <span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" >أضف إلى السلة</span>
+                            {% else %}
+                            <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى السلة</span>
+                            {% endif %}
+                          </span >
+                        </span>
+                        <span class="add-to-favorites">
+                          <span class="action-wrapper">
+                            <i class="icons icon-heart-empty"></i>
+                                 {% if user.is_authenticated %}
+                            <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" >أضف إلى المفضلة</span>
+                            {% else %}
+                            <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى المفضلة</span>
+                            {% endif %}
+                          </span>
+                        </span>
+                        <span class="add-to-compare">
+                          <span class="action-wrapper">
+                            <i class="icons icon-docs"></i>
+                                    {% if user.is_authenticated %}
+                            <span class="action-name" onclick="addCompare('{{pro.id}}')" >أضف للمقارنة</span>
+                            {% else %}
+                            <span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف للمقارنة</span>
+                            {% endif %}
+                          </span>
+                        </span>
+                      </div>
+  
+                    </div>
+                    <!-- /Carousel Item -->
+                                                 
+                                                  </div>
+                                                  <!-- /Slide -->
+                                                  {% endfor %}
+              
+              
+                                                 
+              
+              
+                                          </div>
+                                      </div>
+                                      <!-- /Carousel -->
+              
+                                  </div>
+                                  <!-- /New Collection -->
+              
+              
+              
+              
+              
+                                  
+                              </section>
+                              <!-- /Main Content -->
+              </div>
+              <!-- finContent -->
+{%endif%}
+
+<!-- fin arab -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- debut francais -->
+
+{% if request.session.lang == "fr" %}
+        			
+
+			<!-- Banner -->
+			<section class="banner">
+
+          <div class="left-side-banner banner-item icon-on-right gray">
+              <h4>0770 25-94-76</h4>
+              <p>Dimanche - Jeudi: 12h - 17h</p>
+              <i class="icons icon-phone-outline"></i>
+            </div>
+    
+            <a>
+            <div class="middle-banner banner-item icon-on-left light-blue">
+              <h4>Laivraison gratuite</h4>
+              <p>Pour tous les wilayas</p>
+                    
+              <i class="icons icon-truck-1"></i>
+            </div>
+            </a>
+    
+            <a>
+            <div class="right-side-banner banner-item orange">
+              <h4>Prix choc</h4>
+              <p>Chez didaben</p>
+                        
+            </div>
+            </a>
+    
+          </section>
+          <!-- /Banner -->
+    
+    
+          <!-- Footer -->
+          <footer id="footer" class="row">
+    
+    
+    
+    
+      <!-- Main Footer -->
+      <div class="col-lg-12 col-md-12 col-sm-12">
+              
+        <div id="main-footer">
+        
+          <div class="row">
+            
+              <!-- Like us on Twitter -->
+              <div class="col-lg-3 col-md-3 col-sm-6 ">
+                <br>
+              {% for tata in imgCata %}
+              <img src="{{MEDIA_URL}}{{tata.img.url}}" alt="image" >
+              <a class="button big red col-lg-12" {% for ta in pdfCata %}  href="{{MEDIA_URL}}{{ta.img.url}}" {% endfor %}> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Telecharger    
+             
+          </a> 
+          {% endfor %}
+        </div>
+            <!-- /Like us on Twitter -->
+            
+            
+            <!-- Like us on Facebook -->
+            <div class="col-lg-3 col-md-3 col-sm-6 facebook-iframe">
+              <h4>Aimez-nous sur facebook</h4>
+              <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDidaben-1037611839760102%2F&tabs&width=340&height=200&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+            </div>
+            <!-- /Like us on Facebook -->
+            
+            
+            <!-- Contact Us -->
+            <div class="col-lg-3 col-md-3 col-sm-6 contact-footer-info">
+              <h4>Contactez nous</h4>
+              <ul>
+               <li ><i class="icons icon-location"></i> 17,Rue ibn rochd, Birkhadem-ALger.</li>
+                                  <li ><i class="icons icon-phone"></i> 0770 25-94-76</li>
+                <li ><i class="icons icon-mail-alt"></i><a > didabenbatna@gmail.com</a></li>
+               
+              </ul>
+                              
+                              <!-- Social Media -->
+                              <div class="social-media">
+                                  <ul>
+                                       <li class="social-googleplus tooltip-hover" data-toggle="tooltip" data-placement="top" title="Google+"><a href="#"></a></li>
+                                      <li class="social-facebook tooltip-hover" data-toggle="tooltip" data-placement="top" title="Facebook"><a href="https://www.facebook.com/Didaben-1037611839760102/?ref=br_rs"></a></li>
+                                      <li class="social-pinterest tooltip-hover" data-toggle="tooltip" data-placement="top" title="Pinterest"><a href="#"></a></li>
+                                      <li class="social-twitter tooltip-hover" data-toggle="tooltip" data-placement="top" title="Twitter"><a href="#"></a></li>
+                                      <li class="social-youtube tooltip-hover" data-toggle="tooltip" data-placement="top" title="Youtube"><a href="#"></a></li>
+                                  </ul>
+                              </div>
+                              <!-- /Social Media -->
+                              
+            </div>
+            <!-- /Contact Us -->
+    
+              <!-- Newsletter -->
+              <div class="col-lg-3 col-md-3 col-sm-6">
+                
+                  <h4>Inscription à la newsletter</h4>
+                  <p style="font-size: 1em;">Inscrivez-vous à notre newsletter et recevez des offres exclusives que vous ne trouverez nulle part ailleurs directement dans votre boîte de réception!</p>
+                  <input type="text" name="newsletter-email" placeholder="Enter your email address">
+               
+                 
+       
+                  <input type="submit" name="newsletter-submit" value="Submit">
+            
+              </div>
+              <!-- /Newsletter -->
+            
+          
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <!-- /Main Footer -->
+    
+    
+    
+            <!-- Lower Footer -->
+            <div class="col-lg-12 col-md-12 col-sm-12">
+    
+              <div id="lower-footer">
+    
+                <div class="row">
+    
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    <p class="copyright">Copyright 2020 <a >Didaben</a>. Tous les droits sont réservés.</p>
+                  </div>
+    
+                  
+    
+                </div>
+    
+              </div>
+    
+            </div>
+            <!-- /Lower Footer -->
+    
+          </footer>
+          <!-- Footer -->
+    
+    
+                <div id="back-to-top">
+                  <i class="icon-up-dir"></i>
+                </div>
+    
+        </div>
+          <!-- Container -->
+    
+    </nav>
+    </div>
+    </header>
+    </div>
+
+
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div>  
+
+      </div>
+
+
+
+
+    </body>
+    
+    <script type="text/javascript">
+
+      function addWish(s,t){
+        
+       swal("Le produit est ajouter", {
+         icon: "success",
+         });
+       
+               $.ajax({
+                 type: "POST",
+       
+                 url : "{% url 'produit:addWish' %}",
+                 dataType: "json",
+                 async: true,
+                 data:{
+                   csrfmiddlewaretoken: '{{csrf_token}}',
+                   id_produit : s,
+                   id_user :t,
+       
+       
+                 },
+       
+               });
+            
+       
+       
+       
+             }
+       
+       
+        
+         </script>
+    
+    
+    <!-- fin francais -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- debut 3arbiya -->
+    
+    
+    
+    
+    {%else%}
+    
+    
+    
+                  
+    
+          <!-- Banner -->
+          <section class="banner">
+    
+            <div class="left-side-banner banner-item icon-on-right gray">
+              <h4>0770 25-94-76</h4>
+              <p>الأحد - الخميس: من الساعة 12 صباحًا حتى 5 مساءً</p>
+              <i class="icons icon-phone-outline"></i>
+            </div>
+    
+            <a>
+            <div class="middle-banner banner-item icon-on-left light-blue">
+              <h4>توصيل مجاني</h4>
+              <p>لجميع الولايات</p>
+                    
+              <i class="icons icon-truck-1"></i>
+            </div>
+            </a>
+    
+            <a>
+            <div class="right-side-banner banner-item orange">
+              <h4>أسعار مغرية</h4>
+              <p>عند ديدابان</p>
+                        
+            </div>
+            </a>
+    
+          </section>
+          <!-- /Banner -->
+    
+    
+          <!-- Footer -->
+          <footer id="footer" class="row">
+    
+    
+    
+    
+    
+      <!-- Main Footer -->
+      <div class="col-lg-12 col-md-12 col-sm-12">
+              
+        <div id="main-footer">
+        
+          <div class="row">
+            
+                  <!-- Like us on Twitter -->
+        <div class="col-lg-3 col-md-3 col-sm-6 ">
+          <br>
+        {% for tata in imgCata %}
+        <img src="{{MEDIA_URL}}{{tata.img.url}}" alt="image" >
+        <a class="button big red col-lg-12" {% for ta in pdfCata %}  href="{{MEDIA_URL}}{{ta.img.url}}" {% endfor %}> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; تحميل    
+       
+    </a> 
+    {% endfor %}
+  </div>
+      <!-- /Like us on Twitter -->
+            
+            
+            <!-- Like us on Facebook -->
+            <div class="col-lg-3 col-md-3 col-sm-6 facebook-iframe">
+              <h4>تابعنا على الفيسبوك</h4>
+              <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDidaben-1037611839760102%2F&tabs&width=340&height=200&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+            </div>
+            <!-- /Like us on Facebook -->
+            
+            
+            <!-- Contact Us -->
+            <div class="col-lg-3 col-md-3 col-sm-6 contact-footer-info">
+              <h4>اتصل بنا</h4>
+              <ul>
+                <li style="font-size: 1em;"><i class="icons icon-location"></i> 17,Rue ibn rochd, Birkhadem-ALger.</li>
+                                  <li style="font-size: 1em;"><i class="icons icon-phone"></i>0770 25-94-76</li>
+                <li style="font-size: 1em;"><i class="icons icon-mail-alt"></i><a > didabenbatna@gmail.com</a></li>
+               
+              </ul>
+                              
+                              <!-- Social Media -->
+                              <div class="social-media">
+                                  <ul>
+                                       <li class="social-googleplus tooltip-hover" data-toggle="tooltip" data-placement="top" title="Google+"><a href="#"></a></li>
+                                      <li class="social-facebook tooltip-hover" data-toggle="tooltip" data-placement="top" title="Facebook"><a href="https://www.facebook.com/Didaben-1037611839760102/?ref=br_rs"></a></li>
+                                      <li class="social-pinterest tooltip-hover" data-toggle="tooltip" data-placement="top" title="Pinterest"><a href="#"></a></li>
+                                      <li class="social-twitter tooltip-hover" data-toggle="tooltip" data-placement="top" title="Twitter"><a href="#"></a></li>
+                                      <li class="social-youtube tooltip-hover" data-toggle="tooltip" data-placement="top" title="Youtube"><a href="#"></a></li>
+                                  </ul>
+                              </div>
+                              <!-- /Social Media -->
+                              
+            </div>
+            <!-- /Contact Us -->
+                <!-- Newsletter -->
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <h4>اشترك في النشرة الإخبارية</h4>
+                    <p style="font-size: 1.1em;" align="right">اشترك في النشرة الإخبارية لدينا وتلقي العروض الحصرية التي لن تجدها في أي مكان آخر في صندوق الوارد الخاص بك!</p>
+                    <input type="text" name="newsletter-email" placeholder="Enter your email address">
+                  
+                    <input type="submit" name="newsletter-submit" value="ارسال">
+                  
+                 
+                </div>
+                <!-- /Newsletter -->
+            
+          
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <!-- /Main Footer -->
+
+
+
+        <!-- Lower Footer -->
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+          <div id="lower-footer">
+
+            <div class="row">
+
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <p class="copyright">حق النشر 2020 <a >ديدابان</a>. جميع الحقوق محفوظة.</p>
+              </div>
+
+              
+
+            </div>
+
+          </div>
+
+        </div>
+        <!-- /Lower Footer -->
+      </footer>
+      <!-- Footer -->
+
+
+            <div id="back-to-top">
+              <i class="icon-up-dir"></i>
+            </div>
+
+    </div>
+      <!-- Container -->
+
+</nav>
+</div>
+</header>
+</div>
+
+
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div>  
+
+      </div>
+
+
+
+
+</body>
+<script type="text/javascript">
+
+	function addWish(s,t){
+		
+   swal("تم اضافة المنتج", {
+		 icon: "success",
+	   });
+   
+				   $.ajax({
+					   type: "POST",
+   
+					   url : "{% url 'produit:addWish' %}",
+					   dataType: "json",
+					   async: true,
+					   data:{
+						   csrfmiddlewaretoken: '{{csrf_token}}',
+						   id_produit : s,
+						   id_user :t,
+   
+   
+					   },
+   
+				   });
+			  
+   
+   
+   
+			   }
+   
+   
+	  
+		 </script>
+{%endif%}
+
+
+<!--fin 3arbiya -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- JavaScript -->
+        <script src="{% static 'js/modernizr.min.js' %}"></script>
+        <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.raty.min.js' %}"></script>
+
+        <!-- Scroll Bar -->
+        <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+
+        <!-- Cloud Zoom -->
+        <script src="{% static 'js/zoomsl-3.0.min.js' %}"></script>
+        <script src="{% static 'js/cloud-zoom.1.0.3.min.js' %}"></script>
+        <!-- FancyBox -->
+        <script src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+
+        <!-- jQuery REVOLUTION Slider  -->
+        <script type="text/javascript" src="{% static 'js/jquery.themepunch.plugins.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.themepunch.revolution.min.js' %}"></script>
+
+        <!-- FlexSlider -->
+        <script defer src="{% static 'js/flexslider.min.js' %}"></script>
+
+        <!-- IOS Slider -->
+        <script src = "{% static 'js/jquery.iosslider.min.js' %}"></script>
+
+        <!-- noUi Slider -->
+        <script src="{% static 'js/jquery.nouislider.min.js' %}"></script>
+
+        <!-- Owl Carousel -->
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+     
+		<!-- Cloud Zoom -->
+		<script src="{% static 'js/cloud-zoom.1.0.3.min.js' %}"></script>
+
+
+        <!-- SelectJS -->
+        <script src="{% static 'js/chosen.jquery.min.js' %}" type="text/javascript"></script>
+
+        <!-- Main JS -->
+        <script defer src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/main-script.js' %}"></script>
+
+
+
+
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div>  
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </body>
+
+
+
+{% if request.session.lang == "fr" %}
+
+ <script type="text/javascript">
+
+
+function Apach(s,k){
+ swal({
+ text: 'Ajouter la quantite',
+   content: {
+    element: "input",
+    attributes: {
+      placeholder: "Ajouter la quantite",
+      type: "number",
+    },
+  },
+  button: {
+    text: "Ajouter au panier",
+    closeModal: false,
+  },
+})
+.then((name) => {
+if (name =="" ) {
+  createpan(s,1,k);
+    swal("Le produit à été ajouter avec success. La quantité est 1", {
+      icon: "success",
+    });
+    return false;
+  }
+     if (!name) {
+    swal("Le produit n'est pas ajouter", {
+      icon: "error",
+    });
+
+  }
+
+  else {
+    createpan(s,name,k);
+    swal("Le produit à été ajouter avec success La quantité est :"+name, {
+      icon: "success",
+    });
+
+  }
+});
+
+}
+
+
+
+
+
+
+
+
+
+
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {%else%}
+
+ <script type="text/javascript">
+
+
+  function Apach(s,k){
+   swal({
+   text: 'أضف الكمية',
+     content: {
+      element: "input",
+      attributes: {
+        placeholder: "أضف الكمية",
+        type: "number",
+      },
+    },
+    button: {
+      text: "أضف إلى السلة",
+      closeModal: false,
+    },
+  })
+  .then((name) => {
+  if (name =="" ) {
+    createpan(s,1,k);
+      swal("تم إضافة المنتج بنجاح. الكمية هي 1", {
+        icon: "success",
+      });
+      return false;
+    }
+       if (!name) {
+      swal("لم يتم اضافة المنتج", {
+        icon: "error",
+      });
+
+    }
+
+    else {
+      createpan(s,name,k);
+      swal("تم إضافة المنتج بنجاح. الكمية هي :"+name, {
+        icon: "success",
+      });
+
+    }
+  });
+
+  }
+
+
+
+
+
+
+
+
+
+        </script>
+
+ {%endif%}
+
+        <script type="text/javascript">
+        	function createpan(s,t,k){
+
+        		$.ajax({
+        			type: "POST",
+
+        			url : "{% url 'produit:addPanier' %}",
+        			dataType: "json",
+        			async: true,
+        			data:{
+        				csrfmiddlewaretoken: '{{csrf_token}}',
+        				id_produit : s,
+        				qntt :t,
+                        id_user :k,
+
+
+        			},
+
+        		});
+        	}
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script type="text/javascript">
+
+  function myPopup(myImg,myName) {
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = myImg;
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+modal.style.display = "block";
+modalImg.src = img;
+captionText.innerHTML = myName;
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+modal.style.display = "none";
+}
+}
+
+</script>
+
+   <script type="text/javascript">
+                  function addCompare(s){
+                    swal("Le produit est ajouter pour le comparer", {
+      icon: "success",
+    });
+
+            $.ajax({
+              type: "POST",
+
+              url : "{% url 'produit:addCompare' %}",
+              dataType: "json",
+              async: true,
+              data:{
+                csrfmiddlewaretoken: '{{csrf_token}}',
+                id_produit : s,
+
+
+              },
+            
+            });
+          }
+      </script>  
+
+</html>
+
