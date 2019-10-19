@@ -1,0 +1,205 @@
+ 
+{% extends "admin/admin_page.html" %}
+{% load staticfiles%}
+{% block content %}
+ 
+
+
+
+
+ <div role="main">
+          <div class="">
+            
+             
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Editer PUB <small> suprimer les pub</small></h2>
+                   
+
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div class="row">
+
+
+<h1><strong>slide</strong></h1> 
+
+{% for com in pub %}
+{% if com.type == "slide" %}
+
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="{{MEDIA_URL}}{{com.img.url}}" alt="image" />
+                            <div class="mask no-caption">
+                              <div class="tools tools-left">
+                               
+                                <form method="POST" action="">
+                                  {%csrf_token%}
+                                  <input type="hidden"  name="id" value="{{com.id}}">
+                                  
+                                <button class="fa fa-times" name="suprimer" style="background: #45454d; border: #45454d;"></button>
+                                </form>
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="caption">
+                            <p><strong>{{com.titre1}}</strong>
+                            </p>
+                            <p>{{com.titre2}}</p>
+                          </div>
+                        </div>
+                      </div>
+
+    
+{%endif%}
+{% endfor %}
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+<h1 class="col-lg-push--1 col-md-push--1" ><strong>mini slide</strong></h1> 
+
+{% for com in pub %}
+{% if com.type == "demi_slide" %}
+
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="{{MEDIA_URL}}{{com.img.url}}" alt="image" />
+                            <div class="mask no-caption">
+                              <div class="tools tools-left">
+                               
+                                <form method="POST" action="">
+                                  {%csrf_token%}
+                                  <input type="hidden"  name="id" value="{{com.id}}">
+                                  
+                                <button class="fa fa-times" name="suprimer" style="background: #45454d; border: #45454d;"></button>
+                                </form>
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="caption">
+                            <p><strong>{{com.titre1}}</strong>
+                            </p>
+                            <p>{{com.titre2}}</p>
+                          </div>
+                        </div>
+                      </div>
+
+    
+{%endif%}
+{% endfor %}
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<h1><strong>BLOG</strong></h1> 
+
+{% for com in blog %}
+
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="{{MEDIA_URL}}{{com.img.url}}" alt="image" />
+                            <div class="mask no-caption">
+                              <div class="tools tools-left">
+                               
+                                <form method="POST" action="">
+                                  {%csrf_token%}
+                                  <input type="hidden"  name="id" value="{{com.id}}">
+                                  
+                                <button class="fa fa-times" name="suprimerBlog" style="background: #45454d; border: #45454d;"></button>
+                                </form>
+                                
+                              </div>
+                            </div>
+                          </div>
+                          <div class="caption">
+                            <p><strong>{{com.titre}}</strong>
+                            </p>
+                           
+                          </div>
+                        </div>
+                      </div>
+
+  
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+ {%endblock%}

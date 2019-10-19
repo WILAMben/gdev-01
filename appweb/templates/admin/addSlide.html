@@ -1,0 +1,58 @@
+
+{% extends "admin/admin_page.html" %}
+{% load staticfiles%}
+{% block content %}
+
+
+  <div>
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Ajout Slider <small>slide de la page home</small></h2>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    
+                    <form method="POST" action="" class="form-horizontal form-label-left" id="register-form" enctype="multipart/form-data">
+                      {% csrf_token %}
+                                   <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">titre</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" name="t1" class="form-control" required="required">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">sous titre</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" name="t2" class="form-control" required="required">
+                        </div>
+                      
+                      <br>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ajouter l'image<span class="required"></span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12" >
+                          <input name="image" type="file" required />
+                        
+                        </div>
+                      </div>
+
+                     
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                         <a href="/adminta3na/"> <button type="button" class="btn btn-primary">Cancel</button></a>
+                          <button type="reset" class="btn btn-primary">Reset</button>
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+
+ {%endblock%}

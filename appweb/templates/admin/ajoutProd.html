@@ -1,0 +1,194 @@
+ 
+{% extends "admin/admin_page.html" %}
+{% load staticfiles%}
+{% block content %}
+
+
+  <div >
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Ajout Produits <small>liste des Produits</small></h2>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    
+                    <form method="POST" action="" class="form-horizontal form-label-left" id="register-form" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      {% include 'utilisateur/_alerts.html' %}
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Reference Produit *</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" name="reference_produit" class="form-control" required="required">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom Produit *</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" name="nom_produit" class="form-control" required="required">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom Produit (بالعربية ) *</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" name="nom_produit_ar" class="form-control" required="required">
+                        </div>
+                      </div>
+                     
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Prix</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="number" name="prix_produit" class="form-control" >
+                        </div>
+                      </div>
+                     
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Niveau Scolaire</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" name="niveau" class="form-control" required="required">
+                        </div>
+                      </div>
+                 <!--
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">AutoComplete</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10"/>
+                        </div>  
+                      </div>     -->
+
+                     
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Categorie </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+
+                          
+
+                         <select class="select2_group form-control" name="categorie"  >
+                             <optgroup label="Travaux Pratique">
+                              <option value="Phisique">physique</option>
+                              <option value="Science de la nature et vie">Science de la nature et vie</option>
+                              <option value="Geologie">Geologie</option>
+                              <option value="Electronique et electricite">Electronique et electricite</option>
+                              <option value="Experiences de chimie">Experiences de chimie</option>
+                              <option value="Astronomie">Astronomie</option>
+                              <option value="Exao">Exao</option>
+                              <option value="Optiques">Optiques</option>
+                            </optgroup>
+                            <optgroup label="Laboratoire et verrier">
+                              <option value="Appareils de mesure">Appareils de mesure</option>
+                              <option value="Accesoires de laboratoire">Accesoires de laboratoire</option>
+                              <option value="Ballances">Ballances</option>
+                              <option value="Equipemets des laboratoires">Equipemets des laboratoires</option>
+                              <option value="Audio visuel et projection">Audio visuel et projection</option>
+                              <option value="Microscopes">Microscopes</option>
+                            </optgroup>
+                            <optgroup label="Produits chimique">
+                              <option value="Acides">Acides</option>
+                              <option value="Minireaux">Minireaux</option>
+                              <option value="Indicateurs couleurs">Indicateurs couleurs</option>
+                              <option value="Bases">Bases</option>
+                              <option value="Metaux">Metaux</option>
+                            </optgroup>
+                            <optgroup label="Anatomie et medical">
+                              <option value="Anatomie humaine">Anatomie humaine</option>
+                              <option value="anatomie zoologie">anatomie zoologie</option>
+                              <option value="Anatomie geologie">Anatomie geologie</option>
+                              <option value="Anatomie botanique">Anatomie botanique</option>
+                              <option value="Produit parapharmacetique">Produit parapharmacetique</option>
+                              <option value="Materiel medical">Materiel medical</option>
+                              <option value="Equiments medical">Équipements médicaux</option>
+                             
+                            </optgroup>
+                            <optgroup label="Informatique et bureautique">
+                              <option value="Ordinateurs et ecrans">Ordinateurs et ecrans</option>
+                              <option value="Laptops et tablettes">Laptops et tablettes</option>
+                              <option value="Flash disque;carte ser">Flash disque,carte ser</option>
+                              <option value="Accesoirs">Accesoirs</option>
+                              <option value="Bureaux;tables">Bureaux,tables</option>
+                             
+                              
+                            </optgroup>
+                            <optgroup label="Consomables et cadeaux">
+                            <option value="Papier">Papier</option>
+                              <option value="Encre">Encre</option>
+                              <option value="Document administratif">Document administratif</option>
+                              <option value="Stylos;Note book..">Stylos,Note book..</option>
+                              <option value="Bibliotheque et encyclopedie">Bibliotheque et encyclopedie</option>
+                              </optgroup>
+                               <optgroup label="Logiciels et resaux">
+                              <option value="Instalation des resaux">Instalation des resaux</option>
+                              <option value="Logiciel scolarite">Logiciel scolarite</option>
+                              <option value="Logiciel industrie et gestion des stocks">Logiciel industrie et gestion des stocks</option>
+                              <option value="Logiciel administratif">Logiciel administratif</option>
+                              <option value="Autre">Autre</option>
+                             </optgroup>
+                              <optgroup label="Ateliers et sports">
+                              <option value="Materiel d'atelier">Materiel d'atelier</option>
+                              <option value="Tenues">Tenues</option>
+                              <option value="Ballons et fillets">Ballons et fillets</option>
+                              <option value="Coupes et medails">Coupes et medails</option>
+                              <option value="Drapeaux">Drapeaux</option>
+                              <option value="Autres">Autres</option>
+                            </optgroup>
+                          </select>
+                          
+                        </div>
+                      </div>
+
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description Produit <span class="required"></span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <textarea class="form-control" name="description_produit" rows="5" ></textarea>
+                        </div>
+                      </div>
+
+
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Description Produit (بالعربية )<span class="required"></span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <textarea class="form-control" name="description_produit_ar" rows="5" ></textarea>
+                        </div>
+                      </div>
+
+                    
+                      <br>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ajouter les Images<span class="required"></span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12" >
+                          <input name="file" type="file" multiple />
+                        
+                        </div>
+                      </div>
+                         <br>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ajouter une notice<span class="required"></span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12" >
+                          
+                          <input type="file" name="upload" accept="application/pdf,application/vnd.ms-excel" />
+                        
+                        </div>
+                      </div>
+
+                     
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                         <a href="/adminta3na/"> <button type="button" class="btn btn-primary">Cancel</button></a>
+                          <button type="reset" class="btn btn-primary">Reset</button>
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            
+ {%endblock%}
