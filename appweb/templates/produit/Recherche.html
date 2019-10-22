@@ -27,7 +27,7 @@
 
                     {% for pro in contacts %}
                         <!-- Product Item -->
-                        <div class="col-lg-4 col-md-4 col-sm-4 product">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 product">
 
                             <div class="product-image">
                                 {% for item in pro.imageproduit_set.all|slice:"1" %}
@@ -554,7 +554,7 @@ if (name =="" ) {
 
             {% for pro in contacts %}
                 <!-- Product Item -->
-                <div class="col-lg-4 col-md-4 col-sm-4 product">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 product">
 
                     <div class="product-image">
                         {% for item in pro.imageproduit_set.all|slice:"1" %}
