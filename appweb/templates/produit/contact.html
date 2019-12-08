@@ -1,0 +1,524 @@
+{% extends "produit/base.html" %}
+{% load staticfiles%}
+{% block content %}
+			
+			<!-- Content -->
+			<div class="row content" >
+				
+               <div class="col-lg-12 col-md-12 col-sm-12">
+                	<div class="breadcrumbs">
+                    	<p><a href="{% url 'produit:index' %}">Home</a> <i class="icons icon-right-dir"></i> Contact</p>
+                    </div>
+                </div>
+                
+				<!-- Main Content -->
+				<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                    
+                    
+                    <div class="row">
+                        
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        {% for v in vente %}
+                        {% if forloop.counter == 1 %}
+                        
+                        <div class="col-lg-7 col-md-7 col-sm-7" >
+                        	
+                            <div class="carousel-heading no-margin">
+                                <h4>{{v.first_name}}</h4>
+                            </div>
+                            
+                            <div class="page-content contact-info">
+                            	                         {% autoescape off %}
+    {{v.rc}}
+{% endautoescape %}
+                             
+
+								<div class="row">
+                                	
+                                    <div class="col-lg-6 col-md-6 col-sm-6" >
+                                    	<div class="contact-item green">
+                                            <i class="icons icon-location-3"></i>
+                                            <p style="font-size:1.1em;">{{v.adresse_user}}<br>
+
+										</div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item blue">
+                                            <i class="icons icon-mail"></i>
+                                            <p><a style="font-size:1.1em;">{{v.email}}</a>
+</p>
+										</div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item orange">
+                                            <i class="icons icon-phone"></i>
+                                            <p style="font-size:1.1em;">{{v.wilaya_user}} : {{v.telephone_user}}<br>
+                                                Tel/Fax:{{v.telephone_portable_user}}/{{v.fax_user}}
+</p>
+										</div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="contact-item purple">
+                                            <i class="icons icon-clock"></i>
+                                            <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+
+Vendredi: fermée</p>
+										</div>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                    	</div>
+                        
+                        {%endif%}
+                        {%endfor%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      
+                        
+<!--ttttttttttttttttt-->
+                         <div class="col-lg-5 col-md-5 col-sm-5">
+
+                            <div class="carousel-heading no-margin">
+                                <h4 style="font-size:1.1em;">Envoyer Email</h4>
+                            </div>
+
+                            <div class="page-content contact-form">
+
+                                    <form id="contact-form" method="POST" action="{% url 'utilisateur:contactEmail' %}">
+                                        {%csrf_token%}
+
+                                        <label style="font-size:1.1em;">Name(required)</label>
+                                        <input style="font-size:1.1em;" name="name" type="text">
+
+                                        <label style="font-size:1.1em;">Email(required)</label>
+                                        <input  style="font-size:1.1em;" name="email" type="text">
+
+                                        <label style="font-size:1.1em;">Subject</label>
+                                        <input style="font-size:1.1em;" name="subject" type="text">
+
+                                        <label style="font-size:1.1em;">Message</label>
+                                        <textarea style="font-size:1.1em;" name="message"></textarea>
+
+                                        <input style="font-size:1.1em;" class="big" type="submit" value="Send Message">
+
+                                    </form>
+
+                                </div>
+
+                    	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        {% for v in vente %}
+                        {% if forloop.counter == 1 %}
+                        {%else%}
+                        
+                        
+                                                 <div class="col-lg-12 col-md-12 col-sm-12">
+                        
+                                                    <div class="carousel-heading no-margin">
+                                                        <h4>{{v.first_name}}</h4>
+                                                    </div>
+                        
+                                                    <div class="page-content contact-info">
+                                                        {% autoescape off %}
+    {{v.rc}}
+{% endautoescape %}
+                        
+                                                      
+                                                        <div class="row">
+                        
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="contact-item green">
+                                                                    <i class="icons icon-location-3"></i>
+                                                                    <p style="font-size:1.1em;">{{v.adresse_user}}<br>
+                        
+                                                                </div>
+                                                            </div>
+                        
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="contact-item blue">
+                                                                    <i class="icons icon-mail"></i>
+                                                                    <p><a style="font-size:1.1em;">{{v.email}}</a>
+                        </p>
+                                                                </div>
+                                                            </div>
+                        
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="contact-item orange">
+                                                                    <i class="icons icon-phone"></i>
+                                                                    <p style="font-size:1.1em;">{{v.wilaya_user}} : {{v.telephone_user}}<br>
+                        Tel/Fax:{{v.telephone_portable_user}}/{{v.fax_user}}
+                        </p>
+                                                                </div>
+                                                            </div>
+                        
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="contact-item purple">
+                                                                    <i class="icons icon-clock"></i>
+                                                                    <p style="font-size:1.1em;">Dimanche - Jeudi: 08.00-17.00<br>
+                        
+                        Vendredi: fermée</p>
+                                                                </div>
+                                                            </div>
+                        
+                                                        </div>
+                        
+                                                    </div>
+                        
+                                                </div>
+                        
+                        
+                        {%endif%}
+                        {% endfor %}
+                        
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+                             
+                  	</div>
+                    
+				</section>
+				<!-- /Main Content -->
+                
+                
+
+			<!-- /Content -->
+			
+	{% endblock %}		
+			
+

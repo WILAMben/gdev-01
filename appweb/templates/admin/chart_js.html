@@ -1,0 +1,61 @@
+{% extends "admin/admin_page.html" %}
+{% load staticfiles%}
+{% block content %}
+
+<div id="container" style="min-width: 250px; height: 400px; margin: 0 auto; width: 800px;"></div>
+<script type="text/javascript">
+	
+	Highcharts.chart('container', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: 'nombre de compte crée et confirmer'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        title: {
+            text: 'nombre'
+        },
+        labels: {
+            formatter: function () {
+                return this.value ;
+            }
+        }
+    },
+    tooltip: {
+        crosshairs: true,
+        shared: true
+    },
+    plotOptions: {
+        spline: {
+            marker: {
+                radius: 4,
+                lineColor: '#666666',
+                lineWidth: 1
+            }
+        }
+    },
+    series: [{
+        name: 'Crée',
+        marker: {
+            symbol: 'square'
+        },
+        data: [{{jan}},{{feb}}, {{mar}}, {{avr}}, {{mai}},{{jun}}, {{jul}}, {{aut}}, {{sep}}, {{oct}}, {{nvb}}, {{dec}}]
+
+    }, {
+        name: 'confirmer',
+        marker: {
+            symbol: 'diamond'
+        },
+        data: [{{jan1}},{{feb1}}, {{mar1}}, {{avr1}}, {{mai1}},{{jun1}}, {{jul1}}, {{aut1}}, {{sep1}}, {{oct1}}, {{nvb1}}, {{dec1}}]
+    }]
+});
+</script>
+{%endblock%}

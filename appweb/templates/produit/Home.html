@@ -1,0 +1,1511 @@
+{% extends "produit/base.html" %}
+{% load staticfiles%}
+{% load humanize %}
+{% block content %}
+
+
+
+
+
+
+
+
+{% if request.session.loadingss == "first" %}
+<style>
+	.no-js #loader { display: none;  }
+	.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+	.se-pre-con {
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		z-index: 9999;
+		background: url("{% static 'img/source.gif' %}") center no-repeat #fff;
+	}
+	</style>
+	
+	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+	
+	
+	<script type="text/javascript">
+		// Wait for window load
+		$(window).load(function() {
+			// Animate loader off screen
+			$(".se-pre-con").fadeOut("slow");;
+		});</script>
+	
+	
+	
+	
+	
+	<div class="se-pre-con" style="align-content: center;"> </div>
+	
+
+{%endif%}
+
+
+{% if request.session.loadingss == "first" %}
+
+
+<script type="text/javascript">
+
+
+	function codeAddress() {
+		setTimeout(function(){
+
+
+
+
+	
+swal({
+  title: "عميل جديد !!!؟؟؟",
+  text: "يمكنك انشاء حساب الان,هل تريد ذلك؟؟؟ ",
+  icon: "info",
+  buttons: {
+    cancel: "لاحقا",
+    confirm: "انشاء حساب",
+  },
+
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+
+    farida()
+    .then((parpase) => {
+      if (parpase) {
+    if ( event.isDefaultPrevented()) { event.currentTarget.submit();}
+   
+}
+    });
+  } 
+});
+
+
+
+;
+},15000);
+
+
+		
+
+	}
+	window.onload = codeAddress;
+
+
+
+	</script>
+<script type="text/javascript">
+
+function farida(){
+    var url = "{% url 'utilisateur:registre_view' %}";
+
+   
+    // Construct the full URL with "id"
+    document.location.href = url ;
+
+};
+
+</script>
+
+
+
+
+
+
+{%endif%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- debut francais-->
+{% if request.session.lang == "fr" %}
+			<!-- Content -->
+			<div class="row content">
+
+					<!-- Main Content -->
+					<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+							<section class="slider">
+								<div class="tp-banner-container">
+									<div class="tp-banner" >
+										<ul>
+											<!-- SLIDE  -->
+													{% for slid in slide %}
+													 {% if slid.type == "slide" %}
+											
+											<li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500" >
+												<!-- MAIN IMAGE -->
+												<img src="{{MEDIA_URL}}{{slid.img.url}}"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+												<!-- LAYERS -->
+												<div class="tp-caption skewfromrightshort fadeout"
+													data-x="40"
+													data-y="270"
+													data-speed="500"
+													data-start="1200"
+													style="background-color: white;"
+													data-easing="Power4.easeOut"><h2><strong>&nbsp;{{slid.titre1}}&nbsp;</strong></h2>
+												</div>
+													<div class="tp-caption skewfromrightshort fadeout"
+													data-x="40"
+													data-y="360"
+													data-speed="500"
+													data-start="1200"
+													style="background-color: white;"
+													data-easing="Power4.easeOut"><h3 >&nbsp;{{slid.titre2}}&nbsp;</h3>
+												</div>
+												
+											</li>
+											{%endif%}
+											 {% endfor %}
+										
+										</ul>
+									</div>
+								</div>
+								</section>
+			
+			
+			
+
+
+					<!-- Featured Products -->
+					<div class="products-row row">
+
+						<!-- Carousel Heading -->
+						<div class="col-lg-12 col-md-12 col-sm-12">
+
+							<div class="carousel-heading">
+								<h4>Nos produits</h4>
+								<div class="carousel-arrows">
+									<i class="icons icon-left-dir "></i>
+									<i class="icons icon-right-dir"></i>
+								</div>
+							</div>
+
+						</div>
+						<!-- /Carousel Heading -->
+
+						<!-- Carousel -->
+						<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+							<div class="owl-carousel" data-max-items="3">
+
+									<!-- Slide -->
+									      {% for pro in all%}
+									      <form onsubmit="return false;">
+									<div style="margin-right: -10px;">
+										
+										<!-- Carousel Item -->
+										<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12">
+                                                
+											<div class="product-image">
+                                                   {% for item in pro.imageproduit_set.all|slice:"1" %}
+												<img src="{{MEDIA_URL}}{{item.image.url}}" alt="ProductImage" style="width: 270px; height: 270px; object-fit: cover;">
+
+                                                       {% endfor %}
+                                                       {% for item in pro.imageproduit_set.all|slice:"1" %}
+												<a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+                                                   {% endfor %}
+
+													<i class="icons icon-eye-1"></i> voir
+												</a>
+											</div>
+
+										
+											          
+										<div class="product-info" style="height:130px;">
+                   
+											<h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit}}</a>
+											</strong><br><small style="color: blue;">
+											  
+											  <strong> Ref: {{pro.reference_produit}} </strong></small></h5>
+										  <span class="price">{{pro.prix_produit|intcomma}}Dzd</span>
+										  <div class="rating readonly-rating" data-score="4"></div>
+										</div>
+
+
+
+
+
+
+
+                                       
+											<div class="product-actions">
+												<span class="add-to-cart">
+													<span class="action-wrapper">
+														<i class="icons icon-basket-2"></i>
+														{% if user.is_authenticated %}
+														<span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au panier</span>
+														{% else %}
+														<span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au panier</span>
+														{% endif %}
+													</span >
+												</span>
+												<span class="add-to-favorites">
+													<span class="action-wrapper">
+                                                        <i class="icons icon-heart-empty"></i>
+
+                                                            {% if user.is_authenticated %}
+                                                        <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">ajouter au favoris</span>
+                                                        {% else %}
+                                                        <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">ajouter au favoris</span>
+                                                        {% endif %}
+                                                    </span>
+												</span>
+												<span class="add-to-compare">
+													<span class="action-wrapper">
+														<i class="icons icon-docs"></i>
+																	{% if user.is_authenticated %}
+														<span class="action-name" onclick="addCompare('{{pro.id}}')" style="font-size: small;">Comparer</span>
+														{% else %}
+														<span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Comparer</span>
+														{% endif %}
+													</span>
+												</span>
+											</div>
+
+										</div>
+										<!-- /Carousel Item -->
+									
+									</div>
+
+
+
+
+
+
+
+</form>
+        {% endfor %}
+
+				
+							</div>
+						</div>
+						<!-- /Carousel -->
+
+					</div>
+					<!-- /Featured Products -->
+
+
+
+
+					<!-- New Collection -->
+					<div class="products-row row">
+
+						<!-- Carousel Heading -->
+						<div class="col-lg-12 col-md-12 col-sm-12">
+
+							<div class="carousel-heading">
+								<h4 >Nouveaux Produits</h4>
+								<div class="carousel-arrows">
+									<i class="icons icon-left-dir"></i>
+									<i class="icons icon-right-dir"></i>
+								</div>
+							</div>
+
+						</div>
+						<!-- /Carousel Heading -->
+
+						<!-- Carousel -->
+						<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+							<div class="owl-carousel" data-max-items="3">
+								{% for pro in date_ajout%}
+                                  <form onsubmit="return false;">
+									<!-- Slide -->
+									<div style="margin-right: -10px;">
+										<!-- Carousel Item -->
+										<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12">
+
+											<div class="product-image">
+												<span class="product-tag">Nouveau</span>
+												{% for item in pro.imageproduit_set.all|slice:"1" %}
+												<img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1" style="width: 270px; height: 270px; object-fit: cover;">
+													<a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+												{% endfor %}
+												
+													<i class="icons icon-eye-1"></i> voir
+												</a>
+											</div>
+
+											          
+										<div class="product-info" style="height:130px;">
+                   
+											<h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit}}</a>
+											</strong><br><small style="color: blue;">
+											  
+											  <strong> Ref: {{pro.reference_produit}} </strong></small></h5>
+										  <span class="price">{{pro.prix_produit|intcomma}}Dzd</span>
+										  <div class="rating readonly-rating" data-score="4"></div>
+										</div>
+
+											<div class="product-actions">
+												<span class="add-to-cart">
+													<span class="action-wrapper">
+														<i class="icons icon-basket-2"></i>
+														{% if user.is_authenticated %}
+														<span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au panier</span>
+														{% else %}
+														<span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au panier</span>
+														{% endif %}
+													</span >
+												</span>
+												<span class="add-to-favorites">
+													<span class="action-wrapper">
+														<i class="icons icon-heart-empty"></i>
+														       {% if user.is_authenticated %}
+                                                        <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">ajouter au favoris</span>
+                                                        {% else %}
+                                                        <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">ajouter au favoris</span>
+                                                        {% endif %}
+													</span>
+												</span>
+												<span class="add-to-compare">
+													<span class="action-wrapper">
+														<i class="icons icon-docs"></i>
+																		{% if user.is_authenticated %}
+														<span class="action-name" onclick="addCompare('{{pro.id}}')" style="font-size: small;">Comparer</span>
+														{% else %}
+														<span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Comparer</span>
+														{% endif %}
+													</span>
+												</span>
+											</div>
+
+										</div>
+										<!-- /Carousel Item -->
+									</div>
+									<!-- /Slide -->
+
+
+
+</form>
+        {% endfor %}
+
+							</div>
+						</div>
+						<!-- /Carousel -->
+
+					</div>
+					<!-- /New Collection -->
+
+
+
+
+
+					<!-- Random Products -->
+					<div class="products-row row">
+
+						<!-- Carousel Heading -->
+						<div class="col-lg-12 col-md-12 col-sm-12">
+
+							<div class="carousel-heading">
+								<h4>Produit varier</h4>
+								<div class="carousel-arrows">
+									<i class="icons icon-left-dir"></i>
+									<i class="icons icon-right-dir"></i>
+								</div>
+							</div>
+
+						</div>
+						<!-- /Carousel Heading -->
+
+						<!-- Carousel -->
+						<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+							<div class="owl-carousel" data-max-items="3">
+							      {% for pro in random %}
+									      <form onsubmit="return false;">
+									<div style="margin-right: -10px;">
+										
+										<!-- Carousel Item -->
+										<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12">
+                                                
+											<div class="product-image">
+                                                   {% for item in pro.imageproduit_set.all|slice:"1" %}
+												<img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1" style="width: 270px; height: 270px; object-fit: cover;">
+
+                                                       {% endfor %}
+                                                       {% for item in pro.imageproduit_set.all|slice:"1" %}
+												<a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+                                                   {% endfor %}
+
+													<i class="icons icon-eye-1"></i> voir
+												</a>
+											</div>
+
+											          
+										<div class="product-info" style="height:130px;">
+                   
+											<h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit}}</a>
+											</strong><br><small style="color: blue;">
+											  
+											  <strong> Ref: {{pro.reference_produit}} </strong></small></h5>
+										  <span class="price">{{pro.prix_produit|intcomma}}Dzd</span>
+										  <div class="rating readonly-rating" data-score="4"></div>
+										</div>
+                                       
+											<div class="product-actions">
+												<span class="add-to-cart">
+													<span class="action-wrapper">
+														<i class="icons icon-basket-2"></i>
+														{% if user.is_authenticated %}
+														<span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au panier</span>
+														{% else %}
+														<span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au panier</span>
+														{% endif %}
+													</span >
+												</span>
+												<span class="add-to-favorites">
+													<span class="action-wrapper">
+                                                        <i class="icons icon-heart-empty"></i>
+
+                                                            {% if user.is_authenticated %}
+                                                        <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">ajouter au favoris</span>
+                                                        {% else %}
+                                                        <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">ajouter au favoris</span>
+                                                        {% endif %}
+                                                    </span>
+												</span>
+												<span class="add-to-compare">
+													<span class="action-wrapper">
+														<i class="icons icon-docs"></i>
+																	{% if user.is_authenticated %}
+														<span class="action-name" onclick="addCompare('{{pro.id}}')" style="font-size: small;">Comparer</span>
+														{% else %}
+														<span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Comparer</span>
+														{% endif %}
+													</span>
+												</span>
+											</div>
+
+										</div>
+										<!-- /Carousel Item -->
+									
+									</div>
+
+
+
+
+
+
+
+</form>
+        {% endfor %}
+							
+
+
+
+
+
+
+							
+
+
+
+
+
+
+
+							</div>
+						</div>
+						<!-- /Carousel -->
+
+					</div>
+					<!-- /Random Products -->
+
+
+
+			
+								<!-- Product Brands -->
+								<div class="products-row row">
+			
+										<!-- Carousel Heading -->
+										<div class="col-lg-12 col-md-12 col-sm-12">
+				
+											<div class="carousel-heading">
+												<h4>   Nos points de vente    </h4>
+												<div class="carousel-arrows">
+													<i class="icons icon-left-dir"></i>
+													<i class="icons icon-right-dir"></i>
+												</div>
+											</div>
+				
+										</div>
+										<!-- /Carousel Heading -->
+				
+										<!-- Carousel -->
+										<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+				
+											<div class="owl-carousel" data-max-items="3">
+				                                   {% for vn in imgvente %}
+													<!-- Slide -->
+													<div>
+														<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12">
+															<a href="#"><img src="{{MEDIA_URL}}{{vn.img.url}}" alt="rev_01.png"></a>
+														</div>
+													</div>
+													<!-- /Slide -->
+				                                 {%endfor%}
+
+
+
+				
+											</div>
+				
+										</div>
+										<!-- /Carousel -->
+				
+									</div>
+									<!-- /Product Brands -->
+			
+						</section>
+						<!-- /Main Content -->
+
+
+
+
+				<!-- fin francais-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--debu arab-->
+
+{%else%}
+		<!-- Content -->
+		<div class="row content">
+
+			<!-- Main Content -->
+			<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+
+				<section class="slider">
+					<div class="tp-banner-container">
+						<div class="tp-banner" >
+							<ul>
+								<!-- SLIDE  -->
+										{% for slid in slide %}
+										 {% if slid.type == "slide" %}
+										 <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500" >
+												<!-- MAIN IMAGE -->
+												<img src="{{MEDIA_URL}}{{slid.img.url}}"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+												<!-- LAYERS -->
+												<div class="tp-caption skewfromrightshort fadeout"
+													data-x="40"
+													data-y="270"
+													data-speed="500"
+													data-start="1200"
+													style="background-color: white;"
+													data-easing="Power4.easeOut"><h2><strong>&nbsp;{{slid.titre1}}&nbsp;</strong></h2>
+												</div>
+													<div class="tp-caption skewfromrightshort fadeout"
+													data-x="40"
+													data-y="360"
+													data-speed="500"
+													data-start="1200"
+													style="background-color: white;"
+													data-easing="Power4.easeOut"><h3 >&nbsp;{{slid.titre2}}&nbsp;</h3>
+												</div>
+												
+											</li>
+								{%endif%}
+								 {% endfor %}
+							
+							</ul>
+						</div>
+					</div>
+				  </section>
+
+
+
+
+				<!-- Featured Products -->
+				<div class="products-row row">
+
+					<!-- Carousel Heading -->
+					<div class="col-lg-12 col-md-12 col-sm-12">
+
+						<div class="carousel-heading">
+							<h4>منتجاتنا</h4>
+							<div class="carousel-arrows">
+								<i class="icons icon-left-dir "></i>
+								<i class="icons icon-right-dir"></i>
+							</div>
+						</div>
+
+					</div>
+					<!-- /Carousel Heading -->
+
+					<!-- Carousel -->
+					<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+						<div class="owl-carousel" data-max-items="3">
+
+								<!-- Slide -->
+									  {% for pro in all%}
+									  <form onsubmit="return false;">
+								<div>
+									
+									<!-- Carousel Item -->
+									<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12"> 
+											
+										<div class="product-image">
+											   {% for item in pro.imageproduit_set.all|slice:"1" %}
+											<img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1" style="width: 270px; height: 270px; object-fit: cover;">
+
+												   {% endfor %}
+												   {% for item in pro.imageproduit_set.all|slice:"1" %}
+											<a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+											   {% endfor %}
+
+												<i class="icons icon-eye-1"></i> عرض سريع
+											</a>
+										</div>
+
+									   
+										<div class="product-info" style="height:130px;">
+                   
+											<h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit_ar}}</a>
+											</strong><br><small style="color: blue;">
+											  
+											  <strong> المرجع: {{pro.reference_produit}} </strong></small></h5>
+																<span class="price">{{pro.prix_produit|intcomma}}دج</span>
+																<div class="rating readonly-rating" data-score="4"></div>
+															</div>
+					
+									 
+					
+					
+								   
+										<div class="product-actions">
+											<span class="add-to-cart">
+												<span class="action-wrapper">
+													<i class="icons icon-basket-2"></i>
+													{% if user.is_authenticated %}
+													<span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" >أضف إلى السلة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى السلة</span>
+													{% endif %}
+												</span >
+											</span>
+											<span class="add-to-favorites">
+												<span class="action-wrapper">
+													<i class="icons icon-heart-empty"></i>
+
+														{% if user.is_authenticated %}
+													<span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" >أضف إلى المفضلة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى المفضلة</span>
+													{% endif %}
+												</span>
+											</span>
+											<span class="add-to-compare">
+												<span class="action-wrapper">
+													<i class="icons icon-docs"></i>
+																{% if user.is_authenticated %}
+													<span class="action-name" onclick="addCompare('{{pro.id}}')" >أضف للمقارنة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف للمقارنة</span>
+													{% endif %}
+												</span>
+											</span>
+										</div>
+
+									</div>
+									<!-- /Carousel Item -->
+								
+								</div>
+
+
+
+
+
+
+
+</form>
+	{% endfor %}
+
+			
+						</div>
+					</div>
+					<!-- /Carousel -->
+
+				</div>
+				<!-- /Featured Products -->
+
+
+
+
+				<!-- New Collection -->
+				<div class="products-row row">
+
+					<!-- Carousel Heading -->
+					<div class="col-lg-12 col-md-12 col-sm-12">
+
+						<div class="carousel-heading">
+							<h4>منتجات جديدة</h4>
+							<div class="carousel-arrows">
+								<i class="icons icon-left-dir"></i>
+								<i class="icons icon-right-dir"></i>
+							</div>
+						</div>
+
+					</div>
+					<!-- /Carousel Heading -->
+
+					<!-- Carousel -->
+					<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+						<div class="owl-carousel" data-max-items="3">
+							{% for pro in date_ajout%}
+							  <form onsubmit="return false;">
+								<!-- Slide -->
+								<div>
+									<!-- Carousel Item -->
+									<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12">
+
+										<div class="product-image">
+											<span class="product-tag">جديد</span>
+											{% for item in pro.imageproduit_set.all|slice:"1" %}
+											<img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1" style="width: 270px; height: 270px; object-fit: cover;">
+												<a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+											{% endfor %}
+											
+												<i class="icons icon-eye-1"></i>عرض سريع
+											</a>
+										</div>
+   
+										<div class="product-info" style="height:130px;">
+                   
+											<h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit_ar}}</a>
+											</strong><br><small style="color: blue;">
+											  
+											  <strong> المرجع: {{pro.reference_produit}} </strong></small></h5>
+																<span class="price">{{pro.prix_produit|intcomma}}دج</span>
+																<div class="rating readonly-rating" data-score="4"></div>
+															</div>
+					
+									 
+					
+					
+
+										<div class="product-actions">
+											<span class="add-to-cart">
+												<span class="action-wrapper">
+													<i class="icons icon-basket-2"></i>
+													{% if user.is_authenticated %}
+													<span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" >أضف إلى السلة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى السلة</span>
+													{% endif %}
+												</span >
+											</span>
+											<span class="add-to-favorites">
+												<span class="action-wrapper">
+													<i class="icons icon-heart-empty"></i>
+														   {% if user.is_authenticated %}
+													<span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" >أضف إلى المفضلة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى المفضلة</span>
+													{% endif %}
+												</span>
+											</span>
+											<span class="add-to-compare">
+												<span class="action-wrapper">
+													<i class="icons icon-docs"></i>
+																	{% if user.is_authenticated %}
+													<span class="action-name" onclick="addCompare('{{pro.id}}')" >أضف للمقارنة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف للمقارنة</span>
+													{% endif %}
+												</span>
+											</span>
+										</div>
+
+									</div>
+									<!-- /Carousel Item -->
+								</div>
+								<!-- /Slide -->
+
+
+
+</form>
+	{% endfor %}
+
+						</div>
+					</div>
+					<!-- /Carousel -->
+
+				</div>
+				<!-- /New Collection -->
+
+
+
+
+
+				<!-- Random Products -->
+				<div class="products-row row">
+
+					<!-- Carousel Heading -->
+					<div class="col-lg-12 col-md-12 col-sm-12">
+
+						<div class="carousel-heading">
+							<h4>منتجات عشوائية</h4>
+							<div class="carousel-arrows">
+								<i class="icons icon-left-dir"></i>
+								<i class="icons icon-right-dir"></i>
+							</div>
+						</div>
+
+					</div>
+					<!-- /Carousel Heading -->
+
+					<!-- Carousel -->
+					<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+						<div class="owl-carousel" data-max-items="3">
+							  {% for pro in random %}
+									  <form onsubmit="return false;">
+								<div>
+									
+									<!-- Carousel Item -->
+									<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12">
+											
+										<div class="product-image">
+											   {% for item in pro.imageproduit_set.all|slice:"1" %}
+											<img src="{{MEDIA_URL}}{{item.image.url}}" alt="Product1" style="width: 270px; height: 270px; object-fit: cover;">
+
+												   {% endfor %}
+												   {% for item in pro.imageproduit_set.all|slice:"1" %}
+											<a onclick="myPopup('{{MEDIA_URL}}{{item.image.url}}','{{pro.nom_produit}}');" class="product-hover" >
+											   {% endfor %}
+
+												<i class="icons icon-eye-1"></i> عرض سريع
+											</a>
+										</div>
+
+									   
+										<div class="product-info" style="height:130px;">
+                   
+											<h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit_ar}}</a>
+											</strong><br><small style="color: blue;">
+											  
+											  <strong> المرجع: {{pro.reference_produit}} </strong></small></h5>
+																<span class="price">{{pro.prix_produit|intcomma}}دج</span>
+																<div class="rating readonly-rating" data-score="4"></div>
+															</div>
+					
+									 
+					
+					
+								   
+										<div class="product-actions">
+											<span class="add-to-cart">
+												<span class="action-wrapper">
+													<i class="icons icon-basket-2"></i>
+													{% if user.is_authenticated %}
+													<span class="action-name" onclick="Apach('{{pro.id}}','{{user.id}}')" >أضف إلى السلة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى السلة</span>
+													{% endif %}
+												</span >
+											</span>
+											<span class="add-to-favorites">
+												<span class="action-wrapper">
+													<i class="icons icon-heart-empty"></i>
+
+														{% if user.is_authenticated %}
+													<span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" >أضف إلى المفضلة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف إلى المفضلة</span>
+													{% endif %}
+												</span>
+											</span>
+											<span class="add-to-compare">
+												<span class="action-wrapper">
+													<i class="icons icon-docs"></i>
+																{% if user.is_authenticated %}
+													<span class="action-name" onclick="addCompare('{{pro.id}}')" >أضف للمقارنة</span>
+													{% else %}
+													<span class="action-name" onclick="swal('يجب عليك تسجيل دخولك أولا!',{icon: 'error',})" >أضف للمقارنة</span>
+													{% endif %}
+												</span>
+											</span>
+										</div>
+
+									</div>
+									<!-- /Carousel Item -->
+								
+								</div>
+
+
+
+
+
+
+
+</form>
+	{% endfor %}
+						
+
+
+
+
+
+
+						
+
+
+
+							
+
+
+
+
+
+
+						</div>
+					</div>
+					<!-- /Carousel -->
+
+				</div>
+				<!-- /Random Products -->
+
+
+
+
+					<!-- Product Brands -->
+					<div class="products-row row">
+
+							<!-- Carousel Heading -->
+							<div class="col-lg-12 col-md-12 col-sm-12">
+	
+								<div class="carousel-heading">
+									<h4>نقاط البيع المعتمدة </h4>
+									<div class="carousel-arrows">
+										<i class="icons icon-left-dir"></i>
+										<i class="icons icon-right-dir"></i>
+									</div>
+								</div>
+	
+							</div>
+							<!-- /Carousel Heading -->
+	
+							<!-- Carousel -->
+							<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+	
+								<div class="owl-carousel" data-max-items="3">
+	
+									{% for vn in imgvente %}
+									<!-- Slide -->
+									<div>
+										<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12">
+											<a href="#"><img src="{{MEDIA_URL}}{{vn.img.url}}" alt="rev_01.png"></a>
+										</div>
+									</div>
+									<!-- /Slide -->
+								 {%endfor%}
+
+
+								 
+								</div>
+	
+							</div>
+							<!-- /Carousel -->
+	
+						</div>
+						<!-- /Product Brands -->
+
+			</section>
+			<!-- /Main Content -->
+
+{%endif%}
+
+
+<!--fin arab-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}
+
+
+{% block news_content  %}
+
+
+
+
+
+
+<!--debut francais-->
+{% if request.session.lang == "fr" %}
+<!-- News -->
+			<div class="products-row row">
+
+				<!-- Carousel Heading -->
+				<div class="col-lg-12 col-md-12 col-sm-12">
+
+					<div class="carousel-heading">
+						<h4>Dernières nouvelles &amp; Avis</h4>
+						<div class="carousel-arrows">
+							<i class="icons icon-left-dir"></i>
+							<i class="icons icon-right-dir"></i>
+						</div>
+					</div>
+
+				</div>
+				<!-- /Carousel Heading -->
+
+
+				<!-- Carousel -->
+				<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+					<div class="owl-carousel" data-max-items="2">
+
+             {% for b in blog|slice:"6" %}
+
+
+
+
+						<!-- Slide -->
+						<div>
+							<!-- Carousel Item -->
+							<article class="news">
+
+								<div class="news-background">
+
+									<div class="row">
+										<div class="col-lg-6 col-md-6 col-sm-6 news-thumbnail">
+											<a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="News1" style="
+                                    
+												height:300px;
+												"></a>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 news-content">
+											<h1><a href="{%url 'produit:blog_post' %}?bbg={{b.id}}"><strong>{{b.titre}}</strong></a></h1>
+											<span class="date"><i class="icons icon-clock-1"></i>{{b.date}}</span>
+											<div id="desc" style=" overflow-y: scroll;  width:260px; height: 220px;">
+												{{b.description|truncatechars:200|safe}}...</div>
+										</div>
+									</div>
+
+								</div>
+
+							</article>
+							<!-- /Carousel Item -->
+						</div>
+						<!-- /Slide -->
+
+
+{% endfor %}
+
+
+					</div>
+
+				</div>
+				<!-- /Carousel -->
+			<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div>	
+
+			</div>
+			<!-- /News -->
+
+			<script type="text/javascript">
+
+				function addWish(s,t){
+					
+			   swal("Le produit est ajouter", {
+					 icon: "success",
+				   });
+			   
+							   $.ajax({
+								   type: "POST",
+			   
+								   url : "{% url 'produit:addWish' %}",
+								   dataType: "json",
+								   async: true,
+								   data:{
+									   csrfmiddlewaretoken: '{{csrf_token}}',
+									   id_produit : s,
+									   id_user :t,
+			   
+			   
+								   },
+			   
+							   });
+						  
+			   
+			   
+			   
+						   }
+			   
+			   
+				  
+					 </script>
+			   
+				  <script type="text/javascript">
+									 function addCompare(s){
+														swal("Le produit est ajouter pour le comparer", {
+					 icon: "success",
+				   });
+			   
+							   $.ajax({
+								   type: "POST",
+			   
+								   url : "{% url 'produit:addCompare' %}",
+								   dataType: "json",
+								   async: true,
+								   data:{
+									   csrfmiddlewaretoken: '{{csrf_token}}',
+									   id_produit : s,
+			   
+			   
+								   },
+							   
+							   });
+						   }
+					 </script>
+
+<!--fin francais-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--debut arab-->
+{%else%}
+<!-- News -->
+<div class="products-row row">
+
+	<!-- Carousel Heading -->
+	<div class="col-lg-12 col-md-12 col-sm-12">
+
+		<div class="carousel-heading">
+			<h4>اخر الاخبار &amp; التعليقات</h4>
+			<div class="carousel-arrows">
+				<i class="icons icon-left-dir"></i>
+				<i class="icons icon-right-dir"></i>
+			</div>
+		</div>
+
+	</div>
+	<!-- /Carousel Heading -->
+
+
+	<!-- Carousel -->
+	<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+
+		<div class="owl-carousel" data-max-items="2">
+
+ {% for b in blog|slice:"6" %}
+
+
+
+
+			<!-- Slide -->
+			<div>
+				<!-- Carousel Item -->
+				<article class="news">
+
+					<div class="news-background">
+
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 news-thumbnail">
+								<a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="News1"  style="
+                                    
+									height:300px;
+									"></a>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 news-content">
+								<h1><a href="{%url 'produit:blog_post' %}?bbg={{b.id}}"><strong>{{b.titre}}</strong></a></h1>
+								<span class="date"><i class="icons icon-clock-1"></i>{{b.date}}</span>
+								<div id="desc" style=" overflow-y: scroll;  width:260px; height: 220px;">
+									{{b.description|truncatechars:200|safe}}...</div>
+							</div>
+						</div>
+
+					</div>
+
+				</article>
+				<!-- /Carousel Item -->
+			</div>
+			<!-- /Slide -->
+
+
+{% endfor %}
+
+
+		</div>
+
+	</div>
+	<!-- /Carousel -->
+<div id="myModal" class="modal">
+<span class="close">&times;</span>
+<img class="modal-content" id="img01">
+<div id="caption"></div>
+
+</div>	
+
+</div>
+<!-- /News -->
+
+<script type="text/javascript">
+
+	function addWish(s,t){
+		
+   swal("تم اضافة المنتج", {
+		 icon: "success",
+	   });
+   
+				   $.ajax({
+					   type: "POST",
+   
+					   url : "{% url 'produit:addWish' %}",
+					   dataType: "json",
+					   async: true,
+					   data:{
+						   csrfmiddlewaretoken: '{{csrf_token}}',
+						   id_produit : s,
+						   id_user :t,
+   
+   
+					   },
+   
+				   });
+			  
+   
+   
+   
+			   }
+   
+   
+	  
+		 </script>
+   
+	  <script type="text/javascript">
+						 function addCompare(s){
+											swal("تم اضافة المنتج للمقارنة", {
+		 icon: "success",
+	   });
+   
+				   $.ajax({
+					   type: "POST",
+   
+					   url : "{% url 'produit:addCompare' %}",
+					   dataType: "json",
+					   async: true,
+					   data:{
+						   csrfmiddlewaretoken: '{{csrf_token}}',
+						   id_produit : s,
+   
+   
+					   },
+				   
+				   });
+			   }
+		 </script>
+{%endif%}
+<!--fin arab-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

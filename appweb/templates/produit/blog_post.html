@@ -1,0 +1,117 @@
+{% extends "produit/base.html" %}
+
+{%block content%}
+
+			<!-- Content -->
+			<div class="row content">
+				
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                	<div class="breadcrumbs">
+                    	<p><a href="{% url 'produit:index' %}">Home</a> <i class="icons icon-right-dir"></i> Blog Single</p>
+                    </div>
+                </div>
+                
+				<!-- Main Content -->
+				<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                    
+                    
+                    <div class="row">
+                    	
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        	{% for a in all%}
+                            <div class="carousel-heading">
+                                <h4>{{a.titre}}</h4>
+                            </div>
+                            
+                    	</div>
+                        
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        	
+                            <div class="blog-item">
+                            	
+                                <img src="{{MEDIA_URL}}{{a.img.url}}" alt="" style="
+                                    
+                                height:700px;
+                                ">
+                                
+                                <div class="blog-info">
+                                    <div class="blog-meta">
+                                    	<span class="date"><i class="icons icon-clock"></i>{{a.date}}</span>
+                                      
+										
+                                    </div>
+                                    <p>{{a.description|safe}}</p>
+
+                                    <div class="social-share">
+                                    	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; width:100px;" allowTransparency="true"></iframe>
+                                        
+                                        <iframe allowtransparency="true" frameborder="0" scrolling="no"
+        src="https://platform.twitter.com/widgets/tweet_button.html"
+        style="width:100px; height:20px;"></iframe>
+        
+        								<!-- Place this tag where you want the +1 button to render. -->
+                                        <div class="g-plusone" data-size="medium"></div>
+                                        
+                                        <!-- Place this tag after the last +1 button tag. -->
+                                        <script type="text/javascript">
+                                          (function() {
+                                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                            po.src = 'https://apis.google.com/js/platform.js';
+                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                          })();
+                                        </script>
+                                        
+                                        
+                                        <a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ftest.ratkosolar.com%2Fhomeshop%2F15-blog_post.html&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+<!-- Please call pinit.js only once per page -->
+<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+                                        
+                                    </div>
+                                
+                                </div>
+								<div class="product-actions blog-actions-big">
+									<span class="product-action blue">
+										<span class="action-wrapper">
+											<i class="icons icon-pencil-1"></i>
+											<span class="action-name">Add New Comment</span>
+										</span>
+									</span>
+									<span class="product-action red">
+										<span class="action-wrapper">
+											<i class="icons icon-doc-text"></i>
+											<span class="action-name" onclick="window.print()">Print page</span>
+										</span>
+									</span>
+									<span class="product-action home-green">
+										<span class="action-wrapper">
+											<i class="icons icon-mail"></i>
+											<span class="action-name">Send email</span>
+										</span>
+									</span>
+								</div>
+								
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                      {% endfor%}
+                    
+                 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+				</section>
+				<!-- /Main Content -->
+                
+            {%endblock%}

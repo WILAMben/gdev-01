@@ -1,0 +1,158 @@
+{% extends "produit/base.html" %}
+
+{%block content%}
+
+				<!-- Content -->
+			<div class="row content">
+				
+               <div class="col-lg-12 col-md-12 col-sm-12">
+                	<div class="breadcrumbs">
+                    	<p><a href="{% url 'produit:index' %}">Home</a> <i class="icons icon-right-dir"></i>Blog</p>
+                    </div>
+                </div>
+                
+				<!-- Main Content -->
+				<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                    
+                    
+
+                    <div class="row">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 ">
+
+                            <div class="carousel-heading">
+                                <h4>New &amp; Reviews</h4>
+                            </div>
+
+                    	</div>
+
+                    </div>
+                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="row">
+
+                       
+                            
+                            {% for b in touss %}
+                        <div class="col-lg-6 col-md-6 col-sm-12"  >
+                        	<div class="blog-item" style="height:45em">
+
+                                <a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="" style="
+                                    
+                                    height:300px;
+                                    " ></a>
+                                <div class="blog-info">
+                                	<h3><a >{{b.titre}}</a></h3>
+                                    <div class="blog-meta">
+                                    	<span class="date"><i class="icons icon-clock"></i> {{b.date}}</span>
+                                       
+                                        <span class="views"><i class="icons icon-eye-1"></i> {{ forloop.counter }} times</span>
+										<div class="rating-box">
+											<span>Rate this item</span>
+											<div class="rating readonly-rating" data-score="4"></div>
+											<span>(1 vote)</span>
+										</div>
+                                    </div>
+                                    <div>{{b.description|truncatechars:100|safe}} </div>
+                                </div>
+                                <div class="product-actions blog-actions">
+									<span class="product-action dark-blue">
+										<span class="action-wrapper">
+											<i class="icons icon-doc-text"></i>
+											<a href="{%url 'produit:blog_post' %}?bbg={{b.id}}"><span class="action-name" >Read more</span></a>
+										</span>
+									</span>
+									<span  class="product-action blue">
+										<span class="action-wrapper">
+											<i  class="icons icon-pencil-1"></i>
+											<span class="action-name">Add new comment</span>
+										</span>
+									</span>
+								</div>
+                            </div>
+                        </div>
+     {%endfor%}
+                       
+                   </div>
+
+
+
+ <div class="row">
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="category-results">
+                                <p>Page {{ touss.number }} of {{ touss.paginator.num_pages }}</p>
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="pagination">
+                                {% if touss.has_previous %}
+                                <a href="?id={{hass}}&page={{ touss.previous_page_number }}"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
+                                 {% endif %}
+
+
+                                 {% with ''|center:touss.paginator.num_pages as range %}
+                                  {% for i in range %}
+
+                                 
+                                <a href="?id={{hass}}&page={{ forloop.counter }}"><div class="page-button">{{ forloop.counter }}</div></a>
+                                  {% endfor %}  
+                                  {% endwith %} 
+                                  {% if touss.has_next %}                           
+                                <a href="?id={{hass}}&page={{ touss.next_page_number }}"><div class="next"><i class="icons icon-right-dir"></i></div></a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 
+
+
+				</section>
+				<!-- /Main Content -->
+
+{%endblock%}

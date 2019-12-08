@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% load staticfiles %}
+    <title>Didaben Admin | </title>
+
+    <!-- hadou ta3 chart -->
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- Dropzone.js -->
+    <link href="{% static 'vendors/dropzone/dist/min/dropzone.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="{% static 'vendors/google-code-prettify/bin/prettify.min.css' %}" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{% static 'vendors/select2/dist/css/select2.min.css' %}" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="{% static 'vendors/switchery/dist/switchery.min.css' %}" rel="stylesheet">
+    <!-- starrr -->
+    <link href="{% static 'vendors/starrr/dist/starrr.css' %}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
+
+     <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{% static 'vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href="{% static 'vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css' %}" rel="stylesheet"/>
+
+    <!-- iCheck -->
+    <link href="{% static 'vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="{% static 'vendors/datatables.net-bs/css/dataTables.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
+
+
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+
+      <div class="main_container ">
+   
+
+        
+
+        <!-- page content -->
+      <!--
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Fixed Sidebar <small> Just add class <strong>menu_fixed</strong></small></h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="x_panel">
+                 
+
+     <div class="x_content">
+
+                    <form class="form-horizontal form-label-left" novalidate method="POST" action=""> {%csrf_token%}
+{% include 'utilisateur/_alerts.html' %}
+<input type="hidden" name="id" value="{{all.id}}">
+                      
+                      <span class="section">Modifier vos Informations</span>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom ou l'etablisement  <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="name" class="form-control col-md-7 col-xs-12" value="{{all.first_name}}"  name="name"  required="required" type="text">
+                        </div>
+                      </div>
+                      
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Prenom">Prenom<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="Prenom" class="form-control col-md-7 col-xs-12" value="{{all.last_name}}"  name="Prenom"  required="required" type="text">
+                        </div>
+                      </div>
+
+
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="email" id="email" name="email" value="{{all.email}}" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="tel" id="telephone" name="tlf" value="{{all.telephone_user}}" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">adresse <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="website" name="adresse" value="{{all.adresse_user}}" required="required"  class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">wilaya<span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select class="select2_single form-control" tabindex="-1" name="wilaya">
+        
+<option value="{{all.wilaya_user}}" selected="selected"> {{all.wilaya_user}} </option> 
+                           <option value="Adrar" >01 Adrar  </option>
+                              <option value="Chlef"> 02 Chlef   </option>
+                              <option value="Laghouat"> 03 Laghouat </option>
+                              <option value="Oum El Bouaghi">04 Oum El Bouaghi  </option>
+                              <option value="Batna">05 Batna</option>
+                              <option value="Béjaïa">06 Béjaïa  </option>
+                              <option value="Biskra">07 Biskra</option>
+                              <option value="Béchar">08 Béchar</option>
+                              <option value="Blida">09 Blida</option>
+                              <option value="Bouira">10 Bouira  </option>
+                              <option value="Tamanrasset">11 Tamanrasset    </option>
+                              <option value="Tébessa">12 Tébessa    </option>
+                              <option value="Tlemcen">13 Tlemcen</option>
+                              <option value="Tiaret">14 Tiaret</option>
+                              <option value="Tizi Ouzou">15 Tizi Ouzou  </option>
+                              <option value="Alger">16 Alger    </option>
+                              <option value="Djelfa">17 Djelfa  </option>
+                              <option value="Jijel">18 Jijel    </option>
+                              <option value="Sétif">19 Sétif</option>
+                              <option value="Saïda">20 Saïda    </option>
+                              <option value="Skikda">21 Skikda  </option>
+                              <option value="Sidi Bel Abbès">22 Sidi Bel Abbès  </option>
+                              <option value="Annaba">23 Annaba  </option>
+                              <option value="Guelma">24 Guelma  </option>
+                              <option value="Constantine">25 Constantine    </option>
+                              <option value="Médéa">26 Médéa    </option>
+                              <option value="Mostaganem">27 Mostaganem  </option>
+                              <option value="M’Sila">28 M’Sila  </option>
+                              <option value="Mascara">29 Mascara    </option>
+                              <option value="Ouargla">30 Ouargla</option>
+                              <option value="Oran">31 Oran  </option>
+                              <option value="El Bayadh">32 El Bayadh</option>
+                              <option value="Illizi">33 Illizi</option>
+                              <option value="Bordj Bou Arreridj">34 Bordj Bou Arreridj  </option>
+                              <option value="Boumerdès">35 Boumerdès</option>
+                              <option value="El Tarf">36 El Tarf    </option>
+                              <option value="Tindouf">37 Tindouf    </option>
+                              <option value="Tissemsilt">38 Tissemsilt  </option>
+                              <option value="El Oued">39 El Oued    </option>
+                              <option value="Khenchela">40 Khenchela    </option>
+                              <option value="Souk Ahras">41 Souk Ahras</option>
+                              <option value="Tipaza">42 Tipaza</option>
+                              <option value="Mila">43 Mila  </option>
+                              <option value="Aïn Defla">44 Aïn Defla    </option>
+                              <option value="Naâma">45 Naâma    </option>
+                              <option value="Aïn Témouchent">46 Aïn Témouchent  </option>
+                              <option value="Ghardaia">47 Ghardaia</option>
+                              <option value="Relizane">48 Relizane</option>
+
+                          </select>
+                        </div>
+                      </div>
+
+
+
+
+
+{% if all.type_sp == "revendeur" %}
+
+                   <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">rc <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="website" name="rc" value="{{all.rc}}" required="required"  class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+
+
+
+                   <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">mi <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="website" name="mi" value="{{all.mi}}" required="required"  class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+
+
+
+                   <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">li <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="website" name="li" value="{{all.li}}" required="required"  class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+
+
+
+                   <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">nis <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="website" name="nis" value="{{all.nis}}" required="required"  class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+
+
+
+
+
+{%endif%}
+
+
+
+
+
+
+
+{% if all.type == "vente" %}
+
+
+<div class="item form-group">
+  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">telephone portable
+  </label>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <input type="tel" id="website" name="portable" value="{{all.telephone_portable_user}}" required="required"  class="form-control col-md-7 col-xs-12">
+  </div>
+</div>
+
+
+
+<div class="item form-group">
+  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">fax 
+  </label>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <input type="tel" id="website" name="fax" value="{{all.fax_user}}" required="required"  class="form-control col-md-7 col-xs-12">
+  </div>
+</div>
+
+
+
+
+<div class="item form-group">
+  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">maps 
+  </label>
+  <div class="col-md-6 col-sm-6 col-xs-12">
+    <input type="text" id="website" name="maps" value="{{all.rc}}" required="required"  class="form-control col-md-7 col-xs-12">
+  </div>
+</div>
+
+
+
+
+{%endif%}
+
+
+
+
+
+
+
+
+
+
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Username<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="name" class="form-control col-md-7 col-xs-12" value="{{all.username}}"  name="username"  required="required" type="text">
+                        </div>
+                      </div>
+
+
+
+                      <div class="item form-group">
+                        <label for="password" class="control-label col-md-3">Password</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="password" type="password" name="password" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat Password</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="password2" type="password" name="password2" data-validate-linked="password" class="form-control col-md-7 col-xs-12" required="required">
+                        </div>
+                      </div>
+                      
+                      
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                           <a href="{% url 'produit:index' %}"><span   class="btn btn-primary">Annuler</span></a>
+                          <button id="send"  class="btn btn-success">Enregistrer</button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+<!--{% url 'utilisateur:suppCompte' %}-->
+{%  if user.type == "user" %}
+<form method="POST" id="formsenddd" action="{% url 'utilisateur:suppCompte' %}">
+  {%csrf_token%}
+  <input type="hidden" name="id" value="{{all.id}} ">
+  
+   <button type="Submit"  class="btn btn-danger">suprimer compte</button>
+</form>
+{%endif%}
+
+         </div>
+     
+
+
+
+
+             
+                <!-- jQuery -->
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
+    
+      <script src="{% static 'vendors/validator/validator.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
+    <!-- jQuery custom content scroller -->
+    <script src="{% static 'vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+
+    <!-- bootstrap-progressbar -->
+    <script src="{% static 'vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+   
+    <!-- bootstrap-daterangepicker -->
+    <script src="{% static 'vendors/moment/min/moment.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="{% static 'vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery.hotkeys/jquery.hotkeys.js' %}"></script>
+    <script src="{% static 'vendors/google-code-prettify/src/prettify.js' %}"></script>
+    <!-- jQuery Tags Input -->
+    <script src="{% static 'vendors/jquery.tagsinput/src/jquery.tagsinput.js' %}"></script>
+    <!-- Switchery -->
+    <script src="{% static 'vendors/switchery/dist/switchery.min.js' %}"></script>
+    <!-- Select2 -->
+    <script src="{% static 'vendors/select2/dist/js/select2.full.min.js' %}"></script>
+    <!-- Parsley -->
+    <script src="{% static 'vendors/parsleyjs/dist/parsley.min.js' %}"></script>
+    <!-- Autosize -->
+    <script src="{% static 'vendors/autosize/dist/autosize.min.js' %}"></script>
+    <!-- jQuery autocomplete -->
+    <script src="{% static 'vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js' %}"></script>
+    <!-- starrr -->
+    <script src="{% static 'vendors/starrr/dist/starrr.js' %}"></script>
+
+ <!-- Dropzone.js -->
+    <script src="{% static 'vendors/dropzone/dist/min/dropzone.min.js' %}"></script>
+
+    <!-- iCheck -->
+    <script src="{% static 'vendors/iCheck/icheck.min.js' %}"></script>
+    <!-- Datatables -->
+    <script src="{% static 'vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js' %}"></script>
+    <script src="{% static 'vendors/datatables.net-scroller/js/dataTables.scroller.min.js' %}"></script>
+    <script src="{% static 'vendors/jszip/dist/jszip.min.js' %}"></script>
+    <script src="{% static 'vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+
+
+    <!-- Custom Theme Scripts -->
+    <script src="{% static 'build/js/custom.min.js' %}"></script>
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#formsenddd").submit(function(event){
+    event.preventDefault();
+   
+swal({
+  title: "Voulez-vous supprimer le compte?",
+  text: "Si oui, vous ne pouvez pas le récupérer",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+
+    swal("Votre compte a été supprimé", {
+      icon: "success",
+    })
+    .then((parpase) => {
+      if (parpase) {
+    if ( event.isDefaultPrevented()) { event.currentTarget.submit();}
+   
+}
+    });
+  } else {
+   swal("Votre compte n'est pas supprimer", {
+      icon: "error",
+    });
+    
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+});
+    
+
+ </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
