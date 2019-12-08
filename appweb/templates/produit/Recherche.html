@@ -40,11 +40,16 @@
 													</a>
                             </div>
 
-                            <div class="product-info" style="height:100px;">
-                                <h5><a href="/produit/{{pro.id}}/" >{{pro.nom_produit}}</a></h5>
-                                <span class="price">{{pro.prix_produit|intcomma}} Dzd</span>
-                                <div class="rating readonly-rating" data-score="4"></div>
-                            </div>
+                                   
+										<div class="product-info" style="height:130px;">
+                   
+                      <h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit}}</a>
+                      </strong><br><small style="color: blue;">
+                        
+                        <strong> Ref: {{pro.reference_produit}} </strong></small></h5>
+                    <span class="price">{{pro.prix_produit|intcomma}}Dzd</span>
+                    <div class="rating readonly-rating" data-score="4"></div>
+                  </div>
 
                             <div class="product-actions">
                                 <span class="add-to-cart">
@@ -62,9 +67,9 @@
                                                                 <i class="icons icon-heart-empty"></i>
         
                                                                     {% if user.is_authenticated %}
-                                                                <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au favori</span>
+                                                                <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au favoris</span>
                                                                 {% else %}
-                                                                <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au favori</span>
+                                                                <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au favoris</span>
                                                                 {% endif %}
                                                             </span>
                                 </span>
@@ -567,11 +572,25 @@ if (name =="" ) {
                   </a>
                     </div>
 
-                    <div class="product-info" style="height:100px;">
-                        <h5><a href="/produit/{{pro.id}}/">{{pro.nom_produit_ar}}</a></h5>
-                        <span class="price">{{pro.prix_produit|intcomma}} دج</span>
-                        <div class="rating readonly-rating" data-score="4"></div>
-                    </div>
+            
+										<div class="product-info" style="height:130px;">
+                   
+                      <h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit_ar}}</a>
+                      </strong><br><small style="color: blue;">
+                        
+                        <strong> المرجع: {{pro.reference_produit}} </strong></small></h5>
+                    <span class="price">{{pro.prix_produit|intcomma}}دج</span>
+                    <div class="rating readonly-rating" data-score="4"></div>
+                  </div>
+
+               
+
+
+
+
+
+
+
                     <div class="product-actions">
                         <span class="add-to-cart">
                           <span class="action-wrapper">

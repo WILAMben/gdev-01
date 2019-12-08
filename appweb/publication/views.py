@@ -98,7 +98,11 @@ def modifierQuiSommeNous (request):
         return HttpResponseRedirect('/admin_site/')
     if request.method == 'POST':
 
-        t1=request.POST['t1']
+        t1=request.POST['descr']
+        print("hhhhhhhhhhhhhhhhhhhhhhh")
+        print(t1)
+        print("jjjjjjjjjjjjjjj")
+
 
         Blog.objects.filter(type="nousSomme").delete()
 

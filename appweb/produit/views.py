@@ -38,6 +38,15 @@ def indexView(request):
         request.session['comp3'] = 0
     
 
+    #session nseyiha ta3 loading
+    
+    if 'loadingss'  in request.session:
+       if request.session['loadingss'] == "first":
+           request.session['loadingss'] = "wilam kherray kbir"
+
+    if 'loadingss' not in request.session:
+            request.session['loadingss'] = "first"
+    
     
     
     if 'idUserBachNsegemUpdate' not in request.session:
@@ -86,7 +95,7 @@ def indexView(request):
         'all': all,
         'date_ajout': date_ajout,
         'les_plus_acheter': les_plus_acheter,
-        
+        'fff':Produit.objects.filter(active=True),
         'random':random,
         'p':p,
         'slide': Pub.objects.all(),
@@ -113,6 +122,7 @@ def detailView(request, pk):
     context = {
 
         'all': all,
+        'fff':Produit.objects.filter(active=True),
         'cat': cat,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
@@ -168,6 +178,7 @@ def recherchePro(request):
 
         context = {
             'p':p,
+            'fff':Produit.objects.filter(active=True),
             'page_range':page_range,
             'contacts': contacts,
             'hass': ser,
@@ -221,6 +232,7 @@ def rechCatigo(request):
 
     context = {
         'p':p,
+        'fff':Produit.objects.filter(active=True),
         'contacts': all,
         'page_range':page_range,
         'hass': data,
@@ -274,6 +286,7 @@ def rechCatigoSplit(request):
 
             context = {
                 'p':p,
+                'fff':Produit.objects.filter(active=True),
                 'contacts': all,
                 'page_range': page_range,
                 'hass': anis,
@@ -321,6 +334,7 @@ def rechCatigoSplit(request):
 
     context = {
         'contacts': all,
+        'fff':Produit.objects.filter(active=True),
         'hass': anis,
         'cat_nom':cat_nom,
         'page_range':page_range,
@@ -500,6 +514,7 @@ def contact(request):
 
     return render(request, template_name,{
         'p':p,
+        'fff':Produit.objects.filter(active=True),
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
         'les_plus_acheter': les_plus_acheter,
@@ -529,6 +544,7 @@ def information(request):
 
 
     return render(request, template_name, {'p':p,
+        'fff':Produit.objects.filter(active=True),
         'text':Blog.objects.filter(type="nousSomme"),
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
@@ -540,8 +556,8 @@ def information(request):
 
 def blog(request):
     template_name = 'produit/blog.html'
-    all = Blog.objects.filter(type="blog")
-    paginator = Paginator(all, 6)
+    all = Blog.objects.filter(type="blog").order_by('-date')
+    paginator = Paginator(all, 4)
     page = request.GET.get('page')
 
     all = paginator.get_page(page)
@@ -566,6 +582,7 @@ def blog(request):
 
     context={
         'p':p,
+        'fff':Produit.objects.filter(active=True),
         'touss':all,
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
@@ -603,6 +620,7 @@ def blog_post(request):
 
     return render(request, template_name,{'p':p,
         'all':b,
+        'fff':Produit.objects.filter(active=True),
         'imgCata':ImageVente.objects.filter(type="cataImg"),
         'pdfCata':ImageVente.objects.filter(type="cataPdf"),
         'les_plus_acheter': les_plus_acheter,

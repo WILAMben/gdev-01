@@ -2,12 +2,13 @@
 {% extends "admin/admin_page.html" %}
 {% load staticfiles%}
 {% block content %}
-
+  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
 
   <div >
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Modifier qui somme nous <small>modifier les l'introduction de DIDABEN </small></h2>
+                    <h2>Modifier qui somme nous <small>modifier l'introduction de DIDABEN </small></h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -16,21 +17,50 @@
                     
                     <form method="POST" action="" class="form-horizontal form-label-left" id="register-form" enctype="multipart/form-data">
                       {% csrf_token %}
-                                   <div class="form-group">
-                     
-                      </div>
-                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">description</label>
-                     <div class="col-md-9 col-sm-9 col-xs-12">
-                          <textarea class="form-control" name="t1" rows="12" ></textarea>
-                        </div>
-                      
-                      <br>
-                        <div class="form-group">
                     
-                      </div>
+                  
+              
 
-                     
+
+  <textarea name="descr" placeholder="écrire votre description ici" ></textarea>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                       <div class="ln_solid"></div>
                       <div class="form-group">

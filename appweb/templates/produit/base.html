@@ -235,6 +235,15 @@ a.control_next {
 
 
 
+/*auto complete style*/
+.ui-autocomplete{
+z-index: 1000000000!important;
+}
+
+
+
+/*fin auto complete style*/
+
 </style>
 <style>
 
@@ -290,6 +299,13 @@ a.control_next {
      <!--hadi ljquery 9dim-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+
+
+ <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+
 
 
         <!--[if lt IE 9]>
@@ -757,7 +773,7 @@ a.control_next {
 
 
                                 
-                                            <input type="text" name="ser" placeholder="Enter your keyword" required>
+                                            <input id="autoanis" type="text" name="ser" placeholder="Enter your keyword" required>
 
                                         </td>
                                         <td class="search-column-2">
@@ -796,6 +812,26 @@ a.control_next {
 			</header>
 			<!-- /Header -->
 
+
+<script type="text/javascript">
+  $(function() {
+     var availableTutorials = [
+       {% for b in fff %}
+        "{{b.nom_produit}}",
+        "{{b.reference_produit}}",
+        "{{b.nom_produit_ar}}",
+     {%endfor%}
+       
+     ];
+     $( "#autoanis" ).autocomplete({
+        source: availableTutorials,
+        autoFocus:true,
+        select: function( event, ui ) {
+
+  }
+     });
+  });
+</script>
 
 
 <!-- fin francais -->
@@ -912,8 +948,11 @@ a.control_next {
                   
                   <li><a href="{% url 'produit:information' %}"> معلومات عنا</a></li>
                   <li><a href="{% url 'produit:contact' %}">تواصل</a></li>
-                  <li><a href="{% url 'admine:home_admin' %}">صفحة المدير</a></li>
-                  <li><a href="{% url 'point_de_vente:venteHome' %}">صفحة البائع</a></li>
+                <li><a href="{% url 'admine:home_admin' %}">صفحة مسير الموقع</a></li>
+                 
+<li><a href="{% url 'point_de_vente:venteHome' %}">صفحة نقطة البيع</a></li>
+
+
                   <li><div id="snackbar">انت متصل</div></li>
                
                 </ul>
@@ -1292,7 +1331,7 @@ a.control_next {
 
 
                                 
-                                            <input type="text" name="ser" placeholder="Enter your keyword" required>
+                                            <input id="autoanis" type="text" name="ser" placeholder="أدخل كلمتك المفتاحية" required>
 
                                         </td>
                                         <td class="search-column-2">
@@ -1330,6 +1369,29 @@ a.control_next {
 
       </header>
       <!-- /Header -->
+
+
+
+<script type="text/javascript">
+  $(function() {
+     var availableTutorials = [
+       {% for b in fff %}
+        "{{b.nom_produit}}",
+        "{{b.reference_produit}}",
+        "{{b.nom_produit_ar}}",
+     {%endfor%}
+       
+     ];
+     $( "#autoanis" ).autocomplete({
+        source: availableTutorials,
+        autoFocus:true
+     });
+  });
+</script>
+
+
+
+      
 {%endif%}
 
 
@@ -2571,7 +2633,7 @@ a.control_next {
 
 
 	<!-- Main Footer -->
-  <div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="col-lg-12 col-md-12 col-sm-12" dir="rtl">
 					
     <div id="main-footer">
     
@@ -2896,11 +2958,18 @@ a.control_next {
 
 </html>
 
-		<!-- JavaScript -->
-		<script src="{% static 'js/modernizr.min.js' %}"></script>
-		<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+ <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <!-- JavaScript -->
+    <script src="{% static 'js/modernizr.min.js' %}"></script>
+      <!-- <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/jquery.raty.min.js' %}"></script>
+
+
+
+
+
 
 		<!-- Scroll Bar -->
 		<script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
@@ -3140,6 +3209,7 @@ function JSalert(){
   
   </script>
 {%endif%}
+
 
 
 

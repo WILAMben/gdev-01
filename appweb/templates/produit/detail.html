@@ -1415,9 +1415,9 @@ h1{
                                             <i class="icons icon-heart-empty"></i>
                                             
                                                             {% if user.is_authenticated %}
-                                                        <span class="action-name" onclick="addWish('{{produit.id}}','{{user.id}}')" >Ajouter au Favoris</span>
+                                                        <span class="action-name" onclick="addWish('{{produit.id}}','{{user.id}}')" >ajouter au favoris</span>
                                                         {% else %}
-                                                        <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" >Ajouter au Favoris</span>
+                                                        <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" >ajouter au favoris</span>
                                                         {% endif %}
                                         </span>
                                     </span>
@@ -1497,10 +1497,10 @@ h1{
 
                                     <!-- Slide -->
                                      {% for pro in cat %}
-                                    <div>
+                                    <div style="margin-right: -10px!important;">
                                       <form onsubmit="return false;">
                                       	<!-- Carousel Item -->
-										<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12">
+										<div class="product col-xs-8 col-sm-12 col-md-12 col-lg-12" >
                                                 
                         <div class="product-image">
                                                      {% for item in pro.imageproduit_set.all|slice:"1" %}
@@ -1515,12 +1515,31 @@ h1{
                           </a>
                         </div>
   
-                        <div class="product-info">
-                          <h5><a href="/produit/{{pro.id}}/">{{pro.nom_produit}}</a></h5>
-                          <span class="price">{{pro.prix_produit|intcomma}} Dzd</span>
-                          <div class="rating readonly-rating" data-score="4"></div>
-                        </div>
-                                         
+              
+
+
+                          
+										<div class="product-info" style="height:130px;">
+                   
+                      <h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit}}</a>
+                      </strong><br><small style="color: blue;">
+                        
+                        <strong> Ref: {{pro.reference_produit}} </strong></small></h5>
+                    <span class="price">{{pro.prix_produit|intcomma}}Dzd</span>
+                    <div class="rating readonly-rating" data-score="4"></div>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
                         <div class="product-actions">
                           <span class="add-to-cart">
                             <span class="action-wrapper">
@@ -1537,9 +1556,9 @@ h1{
                                                           <i class="icons icon-heart-empty"></i>
   
                                                               {% if user.is_authenticated %}
-                                                          <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">Ajouter au favori</span>
+                                                          <span class="action-name" onclick="addWish('{{pro.id}}','{{user.id}}')" style="font-size: small;">ajouter au favoris</span>
                                                           {% else %}
-                                                          <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">Ajouter au favori</span>
+                                                          <span class="action-name" onclick="swal('vous devez connecter!',{icon: 'error',})" style="font-size: small;">ajouter au favoris</span>
                                                           {% endif %}
                                                       </span>
                           </span>
@@ -2115,7 +2134,7 @@ h1{
               
                                                   <!-- Slide -->
                                                    {% for pro in cat %}
-                                                  <div>
+                                                  <div style="margin-right: -10px!important;">
                                                      
                                                      	<!-- Carousel Item -->
 									<div class="product" style="font-size: 1em;">
@@ -2131,11 +2150,23 @@ h1{
                         </a>
                       </div>
   
-                      <div class="product-info">
-                        <h5><a href="/produit/{{pro.id}}/" style="font-size: 1em;">{{pro.nom_produit_ar}}</a></h5>
-                        <span class="price">{{pro.prix_produit|intcomma}}</span>
-                        <div class="rating readonly-rating" data-score="4"></div>
-                      </div>
+                   
+										<div class="product-info" style="height:130px;">
+                   
+                        <h5><strong><a href="/produit/{{pro.id}}/">{{pro.nom_produit_ar}}</a>
+                        </strong><br><small style="color: blue;">
+                          
+                          <strong> المرجع: {{pro.reference_produit}} </strong></small></h5>
+											<span class="price">{{pro.prix_produit|intcomma}}دج</span>
+											<div class="rating readonly-rating" data-score="4"></div>
+										</div>
+
+                 
+
+
+
+
+
   
                       <div class="product-actions">
                         <span class="add-to-cart">

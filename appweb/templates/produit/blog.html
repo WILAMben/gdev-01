@@ -56,8 +56,8 @@
                        
                             
                             {% for b in touss %}
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                        	<div class="blog-item">
+                        <div class="col-lg-6 col-md-6 col-sm-12"  >
+                        	<div class="blog-item" style="height:45em">
 
                                 <a ><img src="{{MEDIA_URL}}{{b.img.url}}" alt="" style="
                                     
@@ -75,7 +75,7 @@
 											<span>(1 vote)</span>
 										</div>
                                     </div>
-                                    <p>{{b.description|truncatechars:100}} </p>
+                                    <div>{{b.description|truncatechars:100|safe}} </div>
                                 </div>
                                 <div class="product-actions blog-actions">
 									<span class="product-action dark-blue">

@@ -37,15 +37,10 @@
                                 <div class="blog-info">
                                     <div class="blog-meta">
                                     	<span class="date"><i class="icons icon-clock"></i>{{a.date}}</span>
-                                        <span class="cat"><i class="icons icon-tag"></i> <a href="#">lorem</a>, <a href="#">tablet</a></span>
-                                        <span class="views"><i class="icons icon-eye-1"></i> 11 times</span>
-										<div class="rating-box">
-											<span>Rate this item</span>
-											<div class="rating readonly-rating" data-score="4"></div>
-											<span>(24 vote)</span>
-										</div>
+                                      
+										
                                     </div>
-                                    <p>{{a.description}}</p>
+                                    <p>{{a.description|safe}}</p>
 
                                     <div class="social-share">
                                     	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; width:100px;" allowTransparency="true"></iframe>
